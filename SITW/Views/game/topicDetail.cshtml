@@ -1,0 +1,41 @@
+﻿@model SITDto.topicDto
+
+
+<dt>
+    @Html.DisplayNameFor(model => model.title)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.title)
+</dd>
+<dt>
+    @Html.DisplayNameFor(model => model.comment)
+</dt>
+<dd>
+    @Html.DisplayFor(model => model.comment)
+</dd>
+@foreach (var c in Model.choiceList)
+{
+    <dt>
+    </dt>
+    <dd name="betin">
+        @if (Model.canbet)
+        {
+            using (Html.BeginForm("Create", "bet", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.DisplayFor(model => c.choiceStr) @Html.DisplayFor(model => c.Odds)
+                @*@Html.Label(BetList.Where(p => p.choiceSn == c.sn).Sum(o => o.money).ToString())*@
+                @Html.Hidden("choiceSn", c.sn)
+                @Html.Hidden("topicSn", Model.sn)
+                @Html.Hidden("gameSn", Model.gameSn)
+                @Html.Hidden("comSn", c.comSn)
+                @Html.TextBox("money")
+                <input type="submit" name="送出" />
+            }
+        }
+        else
+        {
+            @Html.DisplayFor(model => c.choiceStr) @Html.DisplayFor(model => c.Odds)
+        }
+    </dd>
+}

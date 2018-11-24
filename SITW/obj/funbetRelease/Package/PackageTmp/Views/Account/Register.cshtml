@@ -1,0 +1,174 @@
+﻿@using SITW.Models
+@model SITW.Models.RegisterViewModel
+@{
+    ViewBag.Title = "註冊| 熊i猜";
+    ViewBag.Description = "註冊-熊i猜 - 電競免費競猜平台 !歡迎來到熊i猜，立即註冊開啟競猜之旅 現在註冊送2000魚骨幣試玩";
+}
+
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "item": {
+    "@@id": "http://funbet.com.tw/",
+    "name": "首頁",
+    "image": "http://funbet.com.tw/Content/images/logo-1.png"
+    }
+    },{
+    "@@type": "ListItem",
+    "position": 2,
+    "item": {
+    "@@id": "http://funbet.com.tw/Account/Register",
+    "name": "註冊"
+    }
+    }]
+    }
+</script>
+
+<style>
+    .sportsmagazine-register-form.sportsmagazine-login-form label.form-label {
+        color: #ebdec2;
+    }
+
+    textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+        border: 1px solid #e5b22a;
+        background-color: rgba(0, 0, 0, 0.22);
+    }
+    /* .rc-anchor-light.rc-anchor-normal {
+        border: 1px solid #5d5741;
+    }
+    .rc-anchor-light {
+        background-color: rgba(0, 0, 0, 0.23921568627450981);
+        color: #ebdec2;
+    }*/
+
+    #registerbtn {
+        cursor: pointer;
+        float: left;
+        font-size: 20px;
+        display: inline-block;
+        color: #e5b22a;
+        font-weight: bold;
+        border: 1px solid #e5b22a;
+        padding: 11px 130px 12px 130px;
+        position: relative;
+        line-height: 1;
+        background-color: rgba(3,3,3,.8);
+    }
+    .form-horizontal .control-label {
+        color: #ebdec2;
+    }
+
+    iframe {
+        height: -webkit-fill-available;
+    }
+    .sportsmagazine-login-social{
+        padding:15px 0 10px 0;
+        border-bottom:1px solid #333;
+
+    }
+    .form-horizontal .control-label{
+        width:100%
+
+    }
+    .form-horizontal .control-label
+    {
+
+        text-align:left;
+    }
+    .text-danger {
+        color: #5aa3d5;
+    }
+</style>
+
+<!--// Main Content \\-->
+		<div class="sportsmagazine-main-content">
+
+			<!--// Main Section \\-->
+			<div class="sportsmagazine-main-section sportsmagazine-login-form-full">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<section id="loginForm">
+								<div id="logocolor" class="sportsmagazine-login-form sportsmagazine-register-form">
+                                    <h3>建立新的帳戶。</h3>
+                                   
+                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                    
+                                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        
+	                                    <form>
+	                                    <ul>
+    
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                                <br/>
+                                                <p class="text-danger">hotmail與outlook.com信箱會有擋信問題，請改用其他電子信箱進行註冊</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <div class="col-md-10" style="float:left;">
+                                                <div class="g-recaptcha" data-sitekey="6LdEGTEUAAAAANjeFViy500BKTVbnCRIwPq3VBXk"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-10" style="float:left;">
+                                                <li><label class="submit-border"><input type="submit" value="註冊"></label></li>
+
+                                            </div>
+	                                    </ul>
+                                    </form>
+                                    }
+                                    
+                                </div>
+                            </section>
+                        </div>	
+
+                       
+                        
+                    </div>
+				</div>
+			</div>
+			<!--// Main Section \\-->
+
+		</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src='https://www.google.com/recaptcha/api.js?hl=zh-TW'></script>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $(".OAuthLogin").click(function () {
+                    $("#OAuthForm").find("input[name=provider]").val($(this).attr("provider"));
+                    $("#OAuthForm").submit();
+                });
+            });
+    </script>
+}

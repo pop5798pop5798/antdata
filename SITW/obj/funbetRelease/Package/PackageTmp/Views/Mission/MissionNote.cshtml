@@ -1,0 +1,60 @@
+﻿@model SITW.Models.ViewModel.MissionNoteViewModel
+
+@{
+    Layout = null;
+}
+
+<ul>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model.MissionNoteList)
+        {
+            double finshPer = Math.Round((double)item.mevList.Sum(p => p.nownum) / item.mevList.Sum(p => p.num), 2) * 100;
+            <li name="imgview">
+            @using (Html.BeginForm("SetMissionFinsh", "Mission",new { userMissionSn = item.userMissionSn }, FormMethod.Post, new { name = "formMissionFinsh" }))
+            {
+                <figure>
+                    <i name="iCheckMission" class="fa fa-check fa-4" aria-hidden="true" style="font-size: 6.7em;opacity: 0.85;display: none;"></i>
+                    <img style="z-index:-1; max-width: max-content;height: 100%;position: absolute;left: 50%;top: 50%;-webkit-transform: translateY(-50%) translateX(-50%);" src="@(string.IsNullOrEmpty(item.imgURL)?"/Content/images/missionDefault.jpg":item.imgURL)" alt="">
+                </figure>
+                <div class="sportsmagazine-cartbox-text">
+                    <h6>@Html.DisplayFor(modelItem => item.Name)</h6>
+                    @foreach (var mev in item.mevList)
+                    {
+                        <span style="color:#8e8675;float:right;">
+                            @Html.DisplayFor(modelItem => mev.nownum) / @Html.DisplayFor(modelItem => mev.num)
+
+                        </span><br />
+                    }
+                    <div class="skillst">
+                        <div class="progressbar1" data-width="@finshPer" data-target="100"></div>
+                    </div>
+                    
+
+            </div>
+
+            <h5>                
+                @foreach (var m in item.maList)
+                {
+                    @m.assets @m.unitStr
+                    if (item.maList.IndexOf(m) == 0 && item.isFinsh)
+                    {
+                        <span name="MissionFinsh" style="float:right;color: gold; cursor:pointer;padding:0px 10px">
+                            <i class="fa fa-chevron-right" aria-hidden="true" style="color: gold;"></i>
+                            領取獎勵
+                        </span>
+                    }
+                    <br>
+                }
+            </h5>
+            }
+            </li>
+
+        }
+        @Html.HiddenFor(p => p.MissionNumber)
+        @Html.HiddenFor(p => p.MissionFinshNumber)
+    }
+
+</ul>
+

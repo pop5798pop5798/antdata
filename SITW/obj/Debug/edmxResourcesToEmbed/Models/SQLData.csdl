@@ -1,0 +1,500 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sitwModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Assets">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="unitSn" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="unitSn" Type="Int32" Nullable="false" />
+    <Property Name="assets" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssetsRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="unitSn" Type="Int32" Nullable="false" />
+    <Property Name="gameSn" Type="Int32" />
+    <Property Name="topicSn" Type="Int32" />
+    <Property Name="choiceSn" Type="Int32" />
+    <Property Name="assets" Type="Double" Nullable="false" />
+    <Property Name="type" Type="Int32" Nullable="false" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="sitwEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Assets" EntityType="Self.Assets" />
+    <EntitySet Name="AssetsRecord" EntityType="Self.AssetsRecord" />
+    <EntitySet Name="MissionEnd" EntityType="sitwModel.MissionEnd" />
+    <EntitySet Name="Missions" EntityType="sitwModel.Missions" />
+    <EntitySet Name="MissionStart" EntityType="sitwModel.MissionStart" />
+    <EntitySet Name="UserMissions" EntityType="sitwModel.UserMissions" />
+    <EntitySet Name="cfgMissionEnd" EntityType="sitwModel.cfgMissionEnd" />
+    <EntitySet Name="cfgMissionStart" EntityType="sitwModel.cfgMissionStart" />
+    <EntitySet Name="MissionAssets" EntityType="sitwModel.MissionAssets" />
+    <EntitySet Name="cfgUnit" EntityType="sitwModel.cfgUnit" />
+    <EntitySet Name="GlobalSetting" EntityType="sitwModel.GlobalSetting" />
+    <EntitySet Name="cfgVedio" EntityType="sitwModel.cfgVedio" />
+    <EntitySet Name="VedioRecord" EntityType="sitwModel.VedioRecord" />
+    <EntitySet Name="Leagues" EntityType="sitwModel.Leagues" />
+    <EntitySet Name="Teams" EntityType="sitwModel.Teams" />
+    <EntitySet Name="cfgLevelExp" EntityType="sitwModel.cfgLevelExp" />
+    <EntitySet Name="placard" EntityType="sitwModel.placard" />
+    <EntitySet Name="NewsMenu" EntityType="sitwModel.NewsMenu" />
+    <EntitySet Name="Seasons" EntityType="sitwModel.Seasons" />
+    <EntitySet Name="Ranking_content" EntityType="sitwModel.Ranking_content" />
+    <EntitySet Name="C__MigrationHistory" EntityType="sitwModel.C__MigrationHistory" />
+    <EntitySet Name="GlobalSettingRecord" EntityType="sitwModel.GlobalSettingRecord" />
+    <EntitySet Name="Rewards" EntityType="sitwModel.Rewards" />
+    <EntitySet Name="Roles" EntityType="sitwModel.Roles" />
+    <EntitySet Name="SMSRecord" EntityType="sitwModel.SMSRecord" />
+    <EntitySet Name="UserClaims" EntityType="sitwModel.UserClaims" />
+    <EntitySet Name="UserLogins" EntityType="sitwModel.UserLogins" />
+    <EntitySet Name="Users" EntityType="sitwModel.Users" />
+    <EntitySet Name="VerifyRecords" EntityType="sitwModel.VerifyRecords" />
+    <AssociationSet Name="FK_dbo_UserClaims_dbo_Users_UserId" Association="sitwModel.FK_dbo_UserClaims_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserClaims" EntitySet="UserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserLogins_dbo_Users_UserId" Association="sitwModel.FK_dbo_UserLogins_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserLogins" EntitySet="UserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="UserRoles" Association="sitwModel.UserRoles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Ranking_title" EntityType="sitwModel.Ranking_title" />
+    <EntitySet Name="TransferRecords" EntityType="sitwModel.TransferRecords" />
+    <EntitySet Name="UserLoginRecord" EntityType="sitwModel.UserLoginRecord" />
+    <EntitySet Name="sysdiagrams" EntityType="sitwModel.sysdiagrams" />
+    <EntitySet Name="UserToken" EntityType="sitwModel.UserToken" />
+    <EntitySet Name="APIPosts" EntityType="sitwModel.APIPosts" />
+    <EntitySet Name="ApiTypes" EntityType="sitwModel.ApiTypes" />
+    <EntitySet Name="ApiDataType" EntityType="sitwModel.ApiDataType" />
+  </EntityContainer>
+  <EntityType Name="MissionEnd">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="missionSn" Type="Int32" Nullable="false" />
+    <Property Name="Compare" Type="Int32" Nullable="false" />
+    <Property Name="num" Type="Int32" Nullable="false" />
+    <Property Name="missionEndtSn" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Missions">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="sdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="edate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="valid" Type="Int32" Nullable="false" />
+    <Property Name="cycle" Type="Int32" Nullable="false" />
+    <Property Name="imgURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MissionStart">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="missionSn" Type="Int32" Nullable="false" />
+    <Property Name="Compare" Type="Int32" Nullable="false" />
+    <Property Name="num" Type="Int32" Nullable="false" />
+    <Property Name="missionStartSn" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserMissions">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="missionSn" Type="Int32" Nullable="false" />
+    <Property Name="assetsRecordSn" Type="Int32" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="valid" Type="Int32" Nullable="false" />
+    <Property Name="sdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="edate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="cfgMissionEnd">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="sqlquery" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="valid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cfgMissionStart">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="sqlquery" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MissionAssets">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" />
+    <Property Name="missionSn" Type="Int32" Nullable="false" />
+    <Property Name="assets" Type="Double" Nullable="false" />
+    <Property Name="unitSn" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cfgUnit">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="showStr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Int32" Nullable="false" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="iconURL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="Byte" />
+  </EntityType>
+  <EntityType Name="GlobalSetting">
+    <Key>
+      <PropertyRef Name="settingName" />
+    </Key>
+    <Property Name="settingName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="settingValue" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Byte" />
+  </EntityType>
+  <EntityType Name="cfgVedio">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="iframehtml" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="includeURL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="RegularStr" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ReplaceStr" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="VedioRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="vediourl" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="cfgVedioSn" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Leagues">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shortName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="imageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="playGamesn" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="shortName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="imageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="leagueSn" Type="Int32" Nullable="false" />
+    <Property Name="valid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cfgLevelExp">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="levelNum" Type="Int32" Nullable="false" />
+    <Property Name="expNum" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="placard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="real_time" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="manager" Type="String" MaxLength="10" FixedLength="true" Unicode="true" DefaultValue="'熊i猜'" />
+    <Property Name="time" Type="DateTime" Precision="3" />
+    <Property Name="endtime" Type="DateTime" Precision="3" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="p_class" Type="Int32" />
+    <Property Name="mail_bear" Type="Int32" DefaultValue="0" Nullable="true" />
+  </EntityType>
+  <EntityType Name="NewsMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Seasons">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="edate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="viewSDate" Type="DateTime" Precision="3" />
+    <Property Name="viewEDate" Type="DateTime" Precision="3" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Ranking_content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ranknumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="rankcontent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GlobalSettingRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="settingName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="settingValueO" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="settingValueN" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="editTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Rewards">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="missionSn" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="num" Type="Int32" Nullable="false" />
+    <Property Name="unitSn" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="sitwModel.UserRoles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="SMSRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="msg" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="sitwModel.FK_dbo_UserClaims_dbo_Users_UserId" FromRole="UserClaims" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="sitwModel.FK_dbo_UserLogins_dbo_Users_UserId" FromRole="UserLogins" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Hometown" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserClaims" Relationship="sitwModel.FK_dbo_UserClaims_dbo_Users_UserId" FromRole="Users" ToRole="UserClaims" />
+    <NavigationProperty Name="UserLogins" Relationship="sitwModel.FK_dbo_UserLogins_dbo_Users_UserId" FromRole="Users" ToRole="UserLogins" />
+    <NavigationProperty Name="Roles" Relationship="sitwModel.UserRoles" FromRole="Users" ToRole="Roles" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VerifyRecords">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="VerifyType" Type="Byte" Nullable="false" />
+    <Property Name="VerifyContent" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="VerifyDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_dbo_UserClaims_dbo_Users_UserId">
+    <End Type="sitwModel.Users" Role="Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="sitwModel.UserClaims" Role="UserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserLogins_dbo_Users_UserId">
+    <End Type="sitwModel.Users" Role="Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="sitwModel.UserLogins" Role="UserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserRoles">
+    <End Type="sitwModel.Roles" Role="Roles" Multiplicity="*" />
+    <End Type="sitwModel.Users" Role="Users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Ranking_title">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="endtime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="starttime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TransferRecords">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="billno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="actype" Type="Byte" Nullable="false" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="credit" Type="Double" Nullable="false" />
+    <Property Name="cur" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Byte" Nullable="false" />
+    <Property Name="flag" Type="Byte" Nullable="false" />
+    <Property Name="createDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="flagUpdateDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserLoginRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="loginDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="loginResult" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="name" />
+      <PropertyRef Name="principal_id" />
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserToken">
+    <Key>
+      <PropertyRef Name="UsersId" />
+    </Key>
+    <Property Name="UsersId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="t_level" Type="Int32" />
+    <Property Name="t_sdate" Type="DateTime" Precision="3" />
+    <Property Name="t_edate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="APIPosts">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApiSn" Type="Int32" Nullable="false" />
+    <Property Name="valid" Type="Int32" Nullable="false" />
+    <Property Name="inpdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="sdate" Type="DateTime" Precision="3" />
+    <Property Name="edate" Type="DateTime" Precision="3" />
+    <Property Name="categorySn" Type="Int32" />
+    <Property Name="coverhref" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ApiTypes">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="shortName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="gamelogo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ApiDataType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="jName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="apiType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Byte" />
+  </EntityType>
+</Schema>

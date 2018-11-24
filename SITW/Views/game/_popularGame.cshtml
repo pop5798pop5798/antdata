@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.GamePostViewModel>
+
+
+<style>
+    #racecolor {
+        box-shadow: 4px 4px 3px rgba(0, 0, 0, 0.5);
+        background-color: rgba(0,0,0,1);
+        /* background: url(/Content/images/menulist.png);*/
+        background-repeat: no-repeat
+    }
+
+    #triangle::after {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 100px 100px 0 100px;
+        border-color: #e5b32a transparent transparent transparent;
+        display: inline-block
+    }
+    
+    #slider-color{
+        color:#e5b32a;
+    }
+    .sportsmagazine-main-content div[name='widgetnext'] {
+        border: 1px solid #2f334c;
+        height: 285px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.27), 4px 4px 6px rgba(0, 0, 0, 0.21), 6px 6px 12px rgba(0, 0, 0, 0);
+    }
+</style>
+<div class="sportsmagazine-fancy-title2" id="titleshow">
+    <h2><i class="fa fa-clock-o" style="margin:0px 10px 0px 0px;text-shadow:1px 1px 0 #e4b12a, -1px -1px 0 #e4b12a, 1px -1px 0 #e4b12a, -1px 1px 0 #e4b12a, 1px 1px 0 #e4b12a;color:#181c26"></i> 近期賽事</h2>
+    <h6 style="margin:-40px 40px 0px 0px;float:right;">
+        <a href="@Url.Action("Index", "game")"><i class="fa fa-plus-square-o fa-lg"></i></a>
+    </h6>
+</div>
+
+
+<div class="sportsmagazine-shop sportsmagazine-shop-grid">
+    <ul class="row">
+        <li class="col-md-12">
+            <div class="sportsmagazine-fixture-slider">
+                @foreach (var item in Model)
+                {
+                    <div style="background:none" class="sportsmagazine-fixture-slider-layer"  id="slider-color">
+                        <figure>
+                            <a href="@Url.Action("Details", "game", new { id = item.gamepost.sn })">
+                                <div class="widget widget_next_match" name="widgetnext">
+                                    <time>@item.game.title </time>
+                                    <time><span>@item.game.comment<span></time>
+                                    <ul style="margin-left:0px;margin-bottom:10px;" class="sportsmagazine-bgcolor">
+                                                                           
+                                        <li class="first-child">
+                                            <h5>@item.TeamB.shortName</h5>
+                                            <span>@item.TeamA.shortName </span>
+                                            <img src="@item.TeamA.imageURL" alt="">
+                                        </li>
+                                        
+                                        <li>
+                                            <div class="widget_match_countdown3">
+                                                @*h6>剩餘時間</h6>*@
+                                                @Html.Hidden("gametime", (item.game.gamedate.HasValue ? item.game.gamedate.Value.ToString("yyyy-MM-dd HH:mm") : ""))
+                                                <div name="sportsmagazine-countdown"> </div>
+                                            </div>
+                                       <div class="time-left"> @item.game.gamedate</div></li>
+                                        
+                                    </ul>
+                                    <div class="mid-chlid">@item.game.betModelString</div>
+                                    <div class="mid-right-chlid">VS</div>
+                                    <div class="img-right">
+                                        <img src="@item.TeamB.imageURL" alt=""></div>
+                                 
+                                   
+                                    <i></i>
+                                </div>
+                            </a>
+                        </figure>
+                    </div>
+
+                }
+            </div>
+        </li>
+    </ul>
+   
+</div>
+
+
+@section Scripts {
+<script>
+    $('figure').hover(function () {
+        $('.sportsmagazine-main-content div[name="widgetnext"]').css('border', '1px solid rgb(128, 100, 27)');
+        $('.sportsmagazine-fixture-slider-layer time').css('color', '#fff');      
+       
+    }, function () {
+        $('.sportsmagazine-main-content div[name="widgetnext"]').css('border', '1px solid #333');
+        $('.sportsmagazine-fixture-slider-layer time').css('color', '#ffc835');
+       
+
+        });
+
+   
+
+
+</script>
+}
+
+

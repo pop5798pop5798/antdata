@@ -1,0 +1,85 @@
+﻿@model SITW.Models.ViewModel.RankingViewModel
+@{
+    Layout = null;
+}
+<style>
+    h6 a {
+        color: #e4b12a;
+    } 
+
+</style>
+
+<div class="widget widget_team_ranking">
+    <div class="sportsmagazine-fancy-title2"><h2><i class="fa fa-trophy" style="margin:0px 10px 0px 0px;
+text-shadow:1px 1px 0 #e4b12a, -1px -1px 0 #e4b12a, 1px -1px 0 #e4b12a, -1px 1px 0 #e4b12a, 1px 1px 0 #e4b12a;color:#181c26" aria-hidden="true"></i> 排行榜</h2>
+    <h6 style="margin:-40px 40px 0px 0px;float:right;">
+        @*Html.ActionLink("more", "News", "Home")*@
+        <a href="@Url.Action("News","Home")"><i class="fa fa-plus-square-o fa-lg"></i></a>
+     </h6>
+    </div>
+    <div class="ranking-title-table">
+        <ul class="ranking-title-row">
+            <li style="width:28%"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i>&nbsp; 排行</li>
+            <li style="width:35%"><i  class="fa fa-address-card fa-lg" aria-hidden="true"></i>&nbsp; 玩家</li>
+            <li><i class="fa fa-cubes fa-lg" aria-hidden="true"></i>&nbsp; 獲利金額</li>
+        </ul>
+    </div>
+    <div class="ranking-content-table">
+        
+    @foreach (var item in Model.rankinglist)
+    {
+        string rankcss = (item.isUser ? "rank-user" : "");
+        <ul class="ranking-content-row @rankcss">
+            @switch (item.ord)
+            {
+                case "1":
+                    <li>
+                        <img style="border:1px solid #ffdc11;" src="~/Content/extra-images/no1.ico" />
+                    </li>
+                    <li>
+                        <div class="ranking-logo">
+                            <span style="color: #ffdc11;">@Html.DisplayFor(modelItem => item.UserName)</span>
+                        </div>
+                    </li>
+                        <li style="color: #ffdc11;">@Html.DisplayFor(modelItem => item.Assets)</li>
+                    break;
+                case "2":
+                        <li> <img style="border:1px solid #0094ff;" src="~/Content/extra-images/no2.ico" /></li>
+                        <li>
+                            <div class="ranking-logo" >
+                                <span style="color:#0094ff">@Html.DisplayFor(modelItem => item.UserName)</span>
+                            </div>
+                        </li>
+                        <li style="color:#0094ff">@Html.DisplayFor(modelItem => item.Assets)</li>
+                    break;
+                case "3":
+                         <li>   <img style="border:1px solid #ff6a00" src="~/Content/extra-images/no3.ico" /></li>
+                        <li>
+                            <div class="ranking-logo">
+                                <span style="color:#ff6a00">@Html.DisplayFor(modelItem => item.UserName)</span>
+                            </div>
+                        </li>
+                        <li style="color:#ff6a00">@Html.DisplayFor(modelItem => item.Assets)</li>
+                    break;
+                default:
+                     <li style="color:#d7d7d7">  @(item.ord)</li>
+                    <li>
+                        <div class="ranking-logo">
+                            <span style="color:#d7d7d7">@Html.DisplayFor(modelItem => item.UserName)</span>
+                        </div>
+                    </li>
+                        <li style="color:#d7d7d7">@Html.DisplayFor(modelItem => item.Assets)</li>
+                    break;
+
+            }
+        </ul>
+        
+    }
+        
+    </div>
+
+        
+    
+
+</div>
+

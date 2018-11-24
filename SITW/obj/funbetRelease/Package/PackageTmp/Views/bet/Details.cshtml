@@ -1,0 +1,74 @@
+﻿@model SITDto.betDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>betDto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comSn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comSn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userSn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userSn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.topicSn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.topicSn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.choiceSn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.choiceSn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.money)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.money)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unitSn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unitSn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

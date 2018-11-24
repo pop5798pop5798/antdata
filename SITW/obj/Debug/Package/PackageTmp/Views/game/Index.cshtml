@@ -1,0 +1,398 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.GamePostViewModel>
+
+
+@{
+    ViewBag.Title = "遊戲大廳| 熊i猜";
+    string date = DateTime.Now.ToString("MMddmm");
+
+}
+
+
+@*@Html.Action("_GameIndex","game")*@
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "item": {
+    "@@id": "http://funbet.com.tw/",
+    "name": "首頁",
+    "image": "http://funbet.com.tw/Content/images/logo-1.png"
+    }
+    },{
+    "@@type": "ListItem",
+    "position": 2,
+    "item": {
+    "@@id": "http://funbet.com.tw/game",
+    "name": "遊戲大廳"
+    }
+    }]
+    }
+</script>
+<style>
+    @@-webkit-keyframes hovering {
+        from {
+            -webkit-transform: rotate(1deg);
+        }
+
+        to {
+            -webkit-transform: rotate(0deg);
+        }
+    }
+
+    @@-moz-keyframes hovering {
+        from {
+            -moz-transform: rotate(1deg);
+        }
+
+        to {
+            -moz-transform: rotate(0deg);
+        }
+    }
+
+    @@-o-keyframes hovering {
+        from {
+            -o-transform: rotate(1deg);
+        }
+
+        to {
+            -o-transform: rotate(0deg);
+        }
+    }
+
+    @@keyframes hovering {
+        from {
+            transform: rotate(1deg);
+        }
+
+        to {
+            transform: rotate(0deg);
+        }
+    }
+
+
+    @@-webkit-keyframes loading {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(1deg);
+        }
+    }
+
+    @@-moz-keyframes loading {
+        from {
+            -moz-transform: rotate(0deg);
+        }
+
+        to {
+            -moz-transform: rotate(1deg);
+        }
+    }
+
+    @@-o-keyframes loading {
+        from {
+            -o-transform: rotate(0deg);
+        }
+
+        to {
+            -o-transform: rotate(1deg);
+        }
+    }
+
+    @@keyframes loading {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(1deg);
+        }
+    }
+
+    @@media (max-width:991px) {
+        .sportsmagazine-fancy-title2 {
+            margin-top: 0px;
+        }
+    }
+    table > thead > tr > th, table > tbody > tr > th, table > tfoot > tr > th, table > thead > tr > td, table > tbody > tr > td, table > tfoot > tr > td
+    {
+        border:0px;
+    }
+
+
+
+
+
+</style>
+
+
+
+<link rel="stylesheet" href="~/Content/css/game-style.css?@date" />
+
+
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="menu-admin">
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <p>
+                    <a class="ticket-buy-btn-2" href="@Url.Action("Create")">新增新賽局</a>
+
+                    @if (ViewContext.RouteData.Values["action"].ToString() == "Index")
+                {
+                        <a class="ticket-buy-btn-2" href="@Url.Action("AdminIndex")">顯示未派彩</a>
+                        <a class="ticket-buy-btn-2" href="@Url.Action("Payout")">顯示已派彩</a>
+                    }
+                    else if (ViewContext.RouteData.Values["action"].ToString() == "AdminIndex")
+                    {
+                        <a class="ticket-buy-btn-2" href="@Url.Action("Index")">顯示目前開盤</a>
+                        <a class="ticket-buy-btn-2" href="@Url.Action("Payout")">顯示已派彩</a>
+                    }
+                    else
+                    {
+                        <a class="ticket-buy-btn-2" href="@Url.Action("Index")">顯示目前開盤</a>
+                        <a class="ticket-buy-btn-2" href="@Url.Action("AdminIndex")">顯示未派彩</a>
+
+
+                    }
+                </p>
+                <br />
+            }
+
+        </div>
+
+
+
+            <aside class="col-md-3" id="gamelist">
+                <div class="sportsmagazine-fancy-title2" id="title02" style="cursor:pointer;">
+                    <h2><i class="fa fa-paper-plane-o" style="margin:0px 10px 0px 0px" aria-hidden="true"></i></h2>
+                    <h6 style="margin:-40px 32px 0px 0px;float:right;">
+
+                       <span id="triangleattr" class="triangleopen"> <i class="fa fa-caret-square-o-right" aria-hidden="true"></i></span>
+                    </h6>
+
+                </div>
+                <div class="widget widget_cetagories">
+                    <ul class="allgamelist">
+                        <li value="0"><a href="#" style="color:#ebdec2"> <i style="font-size:20px;margin-right:10px;vertical-align:middle;" class="fa fa-th-large" aria-hidden="true"></i>&nbsp; 全部比賽<span></span></a></li>
+                        @foreach (var item in ViewData["playlist"] as IEnumerable<SITW.Models.cfgPlayGame>)
+                        {
+                            <li value="@item.sn"><a href="#"> <img src="@item.gamelogo"> @item.cName <span>( @Model.Where(p => p.PlayGame.sn == item.sn).Count() )</span></a></li>
+                         
+                        }                                           
+                    </ul>
+                </div>
+            </aside>
+       
+
+            <div class="col-md-9">
+                <div id="pushinstyle"><img style="max-width:60%;" src="~/Content/extra-images/pushpin.png" /></div>
+                <div class="rankallbody" id="gamelistst">
+                    <div class="sportsmagazine-fancy-title2">
+                            <h2>
+                                全部賽局
+                                <input type="hidden" id="pgamesn" name="pgamesn" value="0" />
+                                <div class="search-form" style="float:right">
+                                    <input id="search-input" style="border:1px solid #e5b22a;background-color:rgba(255, 255, 255, 0.00);vertical-align:top;" type="text" placeholder="搜尋隊伍或聯賽" /><button style="border:1px solid #e4b12a;background-color:#000;margin:0px 10px 0px 10px;vertical-align:top;"><i style="padding:3px 5px 3px 5px" class="fa fa-search" aria-hidden="true"></i></button>
+                                    <style id="m-search"></style>
+                                </div>
+
+                            </h2>
+                    </div>
+                <div class="sportsmagazine-wishlist" style="float:left;box-shadow:2px 2px 2px rgba(0, 0, 0, 0.6), 4px 4px 6px rgba(0, 0, 0, 0.4), 6px 6px 12px rgba(0, 0, 0, 0.4)">
+
+                    <div class="sportsmagazine-wishlist-graph" style="height:79vh;border:1px solid #2f334c">
+                    @foreach (var item in Model)
+                    {
+                        <input type="hidden" id="tableview" name="tableview" value="@item.TeamA.imageURL" />
+
+                        <div class="gamebody" data-index="@item.gamesearch">
+                            @if (item.endguess == 0)
+                            {
+                                <div style="position:absolute;z-index:500;transform:rotate(-20deg);"><img src="https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/guess_stop.png" /></div>
+                            }
+                            else if (item.endguess == 2)
+                            {
+                                <div style="position:absolute;z-index:500;transform:rotate(-20deg);"><img src="https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/game_Soon.png" /></div>
+                            }
+
+                            <table class="tablegame">
+
+
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">
+                                            <div style="float:left;width:100%;">
+                                                <img src="@item.PlayGame.gamelogo">@ViewBag.PlayGame @Html.DisplayFor(modelItem => item.game.title)
+
+                                                <span class="pc_view" style="float:right;margin:0 10px 0 10px"><i class="fa fa-television" aria-hidden="true"></i></span>
+                                            </div>
+                                            
+                                        </th>
+
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3">
+                                            @Html.Hidden("gametime", (item.game.gamedate.HasValue ? item.game.gamedate.Value.ToString("yyyy-MM-dd HH:mm") : ""))
+                                            <div name="sportsmagazine-countdown"> </div>
+                                        </th>
+                                        <th colspan="3"><span><a id="morespan" href="@Url.Action("Details","game", new { id = item.gamepost.sn })">即刻競猜</a></span></th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="gametd1">
+                                            <figure id="figureid">
+                                                @if (item.TeamA != null)
+                                                {
+                                                    <img src="@item.TeamA.imageURL" alt="">
+                                                }
+                                                else
+                                                {
+                                                    <img src="/Content/extra-images/upload-photo.png?id=20171208" alt="">
+                                                }
+                                            </figure>
+                                        </td>
+                                        <td><h6>@item.TeamA.shortName</h6></td>
+                                        <td id="gametd2" rowspan="2">@item.game.comment</td>
+                                        <td rowspan="2">@Html.DisplayFor(modelItem => item.game.betModelString) </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <figure id="figureid">
+                                                @if (item.TeamB != null)
+                                                {
+                                                    <img src="@item.TeamB.imageURL" alt="">
+                                                }
+                                                else
+                                                {
+                                                    <img src="/Content/extra-images/upload-photo.png?id=20171208" alt="">
+                                                }
+                                            </figure>
+                                        </td>
+                                        <td><h6>@item.TeamB.shortName</h6></td>
+
+
+                                    </tr>
+                                </tbody>
+
+
+                            </table>
+
+
+
+                        </div>
+                    }
+                    </div>
+                </div>
+                    
+                </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+@section Scripts {
+<script type="text/javascript" src="~/Scripts/GetGameScript.js?@date"></script>  
+ <script type="text/javascript"> 
+        
+     //setInterval("GetGameList()", 10000);
+     $(window).load(function () {
+         GetGameList();
+     });
+     
+
+     function GetGameList() {
+         
+             var s = $("#pgamesn").val();
+             $.get("@Url.Action("_GetGameList", "game")", { playgamsn: s }, function (data) {
+                    var message = $("#gamelistst");
+                    message.html(data);
+                    GameListType();
+                    Dtime();
+                    canvasmovie();
+                    MovieClick();
+                    
+
+             });
+
+}
+function UpdateGameList(s) {
+         $.get("@Url.Action("_GetGameList", "game")", { playgamsn: s }, function (data) {
+                var message = $("#gamelistst");
+                message.html(data);
+                GameListType();
+                Dtime();
+                canvasmovie();
+                MovieClick();
+        
+
+
+            });
+
+
+
+
+     }
+
+     $(document).ready(function () {
+
+         $("#gamepage").css("color", "#e4b12a");
+         $("#missionpage").click(function () {
+             $("#missionpage").css("color", "#e4b12a");
+             $("#gamepage").css("color", "#ebdec2");
+             $("#betpage").css("color", "#ebdec2");
+         });
+
+         $("#betpage").click(function () {
+             $("#missionpage").css("color", "#ebdec2");
+             $("#gamepage").css("color", "#ebdec2");
+             $("#betpage").css("color", "#e4b12a");
+
+         });
+
+     });
+
+
+
+
+</script>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

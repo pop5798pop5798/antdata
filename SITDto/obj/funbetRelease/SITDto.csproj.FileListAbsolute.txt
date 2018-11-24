@@ -1,0 +1,9 @@
+C:\Users\username\source\repos\SIT2-3\SITDto\bin\funbetRelease\SITDto.dll
+C:\Users\username\source\repos\SIT2-3\SITDto\bin\funbetRelease\SITDto.pdb
+C:\Users\username\source\repos\SIT2-3\SITDto\bin\funbetRelease\AutoMapper.dll
+C:\Users\username\source\repos\SIT2-3\SITDto\bin\funbetRelease\AutoMapper.xml
+C:\Users\username\source\repos\SIT2-3\SITDto\obj\funbetRelease\SITDto.csprojAssemblyReference.cache
+C:\Users\username\source\repos\SIT2-3\SITDto\obj\funbetRelease\SITDto.csproj.CoreCompileInputs.cache
+C:\Users\username\source\repos\SIT2-3\SITDto\obj\funbetRelease\SITDto.csproj.CopyComplete
+C:\Users\username\source\repos\SIT2-3\SITDto\obj\funbetRelease\SITDto.dll
+C:\Users\username\source\repos\SIT2-3\SITDto\obj\funbetRelease\SITDto.pdb

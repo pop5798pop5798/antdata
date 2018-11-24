@@ -1,0 +1,431 @@
+﻿@model SITW.Models.ViewModel.GamePostViewModel
+
+@{
+    ViewBag.Title = "Create";
+    int index = Model.game.topicList.Count;
+}
+@using SITW.Helper
+
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.game.sn)
+    @Html.HiddenFor(model => model.game.hashSn)
+    @Html.HiddenFor(model => model.encryptedGamePostSn)
+    @Html.HiddenFor(model => model.gamepost.sn)
+
+    <div class="form-horizontal">
+        <h4>gameDto</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.gamepost.PlayGameSn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.PlayGameSelect("gamepost.PlayGameSn", Model.gamepost.PlayGameSn)
+                @Html.ValidationMessageFor(model => model.gamepost.PlayGameSn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gamepost.TeamASn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TeamSelect("gamepost.TeamASn", 0, Model.gamepost.TeamASn)
+                @Html.ValidationMessageFor(model => model.gamepost.TeamASn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gamepost.TeamBSn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.TeamSelect("gamepost.TeamBSn", 0, Model.gamepost.TeamBSn)
+                @Html.ValidationMessageFor(model => model.gamepost.TeamBSn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.sdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.game.sdate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                @Html.ValidationMessageFor(model => model.game.sdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.edate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.game.edate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                @Html.ValidationMessageFor(model => model.game.edate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.game.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.game.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.game.comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.game.comment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.gamedate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.game.gamedate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                @Html.ValidationMessageFor(model => model.game.gamedate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.gameplace, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.game.gameplace, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.game.gameplace, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.betModel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                <div id="betModels" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary @(Model.game.betModel == 1 ? "active" : "")" for="betModel1">
+                        <input type="radio" name="game.betModel" id="betModel1" value="1" @(Model.game.betModel == 1 ? "checked" : "") autocomplete="off"> 賠率模式
+                    </label>
+                    <label class="btn btn-primary @(Model.game.betModel == 2 ? "active" : "")" for="betModel2">
+                        <input type="radio" name="game.betModel" id="betModel2" value="2" @(Model.game.betModel == 2 ? "checked" : "") autocomplete="off"> 總彩池模式
+                    </label>
+                </div>
+                @Html.ValidationMessageFor(model => model.game.betModel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.game.rake, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.game.rake, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.game.rake, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                題目
+            </div>
+            <div class="col-md-5">
+                <!-- topics! -->
+                <div id="topic-group">
+                    @for (int i = 0; i < Model.game.topicList.Count; i++)
+                    {
+                        Html.RenderAction("_topicEdit", "game", new { model = Model.game, index = i });
+                    }
+                </div>
+                @Ajax.ActionLink(linkText: "增加題目", actionName: "_topicCreate", controllerName: "game", routeValues: new { index = index }, ajaxOptions: new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.InsertAfter,
+                   UpdateTargetId = "topic-group",
+                   OnSuccess = "indexIterate"
+               },
+                    htmlAttributes: new { id = "addTopic", @class = "btn btn-default" })
+
+
+            </div>
+        </div>
+
+        <div class="form-group" id="rakegroup">
+            <label class="control-label col-md-2" for="vedio_vediourl">直播網址連結(twitch、youtube)</label>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.vedio.vediourl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.vedio.vediourl, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <a href="https://www.twitch.tv/" target="_blank" style="position:relative;left:25%">twitch連結</a>
+            <a href="https://www.youtube.com/" target="_blank" style="position:relative;left:30%">youtube連結</a>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    <script type="text/javascript">
+        var currentIndex = 0;
+        var stardtime;
+        var enddtime;
+        var timeindex;
+
+        function indexIterate() {
+            var newHref = $("#addTopic").attr("href");
+            currentIndex = $("div[name=topicDiv]").length;
+            timeindex = currentIndex;
+            var newerHref = newHref.replace(/(?:index=)[0-9]+/i, "index=" + currentIndex);
+            $("#addTopic").attr("href", newerHref);
+            $(".form_datetime").datetimepicker(
+                {
+                    sideBySide: true,
+                    format: 'YYYY/M/D HH:mm'
+                }
+            );
+            if (currentIndex == 1)
+            {
+                $("#addChoice" + 0).attr("href", "/game/_choiceCreate?index=" + 0 + "&topicIndex=" + 0 + "&allnumber=" + 2);
+                $("#addChoice" + 0).click();
+
+            }
+
+
+            $("#game_topicList_" + (currentIndex - 1) + "__sdate").val($("#game_sdate").val());
+            $("#game_topicList_" + (currentIndex - 1) + "__edate").val($("#game_edate").val());
+
+            var cuindex = currentIndex - 1;
+
+            choiceCreate(cuindex, 0);
+            $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () { syncTeamChoice() });
+
+        };
+        function indexIterateChoice(i,index) {
+            var newHref = $("#addChoice" + i).attr("href");
+            var choiceIndex = newHref.match('(?:index=)([0-9]+)')[1];
+            choiceIndex = $("input[name^='game.topicList[" + i + "].choiceList'][name$='hashSn']").length - 1;
+            var newerHref = newHref.replace(/(?:index=)[0-9]+/i, "index=" + ++choiceIndex);
+            $("#addChoice" + i).attr("href", newerHref);
+
+            var bM = $("input[name$=betModel]:checked").val();
+            if (bM == 1) {
+                $("div[name=Oddsgroup]").show();
+            }
+            else if (bM == 2) {
+                $("div[name=Oddsgroup]").hide();
+            }
+            changeUnit();
+            choiceCreate(i, choiceIndex);
+            if (i == 0) {
+                syncTeamChoice();
+                //$("div[name=topicDiv]").eq(i).find("[name=delChoice],[name=delTopic]").hide();
+               // $("#addChoice" + i).hide();
+            }
+            for (var j = 0; j < 30; j++) {
+                $('#game_topicList_' + i + '__choiceList_' + j + '__Odds').change(function () {
+                    if ($(this).val() >= 10) {
+                        myoddscheck($(this).val(), $(this));
+                    }
+
+                });
+            }
+
+    };
+
+    function myoddscheck(odds, topicname) {
+        var oddscheck = prompt("賠率異常,是否繼續:", odds);
+        if (oddscheck == null || oddscheck == "") {
+            topicname.val(0);
+        } else {
+            topicname.val(oddscheck);
+        }
+
+    }
+
+        function syncTeamChoice() {
+            $("input[name='game.topicList[0].choiceList[0].choiceStr']").val($("#gamepost_TeamASn option:selected").text());
+            $("input[name='game.topicList[0].choiceList[1].choiceStr']").val($("#gamepost_TeamBSn option:selected").text());
+        }
+
+        function syncTeamTopic() {
+            $("input[name='game.title']").val($("#gamepost_TeamASn option:selected").text() + " " + "Vs" + " " + $("#gamepost_TeamBSn option:selected").text());
+
+        }
+
+        function changeUnit() {
+            $("input[name$=betUnitArray]:checked").each(function (i, e) {
+                $("div[name=choiceUnitDiv][unit=" + $(e).val() + "]").show();
+            });
+            $("input[name$=betUnitArray]:not(:checked)").each(function (i, e) {
+                $("div[name=choiceUnitDiv][unit=" + $(e).val() + "]").hide();
+            });
+
+        }
+
+        function betModelChange() {
+            var bM = $("input[name$=betModel]:checked").val();
+            if (bM == 1) {
+                $("#rakegroup").hide();
+                $("div[name=Oddsgroup]").show();
+            }
+            else if (bM == 2) {
+                $("#rakegroup").show();
+                $("div[name=Oddsgroup]").hide();
+            }
+
+        }
+
+        function choiceCreate(i, index) {
+            if ($("#allnumber-" + i).val() == 1)
+            {
+                $("#addChoice" + i).attr("href", "/game/_choiceCreate?index=" + index + "&topicIndex=" + i + "&allnumber=" + 1);
+            }
+            $("#allnumber-" + i).change(function () {
+                var allch = $("#allnumber-" + i).val();
+                    if (allch == 0)
+                    {
+                        alert("error");
+                        $("#allnumber-" + i).val(1);
+                }
+                    $("#addChoice"+i).attr("href", "/game/_choiceCreate?index=" + index + "&topicIndex=" + i + "&allnumber=" + allch);
+
+
+                });
+
+
+        }
+
+        function timeEdit() {
+            $("#game_sdate").datetimepicker().on('dp.change', function (e) {
+                stardtime = $(this).val();
+                $("div[name=topicDiv] ").find("input[name$='.sdate']").val(stardtime);
+
+
+            });
+            $("#game_edate").datetimepicker().on('dp.change', function (e) {
+                enddtime = $(this).val();
+                $("#game_gamedate").val(enddtime);
+                $("div[name=topicDiv] ").find("input[name$='.edate']").val(enddtime);
+
+
+            });
+
+        }
+
+
+    $(document).ready(function () {
+
+        
+            $("#betModels label").click(function () {
+                betModelChange();
+            });
+            $(".form_datetime").datetimepicker(
+                {
+                    sideBySide: true,
+                    format: 'YYYY/M/D HH:mm'
+                }
+            );
+
+            $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () { syncTeamChoice() });
+
+            /*$("#game_sdate").datetimepicker().on('dp.change', function (e) {
+                stardtime = $(this).val();
+                for (var i = 0; i < timeindex; i++) {
+                    if ($("#game_topicList_" + i + "__sdate").val()) {
+                        $("#game_topicList_" + i + "__sdate").val(stardtime);
+                    }
+                }
+
+            });
+
+            $("#game_edate").datetimepicker().on('dp.change', function (e) {
+                enddtime = $(this).val();
+                $("#game_gamedate").val(enddtime);
+                for (var i = 0; i < timeindex; i++) {
+                    if ($("#game_topicList_" + i + "__edate").val()) {
+                        $("#game_topicList_" + i + "__edate").val(enddtime);
+                    }
+                }
+            });*/
+        timeEdit();
+            $.get("@Url.Action("gameSelect", "game")", { playgame: 0}, function (data) {
+                var message = $("#pugame");
+                message.html(data);
+                $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () {
+
+                    syncTeamTopic()
+                });
+            });
+
+
+
+            $("#gamepost_PlayGameSn").change(function () {
+                var s = $("#gamepost_PlayGameSn").val();
+                if ($("#gamepost_PlayGameSn").val() != 0) {
+                    $.get("@Url.Action("gameSelect", "game")", { playgame: s }, function (data) {
+                        var message = $("#pugame");
+                        message.html(data);
+                        $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () { syncTeamChoice() });
+
+                        $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () {
+
+                            syncTeamTopic()
+                        });
+                    });
+
+
+
+
+                }
+
+
+            });
+
+
+
+            $("input:submit").click(function () {
+
+
+                //$("[data-valmsg-for]").html("");
+                var boolAllTrue = true;
+                if ($("input[name^='game.topicList'][name$='title']").length == 0) {
+                    $("[data-valmsg-for='game.topicList']").html("需新增題目");
+                    return false;
+                }
+                if ($("input[name^='game.topicList'][name$='choiceStr']").length == 0) {
+                    $("[data-valmsg-for='game.topicList']").html("需新增選項");
+                    return false;
+                }
+
+                return boolAllTrue;
+            });
+
+            $(document).on("click", "span[name=delTopic]", function () {
+                $(this).parents("div[name=topicDiv]").hide();
+                $(this).parents("div[name=topicDiv]").find("input[name$='.valid']").attr("value", 0);
+
+                $(this).parents("div[name=topicDiv]").find("input[name$='.title']").attr("value", "刪除題目");
+                $(this).parents("div[name=topicDiv]").find("input[name$='.choiceStr']").attr("value", "刪除選項");
+            });
+
+            $(document).on("click", "span[name=delChoice]", function () {
+                $(this).parents("div[name=choiceDiv]").hide();
+                $(this).parents("div[name=choiceDiv]").find("input[name$='.valid']").attr("value", 0);
+                $(this).parents("div[name=choiceDiv]").find("input[name$='.choiceStr']").attr("value", "刪除選項");
+            });
+
+
+            changeUnit();
+            betModelChange();
+
+        });
+
+
+
+
+    </script>
+}

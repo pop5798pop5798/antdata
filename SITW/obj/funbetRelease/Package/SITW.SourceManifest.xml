@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\username\source\repos\SIT2-3\SITW\obj\funbetRelease\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="C:\Users\username\source\repos\SIT2-3\SITW\obj\funbetRelease\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\username\source\repos\SIT2-3\SITW\obj\funbetRelease\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

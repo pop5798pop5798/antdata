@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SITAPI</name>
+    </assembly>
+    <members>
+        <member name="M:SITAPI.Filter.LogParamFilter.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            
+            </summary>
+            <param name="actionContext"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:/Account/
+
+Sitemap: http://funbet.com.tw/Home/Sitemap
+

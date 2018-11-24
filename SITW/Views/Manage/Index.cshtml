@@ -1,0 +1,205 @@
+﻿@model SITW.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "管理";
+}
+
+<style>
+    a {
+        color: #5293c6;
+    }
+    li {
+        color:#ffffff
+    }
+    #labelstyle {
+        font-size: 15px;
+        color: #e5b22a;
+    }
+
+    .depositcss a {
+        float: right;
+        border: 1px solid #5d5d5d;
+        background-color: #ff0000;
+        color: #fff;
+        padding: 0px 5px 0px 5px;
+        margin: 0px 50% 0px 0px;
+    }
+
+        .depositcss a:hover {
+            border: 1px solid #fff;
+        }
+
+    @@media(max-width: 767px) {
+        #newsmargin {
+            margin-top: 0;
+        }
+    }
+
+  
+
+</style>
+
+
+<div class="alert alert-success" id="success-alert" style="text-align:center;font-size:14px">
+    <button type="button" class="close" data-dismiss="alert">x</button>  
+    <input type="hidden" id="message" name="message" value="@ViewBag.StatusMessage" />    
+</div>
+
+
+ 
+<div class="sportsmagazine-main-content" id="rankmagin"> 
+    <div class="sportsmagazine-main-section sportsmagazine-account-full">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">                  
+                    <div class="sportsmagazine-account-tabs">                  
+                        <ul class="nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#account" aria-controls="account" role="tab" data-toggle="tab">帳戶設定</a></li>
+                            <li role="presentation"><a href="#BetsByUserID" aria-controls="BetsByUserID" role="tab" data-toggle="tab">投注紀錄</a></li>
+                        </ul>                       
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="account">
+                                <br>
+                                <div class="sportsmagazine-account">
+
+                                    <ul>
+
+                                        <li>
+                                            <label id="labelstyle">Email:</label><br>
+                                            @Model.Email
+                                            @if (!Model.EmailConfirm)
+                                            {
+                                                @:[
+                                                @Html.ActionLink("驗證Email", "SendEmailConfirm")
+                                                @:]
+                                            }
+                                        </li>
+
+                                        <li>
+                                            <label id="labelstyle">密碼:</label><br>
+                                            [
+                                            @if (Model.HasPassword)
+                                            {
+                                                @Html.ActionLink("變更密碼", "ChangePassword")
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("建立", "SetPassword")
+                                            }
+                                            ]
+                                        </li>
+
+                                       @* <li>
+                                            @foreach (var a in Model.Assets)
+                                            {
+                                                if (a.unitSn == 2)
+                                                {
+
+                                                    <label id="labelstyle">@(a.unitName):</label><br />
+                                                    @a.Asset<img style="width:22px;margin-left: 5px;" title="鮭魚幣" src="~/Content/@a.iconURL" /><span class="depositcss"><a href="#"> 儲值 </a></span>
+                                                    <br />
+                                                }
+                                                else
+                                                {<label id="labelstyle">@(a.unitName):</label><br />
+                                                @a.Asset<img style="width:22px;margin-left: 5px;" title="魚骨幣" src="~/Content/@a.iconURL" />
+                                                <br />}
+
+                                        }
+                                        </li>*@
+                                        @*<li>
+            <label id="labelstyle">等級:</label><br>
+            @Model.levelExp.levelNum 級
+            @Model.levelExp.leftexp 經驗值後可升級
+        </li>*@
+                                       @*<li>
+
+                                            <label id="labelstyle">外部帳號綁定:</label><br>
+
+                                            您可選擇將直接於平台註冊的熊粉帳號與原有的Google、FB帳號進行綁定，以便往後更快速的<br>登入平台。<br>
+                                            [
+                                            <a title="您可選擇將直接於平台註冊的熊粉帳號與原有的Google、FB帳號進行綁定，以便往後更快速的登入平台。" href="@Url.Action("ManageLogins", "manage")">管理</a> ]
+
+
+                                        </li>*@ 
+                                        <li>
+
+                                            <label id="labelstyle">您訪問API金鑰:</label><br>
+                                            <input id="labelstyle" type="text" value="@Model.token">
+
+
+
+                                        </li>
+
+                                        @*<li>
+        <label id="labelstyle">手機號碼:</label><br>
+        @(Model.PhoneNumber ?? "")
+
+        @if (Model.PhoneNumber != null)
+        {
+            <br />
+            @*
+            @Html.ActionLink("Change", "AddPhoneNumber")
+            <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
+                [<button type="submit" class="btn-link">Remove</button>]
+            </form>
+                                        *@
+                                        @*if(!Model.PhoneNumberConfirmed)
+                {
+                    @Html.ActionLink("驗證手機", "AddPhoneNumber")
+                }
+            }
+            else
+            {
+                @Html.ActionLink("新增手機並驗證", "AddPhoneNumber")
+            }
+
+        </li>*@
+
+                                        @*  <li>
+            <label id="labelstyle">雙因素驗證:</label><br>
+            There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+            for details on setting up this ASP.NET application to support two-factor authentication.
+        </li>*@
+                                        <li></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="BetsByUserID">
+                                <div class="sportsmagazine-account">
+                                    @Html.Action("_BetsByUserID","bet",new { BetList=Model.BetList })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>               
+                </div>
+
+
+            </div>
+        </div>
+    </div>   
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.betResult').tooltip();
+        });
+        $(document).ready(function () {
+            var content = $('#message').val();
+
+            $('#success-alert').append(content);
+            $("#success-alert").hide();  
+            if (content != "")
+                {
+                     
+                $("#success-alert").fadeTo(5000, 500).slideUp(500, function () {
+                    $("#success-alert").slideUp(500);
+                });
+            }
+        });
+
+    </script>
+
+
+}

@@ -1,0 +1,313 @@
+﻿@-webkit-keyframes gamehovering {
+    from {
+        -webkit-transform: rotate(-90deg);
+    }
+
+    to {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@-moz-keyframes gamehovering {
+    from {
+        -moz-transform: rotate(-90deg);
+    }
+
+    to {
+        -moz-transform: rotate(0deg);
+    }
+}
+
+@-o-keyframes gamehovering {
+    from {
+        -o-transform: rotate(-90deg);
+    }
+
+    to {
+        -o-transform: rotate(0deg);
+    }
+}
+
+@keyframes gamehovering {
+    from {
+        transform: rotate(-90deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+
+@-webkit-keyframes gameloading {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(-90deg);
+    }
+}
+
+@-moz-keyframes gameloading {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+
+    to {
+        -moz-transform: rotate(-90deg);
+    }
+}
+
+@-o-keyframes gameloading {
+    from {
+        -o-transform: rotate(0deg);
+    }
+
+    to {
+        -o-transform: rotate(-90deg);
+    }
+}
+
+@keyframes gameloading {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-90deg);
+    }
+}
+
+
+
+.tablegame {
+    border-bottom: 1px solid #2f334c;
+}
+
+    .tablegame thead {
+        color: #d6c7b2;
+    }
+        .tablegame thead tr {
+            border-bottom: 1px solid #2f334c;
+        }
+
+
+
+table > thead:first-child > tr:first-child > th {
+    width: 30%;
+    color: #e4b12a;
+    border-top: 4px inset;
+    border-bottom: 4px inset;
+    border-color: #e4b12a;
+}
+
+    .tablegame thead th:nth-child(2) {
+    color: #e4b12a;
+    text-align: right;
+    padding:5px 0 5px 0;
+}
+
+   .tablegame thead th:nth-child(2) span a{
+        cursor: pointer;
+        color: #e4b12a;
+        border: 1px solid;
+        background-color: rgba(3,3,3,0.8);
+        padding: 0px 5px 0px 5px;
+        margin-right: 30px;
+    }
+    .tablegame thead th:nth-child(2) span a:hover {
+        opacity:0.6;
+        cursor: pointer;
+        color: #e4b12a;
+        border: 1px solid;
+        background-color: rgba(3,3,3,0.8);
+        padding: 0px 5px 0px 5px;
+        margin-right: 30px;
+    } 
+
+.tablegame tbody {
+    color: #ebdec2;
+}
+
+.tablegame tr td:nth-child(1) {
+    width: 13%;
+    padding-bottom:10px;
+}
+
+    .tablegame tr td:nth-child(1) figure {
+        float: left;
+        width: 50px;
+        margin: 0 0px 0 30px;
+    }
+
+.tablegame tr td:nth-child(2) h6 {
+    margin-left: 8%;
+    margin-top: 5%;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+
+.tablegame tr td:nth-child(3){
+    width: 23%;
+}
+    .tablegame tr td:nth-child(3) span {
+        color: #e4b12a;
+        opacity:1;
+    }
+        .tablegame tr td:nth-child(3) span:hover {
+            color: #fff;
+            opacity: 1;
+        }
+
+.tablegame tr td:nth-child(4) {
+    width:25%;
+}
+
+.tablegame tr td:nth-child(5) {
+    vertical-align: middle;
+}
+
+table > thead > tr > th{
+    border-bottom:0px;
+    vertical-align:middle;
+    width:55%;
+}
+
+.tablegame thead img{
+
+    margin-right:10px;
+}
+
+.pushy-content {
+    visibility: visible;
+}
+
+.triangle i {
+    font-size: 20px;
+    color: #e4b12a;
+    -webkit-animation: gameloading 0.5s ease-in-out;
+    -moz-animation: gameloading 0.5s ease-in-ou;
+    -o-animation: gameloading 0.5s ease-in-out;
+    animation: gameloading 0.5s ease-in-out;
+  
+    transform: rotate(-90deg);
+}
+
+.triangleopen i {
+    font-size: 20px;
+    color: #e4b12a;
+    -webkit-animation: gamehovering 0.5s ease-in-out;
+    -moz-animation: gamehovering 0.5s ease-in-ou;
+    -o-animation: gamehovering 0.5s ease-in-out;
+    animation: gamehovering 0.5s ease-in-out;
+    transform: rotate(0deg);
+}
+
+
+
+
+.allgamelist li a{
+    
+    font-weight:600;
+    opacity:1;
+}
+
+
+    .allgamelist li a:hover {
+        font-weight: 600;
+        opacity: 0.7;
+    }
+
+.allgamelist img{
+    margin-right:10px;
+
+
+}
+
+/*.sportsmagazine-main-wrapper, #sportsmagazine-header
+{
+    margin-bottom:13px;
+
+}*/
+
+input[type="tel"], input[type="number"] {
+    background-color: #0f0f10;
+    border: 1px solid #e5b22a;
+    width:50%;
+}
+/*@media screen and (min-width: 991px) and (max-width: 1400px) {
+    .col-md-2 {
+        width: 100%;
+    }
+
+    .col-md-7 {
+        width: 100%;
+    }
+}*/
+
+#gamelist .widget {
+    float: left;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6), 4px 4px 6px rgba(0, 0, 0, 0.4), 6px 6px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid #2f334c;
+}
+
+#tablegamenull table > tbody > tr > td{
+    font-size:24px;
+    color:#e5b22a;
+}
+
+#tablegamenull img {
+    max-width:30%;
+}
+
+.sportsmagazine-wishlist {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6), 4px 4px 6px rgba(0, 0, 0, 0.4), 6px 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+
+
+
+@media screen and (min-width: 991px) and (max-width: 1500px) {
+   /*.col-md-2 {
+        width: 25%;
+    }
+
+    .col-md-7 {
+        width: 75%;
+    }
+    .container{
+        width:100%;
+    }*/ 
+
+}
+
+@media (max-width: 767px) {
+    .tablegame thead th:nth-child(2) span a {
+        margin-right: 0;
+    }
+
+    .tablegame tr td:nth-child(1) figure {
+        margin: 0;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+        .tablegame thead th:nth-child(2) span a {
+            margin-right: 0;
+        }
+
+        .tablegame tr td:nth-child(1) figure {
+            margin: 0;
+        }
+    }
+
+
+
+

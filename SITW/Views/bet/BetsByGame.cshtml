@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SITDto.ViewModel.BetListDto>
+
+    <h2>BetList</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.game)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.topic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.choice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Odds)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.money)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.unit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isTrue)
+            </th>
+            <th>@Html.DisplayNameFor(model => model.userID)</th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.game)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.topic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.choice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Odds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.money)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isTrue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userID)
+            </td>
+        </tr>
+    }
+    
+    </table>

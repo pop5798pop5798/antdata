@@ -1,0 +1,74 @@
+﻿@model SITW.Models.AssetsRecord
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>AssetsRecord</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.unitSn)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.unitSn)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.gameSn)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.gameSn)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.assets)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.assets)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.type)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.type)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.inpdate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.inpdate)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.sn }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

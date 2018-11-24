@@ -1,0 +1,81 @@
+﻿@model SITW.Models.placard
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 公告刪除</h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <h4 class="mb"><i class="fa fa-angle-right"></i> 刪除</h4>
+
+                    <h3>你確定要刪除這篇? 是否有按錯</h3>
+                    <div>                     
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.title)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.title)
+                            </dd>
+
+                         
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.real_time)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.real_time)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.manager)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.manager)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.time)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.time)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.endtime)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.endtime)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="刪了這篇" class="btn btn-default" /> |
+                                @Html.ActionLink("返回", "_News")
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                        </section>                       
+                            
+                                       

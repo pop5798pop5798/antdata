@@ -1,0 +1,217 @@
+﻿@using SITW.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "登入| 熊i猜";
+    ViewBag.Description = "登入-熊i猜 - 電競免費競猜平台 !歡迎來到熊i猜，立即註冊開啟競猜之旅 現在註冊送2000魚骨幣試玩";
+}
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "item": {
+    "@@id": "http://funbet.com.tw/",
+    "name": "首頁",
+    "image": "http://funbet.com.tw/Content/images/logo-1.png"
+    }
+    },{
+    "@@type": "ListItem",
+    "position": 2,
+    "item": {
+    "@@id": "http://funbet.com.tw/Account/Login",
+    "name": "登入"
+    }
+    }]
+    }
+</script>
+
+<style>
+    .sportsmagazine-register-form.sportsmagazine-login-form label.form-label {
+        color: #ebdec2;
+    }
+
+    .sportsmagazine-login-form form ul li input[type="text"], .sportsmagazine-login-form form ul li input[type="Password"] {
+        border: 1px solid #e5b22a;
+        background-color: rgba(0, 0, 0, 0.22);
+    }
+    /* .rc-anchor-light.rc-anchor-normal {
+        border: 1px solid #5d5741;
+    }
+    .rc-anchor-light {
+        background-color: rgba(0, 0, 0, 0.23921568627450981);
+        color: #ebdec2;
+    }*/
+
+    iframe {
+        height: -webkit-fill-available;
+    }
+</style>
+@if (ViewData["Message"] != null)
+{
+    <script type="text/javascript">
+        alert("@ViewData["Message"]");
+    </script>
+}
+
+
+
+
+<!--// Main Content \\-->
+<div class="sportsmagazine-main-content">
+
+    <!--// Main Section \\-->
+    <div class="sportsmagazine-main-section sportsmagazine-login-form-full">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <section id="loginForm">
+                        <div id="logocolor" class="sportsmagazine-login-form sportsmagazine-register-form">
+                            <h3>大廳登入</h3>
+                            <div style="float:left;padding-left:8%">
+                                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                            </div>
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <form>
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="sportsmagazine-login-form sportsmagazine-register-form">
+                                        <ul>
+                                            <li class="full-input">
+                                                @Html.LabelFor(m => m.Name, new { @class = "form-label" })
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                            </li>
+
+                                            <li class="full-input">
+                                                <label class="form-label">密碼</label>
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                            </li>
+
+                                            <li class="full-input">
+
+                                                <a style="cursor:pointer;" data-toggle="modal" data-target="#myModal">
+                                                    忘記密碼?
+                                                </a>
+
+
+
+                                                @* <div class="checkbox">
+                                                        @Html.CheckBoxFor(m => m.RememberMe, new { style = "margin-left:0px;" })
+                                                        @Html.LabelFor(m => m.RememberMe, new { @class = "form-label" })
+
+                                                    </div>*@
+                                            </li>
+                                            <li class="full-input">
+                                                <div class="g-recaptcha" data-sitekey="6LdEGTEUAAAAANjeFViy500BKTVbnCRIwPq3VBXk"></div>
+                                            </li>
+
+                                            <li class="full-input">
+                                                <label class="submit-border"><input type="submit" value="登入"></label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
+
+                                @* 請在啟用密碼重設功能的帳戶確認之後啟用此項目
+                                    <p>
+                                        @Html.ActionLink("忘記密碼?", "ForgotPassword")
+                                    </p>*@
+
+
+
+                            }
+
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-6">
+                    <section id="loginForm">
+                        <div id="logocolor" class="sportsmagazine-login-form sportsmagazine-register-form" style="height:550px">
+
+                            <h3>註冊</h3>
+                            <form>
+
+                                <div class="sportsmagazine-login-form sportsmagazine-register-form" style="height:472px">
+                                    <ul>
+                                        <li style="font-size:14px;color:#ebdec2">歡迎來到熊i猜</li>
+                                        <li style="font-size:14px;color:#ebdec2">立即註冊，開啟競猜之旅</listyle="color:#ebdec2">
+                                        <li style="font-size:14px;color:#ebdec2;margin-bottom:50px">現在註冊送2000魚骨幣試玩</li>
+                                        <li><a href="@Url.Action("Register")" id="registerbtn">免費註冊</a></li>
+                                    </ul>
+                                </div>
+                            </form>
+
+                            @* 請在啟用密碼重設功能的帳戶確認之後啟用此項目
+                                <p>
+                                    @Html.ActionLink("忘記密碼?", "ForgotPassword")
+                                </p>*@
+
+
+
+
+
+                        </div>
+                    </section>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--// Main Section \\-->
+
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @Html.Action("ForgotPassword", "Account")
+
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src='https://www.google.com/recaptcha/api.js?hl=zh-TW'></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".OAuthLogin").click(function () {
+                $("#OAuthForm").find("input[name=provider]").val($(this).attr("provider"));
+                $("#OAuthForm").submit();
+                $("#loginpage").css("color", "#e4b12a");
+                $("#missionpage").click(function () {
+                    $("#missionpage").css("color", "#e4b12a");
+                    $("#loginpage").css("color", "#ebdec2");
+                    $("#betpage").css("color", "#ebdec2");
+                });
+
+                $("#betpage").click(function () {
+                    $("#missionpage").css("color", "#ebdec2");
+                    $("#loginpage").css("color", "#ebdec2");
+                    $("#betpage").css("color", "#e4b12a");
+
+                });
+            });
+        });
+
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+            $('.rc-anchor-light.rc-anchor-normal').css('border', '1px solid #5d5741');
+            $('.rc-anchor-light').css('background-color', 'rgba(0, 0, 0, 0.23921568627450981)', 'color', '#ebdec2');
+        });
+    </script>
+
+}
+

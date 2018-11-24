@@ -1,0 +1,1165 @@
+﻿
+@{
+    /**/
+
+    /**/
+
+    Layout = null;
+
+    string date = DateTime.Now.ToString("MMddss");
+}
+
+@if (ViewBag.Banner == 0)
+{
+    <style>
+
+        /*下雪特效*/
+        .snow-canvas {
+            display: block;
+            width: 100%;
+            /* height: 100%;*/
+            top: 0;
+            right: 0;
+            position: fixed;
+            pointer-events: none;
+        }
+        /*動態背景*/
+        @@keyframes rotate {
+            0% {
+                transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+            }
+
+            100% {
+                transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+            }
+        }
+
+        .sportsmagazine-footer-one {
+            margin: 0;
+        }
+
+        /*三隻熊*/
+        .bear-banner {
+            width: 100%;
+            position: absolute;
+            top: 12%;
+            //left: 48px;
+            /*-webkit-transform: translate(0px, 0);
+            -moz-transform: translate(0px, 0);
+            -o-transform: translate(0px, 0);
+            transform: translate(0px, 0);*/
+        }
+
+        .star {
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #FFF;
+            top: 0px;
+            left: 800px;
+            position: relative;
+            transform-origin: 100% 0;
+            animation: star-ani 4s linear infinite;
+            -webkit-animation: star-ani 5s linear infinite;
+            box-shadow: 0 0 5px 5px rgba(255, 255, 255, .3);
+            opacity: 0;
+            z-index: 2;
+        }
+
+            .star:after {
+                content: '';
+                display: block;
+                top: 0px;
+                left: 4px;
+                border: 0px solid #fff;
+                border-width: 0px 90px 2px 90px;
+                border-color: transparent transparent transparent rgba(255, 255, 255, .3);
+                transform: rotate(-45deg) translate3d(1px, 3px, 0);
+                box-shadow: 0 0 1px 0 rgba(255, 255, 255, .1);
+                transform-origin: 0% 100%;
+                animation: shooting-ani 3s infinite ease-out;
+            }
+
+        .pink {
+            top: 100px;
+            left: 1200px;
+            background: #fff;
+            animation-delay: 3s;
+            -webkit-animation-delay: 3s;
+            -moz-animation-delay: 3s;
+        }
+
+            .pink:after {
+                border-color: transparent transparent transparent #fff;
+                animation-delay: 3s;
+                -webkit-animation-delay: 3s;
+                -moz-animation-delay: 3s;
+            }
+
+        .blue {
+            top: 120px;
+            left: 1500px;
+            background: #fff;
+            animation-delay: 7s;
+            -webkit-animation-delay: 7s;
+            -moz-animation-delay: 7s;
+        }
+
+            .blue:after {
+                border-color: transparent transparent transparent #fff;
+                -webkit-animation-delay: 7s;
+                -moz-animation-delay: 7s;
+                animation-delay: 7s;
+            }
+
+
+
+
+
+        @@keyframes star-ani {
+            0% {
+                opacity: 0;
+                transform: scale(0) translate3d(0, 0, 0);
+            }
+
+            20% {
+                opacity: 0.8;
+                transform: scale(0.2) translate3d(-100px, 100px, 0);
+            }
+
+            40% {
+                opacity: 0.8;
+                transform: scale(0.4) translate3d(-200px, 200px, 0);
+            }
+
+            60% {
+                opacity: 0.8;
+                transform: scale(0.6) translate3d(-300px, 300px, 0);
+            }
+
+            80% {
+                opacity: 1;
+                transform: scale(1) translate3d(-350px, 350px, 0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2) translate3d(-400px, 380px, 0);
+            }
+        }
+
+        .right-banner {
+            position: absolute;
+            left: 85%;
+            top: 15%;
+            max-width: 25%;
+            opacity: 0;
+        }
+
+        @@-webkit-keyframes STAR-MOVE {
+            from {
+                background-position: 0% 0%
+            }
+
+            to {
+                background-position: 600% 0%
+            }
+        }
+
+        @@keyframes STAR-MOVE {
+            from {
+                background-position: 0% 0%
+            }
+
+            to {
+                background-position: 600% 0%
+            }
+        }
+
+        @@-webkit-keyframes BEAR-MOVE {
+            from {
+                transform: rotateY(180deg);
+            }
+
+            to {
+                transform: rotateY(0deg);
+            }
+        }
+
+
+
+        @@keyframes BEAR-MOVE {
+            from {
+                transform: rotateY(180deg);
+            }
+
+            to {
+                transform: rotateY(0deg);
+            }
+        }
+
+        @@keyframes BEAR-RIGHT-MOVE {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(30deg);
+            }
+        }
+
+        @@keyframes BEAR-MR-MOVE {
+            from {
+                transform: rotateY(30deg);
+            }
+
+            to {
+                transform: rotateY(0deg);
+            }
+        }
+
+
+
+
+        .wall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        div#midground {
+            background: url('https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180319/midground.png')repeat 20% 0%;
+            z-index: 1;
+            -webkit-animation: STAR-MOVE 100s linear infinite;
+            -moz-animation: STAR-MOVE 100s linear infinite;
+            -ms-animation: STAR-MOVE 100s linear infinite;
+            animation: STAR-MOVE 100s linear infinite;
+        }
+
+        div#foreground {
+            background: url('https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180319/foreground.png')repeat 35% 0%;
+            z-index: 2;
+            -webkit-animation: STAR-MOVE 50s linear infinite;
+            -moz-animation: STAR-MOVE 50s linear infinite;
+            -ms-animation: STAR-MOVE 50s linear infinite;
+            animation: STAR-MOVE 50s linear infinite;
+        }
+
+        .banner-title {
+            position: absolute;
+            max-width: 32%;
+            top: -20%;
+            left: 34%;
+        }
+
+        .banner-logo {
+            opacity: 0;
+        }
+
+        canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            cursor: pointer;
+        }
+
+
+        #gradient {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.5;
+        }
+
+        .bear-right {
+            position: absolute;
+            width: 20%;
+            right: -50%;
+            margin-top: 80px;
+        }
+
+        .bear-left {
+            position: absolute;
+            width: 18%;
+            left: -50%;
+            margin-top: 80px;
+        }
+
+        .bear-middle {
+            position: absolute;
+            width: 20%;
+            left: 40%;
+            margin-top: 160px;
+            opacity: 0;
+        }
+
+        @@media(max-width:990px) {
+            #gradient {
+                display: none;
+            }
+        }
+    </style>
+
+
+
+    <div class="sportsmagazine-banner">
+        <!--// Slider \\-->
+        <div class="sportsmagazine-banner-one">
+
+            <div class="sportsmagazine-banner-one-layer">
+                @*動態背景 <div class="stars"></div> *@
+
+                <img id="imgpcweb" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_background.jpg?@date" alt="">
+                @*<div id="gradient"></div>*@
+                <img id="imgphone" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_phone.jpg?@date" alt="">
+
+                <div class="banner-logo" style="position:absolute;top:70px;right:14%;left:14%;max-width:70%">
+                    <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_logo.png?@date" />
+
+                </div>
+
+
+                @*動態球
+                        <span class="sportsmagazine-banner-pattren">
+                        <div id="midground" class="wall"></div>
+                        <div id="foreground" class="wall"></div>
+
+                    </span>*@
+
+
+
+
+                <div class="sportsmagazine-banner-caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="sportsmagazine-banner-wrap">
+                                    <h1>全新競猜挑戰 註冊拿獎GO</h1>
+                                    <p style="color:#e9dcc1"></p>
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("Index", "game")" class="sportsmagazine-banner-btn"><div class="banner-btn">進入大廳</div></a>
+                                        <a href="@Url.Action("Index","News")" class="sportsmagazine-banner-btn"><div class="banner-btn">瞭解更多</div></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Login", "Account")" class="sportsmagazine-banner-btn"><div class="banner-btn">立即登入</div></a>
+                                        <a href="@Url.Action("Register", "Account")" class="sportsmagazine-banner-btn"><div class="banner-btn">免費註冊</div></a>
+                                    }
+
+                                </div>
+
+
+                                <div class="sportsmagazine-banner-thumb">  </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--// Slider \\-->
+    </div>
+
+
+    <div class="bear-banner">
+        <div class="bear-right"><img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_right.png?@date" /></div>
+        <div class="bear-left"><img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_left.png?@date" /></div>
+        <div class="bear-middle"><img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_middle.png?@date" /></div>
+
+    </div>
+    <div class="right-banner">
+        <a> <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_button.png?@date" /></a>
+    </div>
+    <div class="banner-title">
+        <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180809/banner_title.png?@date" />
+
+    </div>
+
+
+
+    <scripts src="~/Scripts/effects/jquery.gradientify.min.js"></scripts>
+    <script>
+        $(window).scroll(function () {
+            var thisTop = 200;
+
+
+            if ($(this).scrollTop() > thisTop) {
+
+                $('.bear-right').stop().animate({ right: "-50%" });
+                $('.bear-left').stop().animate({ left: "-50%" });
+                $('.bear-middle').stop().animate({ opacity: "0" });
+                $('.banner-title').stop().animate({ top: "-20%" });
+                $('.banner-logo,.right-banner').stop().animate({ opacity: "0" }, '500');
+
+                // $('.banner-logo').hide(400);
+                //  $('.right-banner').hide(400);
+
+            }
+            else {
+                $('.bear-right').stop().animate({ right: "0" });
+                $('.bear-left').stop().animate({ left: "0" });
+                $('.bear-middle').stop().animate({ opacity: "1" });
+                $('.banner-title').stop().animate({ top: "16%" });
+                $('.banner-logo,.right-banner').stop().animate({ opacity: "1" }, '500');
+                //$('.banner-logo').show(400);
+                // $('.right-banner').show(400);
+
+            }
+
+        });
+
+        $(document).ready(function () {
+            $('.banner-title').stop().animate({ top: "16%" });
+            $('.banner-logo,.right-banner').animate({ opacity: "1" });
+            $('.bear-right').stop().animate({ right: "0" });
+            $('.bear-left').stop().animate({ left: "0" });
+            $('.bear-middle').stop().animate({ opacity: "1" });
+
+
+            $('.banner-rightpage').hover(function () {
+                $('.bear-middle').attr('id', "bear-middle-right-rotate");
+            }, function () {
+                $('.bear-middle').attr('id', "bear-middle-mr-rotate");
+            }
+
+
+
+            );
+
+
+
+
+            //$('').animate({ opacity: "1" });
+
+
+            // target to give background to
+            /*var $div = document.getElementById("gradient");
+            // rgb vals of the gradients
+            var gradients = [
+                { start: [30, 41, 58], stop: [81, 0, 128] },
+                { start: [119, 83, 151], stop: [236, 15, 15] },
+                { start: [234, 30, 30], stop: [29, 45, 153] }
+
+            ];
+            // how long for each transition
+            var transition_time = 1.5;
+
+            // internal type vars
+            var currentIndex = 0; // where we are in the gradients array
+            var nextIndex = 1; // what index of the gradients array is next
+            var steps_count = 0; // steps counter
+            var steps_total = Math.round(transition_time * 60); // total amount of steps
+            var rgb_steps = {
+                start: [0, 0, 0],
+                stop: [0, 0, 0]
+            }; // how much to alter each rgb value
+            var rgb_values = {
+                start: [0, 0, 0],
+                stop: [0, 0, 0]
+            }; // the current rgb values, gets altered by rgb steps on each interval
+            var prefixes = ["-webkit-", "-moz-", "-o-", "-ms-", ""]; // for looping through adding styles
+            var div_style = $div.style; // short cut to actually adding styles
+            var color1, color2;
+
+            // sets next current and next index of gradients array
+            function set_next(num) {
+                return (num + 1 < gradients.length) ? num + 1 : 0;
+            }
+
+            // work out how big each rgb step is
+            function calc_step_size(a, b) {
+                return (a - b) / steps_total;
+            }
+
+            // populate the rgb_values and rgb_steps objects
+            function calc_steps() {
+                for (var key in rgb_values) {
+                    if (rgb_values.hasOwnProperty(key)) {
+                        for (var i = 0; i < 3; i++) {
+                            rgb_values[key][i] = gradients[currentIndex][key][i];
+                            rgb_steps[key][i] = calc_step_size(gradients[nextIndex][key][i], rgb_values[key][i]);
+                        }
+                    }
+                }
+            }
+
+            // update current rgb vals, update DOM element with new CSS background
+            function updateGradient() {
+                // update the current rgb vals
+                for (var key in rgb_values) {
+                    if (rgb_values.hasOwnProperty(key)) {
+                        for (var i = 0; i < 3; i++) {
+                            rgb_values[key][i] += rgb_steps[key][i];
+                        }
+                    }
+                }
+
+                // generate CSS rgb values
+                var t_color1 = "rgb(" + (rgb_values.start[0] | 0) + "," + (rgb_values.start[1] | 0) + "," + (rgb_values.start[2] | 0) + ")";
+                var t_color2 = "rgb(" + (rgb_values.stop[0] | 0) + "," + (rgb_values.stop[1] | 0) + "," + (rgb_values.stop[2] | 0) + ")";
+
+                // has anything changed on this interation
+                if (t_color1 != color1 || t_color2 != color2) {
+
+                    // update cols strings
+                    color1 = t_color1;
+                    color2 = t_color2;
+
+                    // update DOM element style attribute
+                    div_style.backgroundImage = "-webkit-gradient(linear, left bottom, right top, from(" + color1 + "), to(" + color2 + "))";
+                    for (var i = 0; i < 4; i++) {
+                        div_style.backgroundImage = prefixes[i] + "linear-gradient(45deg, " + color1 + ", " + color2 + ")";
+                    }
+                }
+
+                // we did another step
+                steps_count++;
+                // did we do too many steps?
+                if (steps_count > steps_total) {
+                    // reset steps count
+                    steps_count = 0;
+                    // set new indexs
+                    currentIndex = set_next(currentIndex);
+                    nextIndex = set_next(nextIndex);
+                    // calc steps
+                    calc_steps();
+                }
+
+                if (div_style.backgroundImage.indexOf("gradient") != -1) {
+                    window.requestAnimationFrame(updateGradient)
+                }
+            }
+
+            // initial step calc
+            calc_steps();
+
+            // go go go!
+            window.requestAnimationFrame(updateGradient);*/
+
+        });
+
+
+
+
+    </script>
+
+
+
+
+
+}
+else
+{
+    <style>
+
+
+
+        /*下雪特效*/
+        .snow-canvas {
+            display: block;
+            width: 100%;
+            /* height: 100%;*/
+            top: 0;
+            right: 0;
+            position: fixed;
+            pointer-events: none;
+        }
+        /*動態背景*/
+        @@keyframes rotate {
+            0% {
+                transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+            }
+
+            100% {
+                transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+            }
+        }
+
+        .sportsmagazine-footer-one {
+            margin: 0;
+        }
+
+        /*三隻熊*/
+        .bear-banner {
+            width: 100%;
+            position: absolute;
+            top: 5%;
+            /*left: 48px;*/
+            /*-webkit-transform: translate(0px, 0);
+            -moz-transform: translate(0px, 0);
+            -o-transform: translate(0px, 0);
+            transform: translate(0px, 0);*/
+        }
+
+        .star {
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #FFF;
+            top: 0px;
+            left: 800px;
+            position: relative;
+            transform-origin: 100% 0;
+            animation: star-ani 4s linear infinite;
+            -webkit-animation: star-ani 5s linear infinite;
+            box-shadow: 0 0 5px 5px rgba(255, 255, 255, .3);
+            opacity: 0;
+            z-index: 2;
+        }
+
+            .star:after {
+                content: '';
+                display: block;
+                top: 0px;
+                left: 4px;
+                border: 0px solid #fff;
+                border-width: 0px 90px 2px 90px;
+                border-color: transparent transparent transparent rgba(255, 255, 255, .3);
+                transform: rotate(-45deg) translate3d(1px, 3px, 0);
+                box-shadow: 0 0 1px 0 rgba(255, 255, 255, .1);
+                transform-origin: 0% 100%;
+                animation: shooting-ani 3s infinite ease-out;
+            }
+
+        .pink {
+            top: 100px;
+            left: 1200px;
+            background: #fff;
+            animation-delay: 3s;
+            -webkit-animation-delay: 3s;
+            -moz-animation-delay: 3s;
+        }
+
+            .pink:after {
+                border-color: transparent transparent transparent #fff;
+                animation-delay: 3s;
+                -webkit-animation-delay: 3s;
+                -moz-animation-delay: 3s;
+            }
+
+        .blue {
+            top: 120px;
+            left: 1500px;
+            background: #fff;
+            animation-delay: 7s;
+            -webkit-animation-delay: 7s;
+            -moz-animation-delay: 7s;
+        }
+
+            .blue:after {
+                border-color: transparent transparent transparent #fff;
+                -webkit-animation-delay: 7s;
+                -moz-animation-delay: 7s;
+                animation-delay: 7s;
+            }
+
+
+
+
+
+        @@keyframes star-ani {
+            0% {
+                opacity: 0;
+                transform: scale(0) translate3d(0, 0, 0);
+            }
+
+            20% {
+                opacity: 0.8;
+                transform: scale(0.2) translate3d(-100px, 100px, 0);
+            }
+
+            40% {
+                opacity: 0.8;
+                transform: scale(0.4) translate3d(-200px, 200px, 0);
+            }
+
+            60% {
+                opacity: 0.8;
+                transform: scale(0.6) translate3d(-300px, 300px, 0);
+            }
+
+            80% {
+                opacity: 1;
+                transform: scale(1) translate3d(-350px, 350px, 0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2) translate3d(-400px, 380px, 0);
+            }
+        }
+
+        .right-banner {
+            position: absolute;
+            right: 0;
+            bottom: 10%;
+            width: 20%;
+            max-width: 40%;
+            opacity: 0;
+        }
+
+        @@-webkit-keyframes STAR-MOVE {
+            from {
+                background-position: 0% 0%
+            }
+
+            to {
+                background-position: 600% 0%
+            }
+        }
+
+        @@keyframes STAR-MOVE {
+            from {
+                background-position: 0% 0%
+            }
+
+            to {
+                background-position: 600% 0%
+            }
+        }
+
+        @@-webkit-keyframes BEAR-MOVE {
+            from {
+                transform: rotateY(180deg);
+            }
+
+            to {
+                transform: rotateY(0deg);
+            }
+        }
+
+
+
+        @@keyframes BEAR-MOVE {
+            from {
+                transform: rotateY(180deg);
+            }
+
+            to {
+                transform: rotateY(0deg);
+            }
+        }
+
+        @@keyframes BEAR-RIGHT-MOVE {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(30deg);
+            }
+        }
+
+        @@keyframes BEAR-MR-MOVE {
+            from {
+                transform: rotateY(30deg);
+            }
+
+            to {
+                transform: rotateY(0deg);
+            }
+        }
+
+       
+
+
+        .wall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        div#midground {
+            background: url('https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180319/midground.png')repeat 20% 0%;
+            z-index: 1;
+            -webkit-animation: STAR-MOVE 100s linear infinite;
+            -moz-animation: STAR-MOVE 100s linear infinite;
+            -ms-animation: STAR-MOVE 100s linear infinite;
+            animation: STAR-MOVE 100s linear infinite;
+        }
+
+        div#foreground {
+            background: url('https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180319/foreground.png')repeat 35% 0%;
+            z-index: 2;
+            -webkit-animation: STAR-MOVE 50s linear infinite;
+            -moz-animation: STAR-MOVE 50s linear infinite;
+            -ms-animation: STAR-MOVE 50s linear infinite;
+            animation: STAR-MOVE 50s linear infinite;
+        }
+
+        .banner-title {
+
+
+            position: absolute;
+            max-width: 25%;
+            top: -80%;
+            left: 38%;
+        }
+
+        .banner-logo {
+            opacity: 0;
+        }
+
+        canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            cursor: pointer;
+        }
+
+
+        #gradient {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.5;
+        }
+
+        .bear-right {
+            position: absolute;
+            width: 20%;
+            right: -50%;
+            margin-top: 80px;
+        }
+
+        .bear-left {
+            position: absolute;
+            width: 18%;
+            left: -50%;
+            margin-top: 80px;
+        }
+
+        .bear-middle {
+            /*-webkit-mask: url(https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/title_mask.png) no-repeat -1020px 0px;*/
+            /*-webkit-mask: url(https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/title_mask.png) no-repeat 50% 0px;
+            -webkit-mask-size: 0% 0%;*/
+            position: absolute;
+            width: 50%;
+            left: 23%;
+            margin-top: 120px;
+            opacity: 0;
+            z-index: 999;
+            clip-path: circle(0% at center);
+            animation: 3s maskPosition ease-in-out 0s 1 alternate forwards;
+        }
+
+        
+
+        @@keyframes maskPosition {
+            from {
+                clip-path: circle(0% at center);
+            }
+
+            to {
+                clip-path: circle(100% at center);
+            }
+        }
+     
+
+        /*@@keyframes maskPosition {
+            from {
+                -webkit-mask-position:-1020px 0;
+
+            }
+            to {
+               -webkit-mask-position:0 0;
+
+            }
+        }*/
+
+
+
+        @@media(max-width:990px) {
+            #gradient {
+                display: none;
+            }
+        }
+
+        .bottom-banner {
+            position: absolute;
+            right: 33%;
+            bottom: 10%;
+        }
+
+            .bottom-banner img {
+                float: left;
+                margin-right: 120px;
+            }
+
+            .bottom-banner .b01 {
+                margin-top: 40px;
+                opacity:0;
+            }
+
+            .bottom-banner .b02 {
+                margin-top: 20px;
+                opacity: 0;
+            }
+
+            .bottom-banner .b03 {
+                margin-top: 0px;
+                opacity: 0;
+            }
+
+            .bottom-banner .b04 {
+                margin-top: -20px;
+                opacity: 0;
+            }
+
+
+
+        /*@@media(min-width:1850px) {
+            .right-banner {
+                bottom: 0;
+            }
+
+            .bottom-banner {
+                right: 33%;
+                bottom: 0;
+            }
+
+                .bottom-banner img {
+                    margin-right: 120px;
+                }
+        }
+
+         @@media (min-width: 1600px) and (max-width: 1850px) {
+            .right-banner {
+                bottom: 50px;
+            }
+
+            .bottom-banner {
+                bottom: 8%;
+            }
+        }
+*/
+        @@media (max-width: 1550px) {
+            .bottom-banner img {
+                width: 30px;
+                margin-right: 80px;
+            }
+
+            .bottom-banner {
+                bottom: 4%;
+                right:36%;
+                
+            }
+        }
+
+        @@media (max-width: 990px) {
+
+            .bottom-banner {
+                display:none;
+
+            }
+
+        }
+
+
+    </style>
+
+    <link rel="stylesheet" href="~/Content/effects/style.css?v=201809025">
+
+
+    <div class="sportsmagazine-banner">
+        <!--// Slider \\-->
+        <div class="sportsmagazine-banner-one">
+
+            <div class="sportsmagazine-banner-one-layer">
+                @*動態背景 <div class="stars"></div> *@
+
+                <img id="imgpcweb" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/banner_background.jpg?@date" alt="">
+
+                @*<div id="gradient"></div>*@
+                <img id="imgphone" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/banner_phone.jpg?@date" alt="">
+
+                
+                <span class="sportsmagazine-banner-pattren">
+                    <div id="dynamic-area1" class="wall"></div>
+                    <div class="banner-logo" style="position:absolute;top:0;left:0;max-width:100%;width:100%;z-index:2">
+                        <img style="-webkit-filter:drop-shadow(1px 1px 1px rgb(0, 0, 0))" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/banner_logo.png?@date" />
+
+                    </div>
+                    <div id="dynamic-area2" class="wall"></div>
+                </span>
+
+                @*動態球
+        <span class="sportsmagazine-banner-pattren">
+            <div id="midground" class="wall"></div>
+            <div id="foreground" class="wall"></div>
+
+        </span>*@
+                <div class="bear-banner">
+
+                    <div class="bear-middle">
+                        <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/banner_middle.png?@date" />
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="banner-title">
+                    <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/banner_title.png?@date" />
+
+                </div>
+
+                <div class="right-banner">
+                    <a> <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/banner_button.png?@date" /></a>
+                </div>
+                <div class="bottom-banner">
+                    <img class="b01" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/button_01.png?@date" />
+                    <img class="b02" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/button_02.png?@date" />
+                    <img class="b03" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/button_03.png?@date" />
+                    <img class="b04" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180828/button_04.png?@date" />
+                </div>
+
+
+
+                <div class="sportsmagazine-banner-caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="sportsmagazine-banner-wrap">
+                                    <h1>2018英雄聯盟世界大賽-決戰世界之巔</h1>
+                                    <p style="color:#e9dcc1"></p>
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("Index", "game")" class="sportsmagazine-banner-btn"><div class="banner-btn">進入大廳</div></a>
+                                        <a href="@Url.Action("Index","News")" class="sportsmagazine-banner-btn"><div class="banner-btn">瞭解更多</div></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Login", "Account")" class="sportsmagazine-banner-btn"><div class="banner-btn">立即登入</div></a>
+                                        <a href="@Url.Action("Register", "Account")" class="sportsmagazine-banner-btn"><div class="banner-btn">免費註冊</div></a>
+                                    }
+
+                                </div>
+
+
+                                @*<div class="sportsmagazine-banner-thumb">  </div>*@
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--// Slider \\-->
+    </div>
+
+
+
+
+
+
+
+
+    <scripts src="~/Scripts/effects/jquery.gradientify.min.js"></scripts>
+    <script>
+        $(window).scroll(function () {
+            var thisTop = 200;
+
+
+            if ($(this).scrollTop() > thisTop) {
+
+                $('.bear-right').stop().animate({ right: "-50%" });
+                $('.bear-left').stop().animate({ left: "-50%" });
+                $('.bear-middle').stop().animate({ opacity: "0" });
+                $('.banner-title').stop().animate({ top: "-80%" });
+                $('.banner-logo').stop().animate({ opacity: "0" }, '800');
+
+                $('.bottom-banner').stop().animate({ opacity: "0" });
+               
+                // $('.banner-logo').hide(400);
+                //  $('.right-banner').hide(400);
+
+            }
+            else {
+                $('.bear-right').stop().animate({ right: "0" });
+                $('.bear-left').stop().animate({ left: "0" });
+                $('.bear-middle').stop().animate({ opacity: "1" });
+                $('.banner-title').stop().animate({ top: "10%" });
+                $('.banner-logo').stop().animate({ opacity: "1" }, '800');
+                $('.bottom-banner').stop().animate({ opacity: "1" });
+               /* $('.bottom-banner .b01').stop().delay(200).animate({ opacity: "1" });
+                $('.bottom-banner .b02').stop().delay(600).animate({ opacity: "1" });
+                $('.bottom-banner .b03').stop().delay(1000).animate({ opacity: "1" });
+                $('.bottom-banner .b04').stop().delay(1400).animate({ opacity: "1" });
+
+                $('.right-banner').stop().delay(1800).animate({ opacity: "1" });*/
+                //$('.banner-logo').show(400);
+                // $('.right-banner').show(400);
+
+            }
+
+        });
+
+        $(document).ready(function () {
+            $('.banner-title').delay(300).stop().animate({ top: "10%" });
+            $('.banner-logo').animate({ opacity: "1" });
+            $('.bear-right').stop().animate({ right: "0" });
+            $('.bear-left').stop().animate({ left: "0" });
+            $('.bear-middle').stop().animate({ opacity: "1" });
+            $('.bottom-banner .b01').stop().delay(200).animate({ opacity: "1" });
+            $('.bottom-banner .b02').stop().delay(600).animate({ opacity: "1" });
+            $('.bottom-banner .b03').stop().delay(1000).animate({ opacity: "1" });
+            $('.bottom-banner .b04').stop().delay(1400).animate({ opacity: "1" });
+
+            $('.right-banner').stop().delay(1800).animate({ opacity: "1" });
+
+
+            $('.banner-rightpage').hover(function () {
+                $('.bear-middle').attr('id', "bear-middle-right-rotate");
+            }, function () {
+                $('.bear-middle').attr('id', "bear-middle-mr-rotate");
+            });
+
+
+        });
+
+
+
+            
+
+
+
+
+    </script>
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@*視差 *@
+<script src="https://cdn.rawgit.com/kasparsj/jquery.requestAnimationFrame/master/jquery.requestAnimationFrame.min.js?@date"></script>
+<script src="/Scripts/jquery.data-parallax.js?@date"></script>
+
+
+

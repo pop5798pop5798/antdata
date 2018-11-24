@@ -1,0 +1,85 @@
+﻿@model SITW.Models.ViewModel.RankingViewModel
+@{
+    Layout = null;
+    string date = DateTime.Now.ToString("MMddmm");
+}
+<link href="~/Content/css/tablerank.css?id=@date" rel="stylesheet">
+
+
+<div class="sportsmagazine-wishlist">
+    @if (ViewBag.WinMoney != null)
+    {
+        <br>
+        <table class="col-md-12 table-bordered table-striped table-condensed cf" cellspacing="0" style="width:100%;border:1px solid rgba(131, 203, 255, 0.45);">
+            <thead id="cf">
+                <tr>
+                    <th><i class="fa fa-address-card fa-lg" aria-hidden="true"></i>&nbsp; 玩家</th>
+                    <th><i class="fa fa-sort-amount-desc" aria-hidden="true"></i>&nbsp; 個人排名</th>
+                    <th><i class="fa fa-cubes fa-lg" aria-hidden="true"></i>&nbsp; 獲利金額</th>
+                </tr>
+            </thead>
+            <tbody style="color:#b9b9b9;background-color:rgba(255, 255, 255, 0.01)">
+                <tr id="placard" style="color:#e5b22a">
+
+                    <td>@(ViewBag.UserName)</td>
+                    <td>@(ViewBag.ord)</td>
+                    <td>@(ViewBag.WinMoney)</td>
+
+                </tr>
+            </tbody>
+        </table>
+    }
+    <br>
+    <h6>競猜賽季: @Model.sdate.ToString("yyyy/MM/dd")-@Model.edate.ToString("yyyy/MM/dd")</h6>
+
+
+    <table id="example" class="col-md-12 table-bordered table-striped table-condensed cf" cellspacing="0" style="width:100%;">
+        <thead id="cf">
+            <tr>
+                <th>&nbsp; 排名</th>
+                <th>&nbsp; 玩家</th>
+                <th>&nbsp; 獲利金額</th>
+            </tr>
+        </thead>
+        <tbody style="color:#b9b9b9">
+            @foreach (var item in Model.rankinglist)
+            {
+                <tr id="placard">
+                    @switch (item.ord)
+                    {
+
+                        case "1":
+                            <td>
+                                <img style="border:1px solid #ffdc11;" src="~/Content/extra-images/no1.ico" />
+                            </td>
+                            <td style="color:#ffdc11;">@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td style="color:#ffdc11;">@Html.DisplayFor(modelItem => item.Assets)</td>
+                            break;
+                        case "2":
+                            <td> <img style="border:1px solid #0094ff;" src="~/Content/extra-images/no2.ico" /></td>
+                            <td style="color:#0094ff;">@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td style="color:#0094ff;">@Html.DisplayFor(modelItem => item.Assets)</td>
+                            break;
+                        case "3":
+                            <td><img style="border:1px solid #ff6a00" src="~/Content/extra-images/no3.ico" /></td>
+                            <td style="color:#ff6a00;">@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td style="color:#ff6a00;">@Html.DisplayFor(modelItem => item.Assets)</td>
+                            break;
+                        default:
+                            <td>@(item.ord)</td>
+                            <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Assets)</td>
+                            break;
+
+
+
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
+
+

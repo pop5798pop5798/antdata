@@ -1,0 +1,25 @@
+﻿@using SITW.Helper
+@model SITW.Models.ViewModel.GamePostViewModel
+@{
+    Layout = null;
+    int? playgsn = ViewBag.item;
+}
+
+<div class="form-group">
+    @Html.LabelFor(model => model.gamepost.TeamASn, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-5">
+        @Html.TeamSelect("gamepost.TeamASn", playgsn, Model.gamepost.TeamASn)
+        <div id="Products"></div>
+        @Html.ValidationMessageFor(model => model.gamepost.TeamASn, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.gamepost.TeamBSn, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-5">
+
+        @Html.TeamSelect("gamepost.TeamBSn", playgsn, Model.gamepost.TeamBSn)
+        @Html.ValidationMessageFor(model => model.gamepost.TeamBSn, "", new { @class = "text-danger" })
+        <a href="@Url.Action("Index","Teams")"><h6>+ 隊伍新增</h6></a>       
+    </div>
+</div>

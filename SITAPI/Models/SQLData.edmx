@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="sitdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="apis">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userSn" Type="int" />
+          <Property Name="sdate" Type="datetime" />
+          <Property Name="edate" Type="datetime" />
+          <Property Name="title" Type="nvarchar" MaxLength="200" />
+          <Property Name="comment" Type="nvarchar(max)" />
+          <Property Name="apiStatus" Type="tinyint" />
+          <Property Name="apiModel" Type="tinyint" />
+          <Property Name="valid" Type="tinyint" />
+          <Property Name="createDate" Type="datetime" />
+          <Property Name="modiDate" Type="datetime" />
+          <Property Name="apidate" Type="datetime" />
+          <Property Name="apiplace" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="bets">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comSn" Type="int" />
+          <Property Name="userSn" Type="int" />
+          <Property Name="topicSn" Type="int" />
+          <Property Name="choiceSn" Type="int" />
+          <Property Name="money" Type="float" />
+          <Property Name="unitSn" Type="int" />
+          <Property Name="Odds" Type="float" />
+          <Property Name="valid" Type="tinyint" />
+          <Property Name="createDate" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="datetime" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="cfgGameStatus">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="valid" Type="int" />
+          <Property Name="inpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="cfgUnit">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comSn" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="createDate" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="datetime" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="choiceOdds">
+          <Key>
+            <PropertyRef Name="choiceSn" />
+            <PropertyRef Name="unitSn" />
+          </Key>
+          <Property Name="choiceSn" Type="int" Nullable="false" />
+          <Property Name="unitSn" Type="int" Nullable="false" />
+          <Property Name="Odds" Type="float" />
+        </EntityType>
+        <EntityType Name="choices">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="topicSn" Type="int" />
+          <Property Name="choiceStr" Type="nvarchar(max)" />
+          <Property Name="createDate" Type="datetime" />
+          <Property Name="modiDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="companys">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="comID" Type="varchar" MaxLength="20" />
+          <Property Name="token" Type="varchar" MaxLength="50" />
+          <Property Name="createDate" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="datetime" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="payouts">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comSn" Type="nchar" MaxLength="10" />
+          <Property Name="gameSn" Type="int" />
+          <Property Name="topicSn" Type="int" />
+          <Property Name="choiceSn" Type="int" />
+          <Property Name="userSn" Type="int" />
+          <Property Name="betSn" Type="int" />
+          <Property Name="Odds" Type="float" />
+          <Property Name="money" Type="float" />
+          <Property Name="unitSn" Type="int" />
+          <Property Name="realMoney" Type="float" />
+          <Property Name="topicTotalMoney" Type="float" />
+          <Property Name="correctTotalMoney" Type="float" />
+          <Property Name="createDate" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="isTrue" Type="tinyint" />
+          <Property Name="rake" Type="float" />
+        </EntityType>
+        <EntityType Name="prices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="priceMoney" Type="float" />
+          <Property Name="apiCount" Type="int" />
+          <Property Name="apisId" Type="int" />
+          <Property Name="unitSn" Type="int" />
+        </EntityType>
+        <EntityType Name="topics">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="apiSn" Type="int" />
+          <Property Name="title" Type="nvarchar" MaxLength="200" />
+          <Property Name="apieTitle" Type="nvarchar" MaxLength="200" />
+          <Property Name="comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="valid" Type="tinyint" />
+          <Property Name="unitSn" Type="int" />
+          <Property Name="createDate" Type="datetime" />
+          <Property Name="modiDate" Type="datetime" />
+          <Property Name="layer" Type="int" />
+          <Property Name="apitype" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comSn" Type="int" />
+          <Property Name="userID" Type="nvarchar" MaxLength="128" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="150" />
+          <Property Name="createDate" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="datetime" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="sitdbModelStoreContainer">
+          <EntitySet Name="apis" EntityType="Self.apis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bets" EntityType="Self.bets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cfgGameStatus" EntityType="Self.cfgGameStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cfgUnit" EntityType="Self.cfgUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="choiceOdds" EntityType="Self.choiceOdds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="choices" EntityType="Self.choices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="companys" EntityType="Self.companys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payouts" EntityType="Self.payouts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prices" EntityType="Self.prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="topics" EntityType="Self.topics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sitdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bet">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comSn" Type="Int32" />
+          <Property Name="userSn" Type="Int32" />
+          <Property Name="topicSn" Type="Int32" />
+          <Property Name="choiceSn" Type="Int32" />
+          <Property Name="money" Type="Double" />
+          <Property Name="unitSn" Type="Int32" />
+          <Property Name="Odds" Type="Double" />
+          <Property Name="valid" Type="Byte" />
+          <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="cfgUnit">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comSn" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="comID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comSn" Type="Int32" />
+          <Property Name="userID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="sitdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bets" EntityType="Self.bet" />
+          <EntitySet Name="cfgUnits" EntityType="Self.cfgUnit" />
+          <EntitySet Name="companys" EntityType="Self.company" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="payouts" EntityType="sitdbModel.payout" />
+          <EntitySet Name="cfgGameStatus" EntityType="sitdbModel.cfgGameStatu" />
+          <EntitySet Name="choiceOdds" EntityType="sitdbModel.choiceOdd" />
+          <EntitySet Name="apis" EntityType="sitdbModel.api" />
+          <EntitySet Name="prices" EntityType="sitdbModel.price" />
+          <EntitySet Name="choices" EntityType="sitdbModel.choice" />
+          <EntitySet Name="topics" EntityType="sitdbModel.topic" />
+        </EntityContainer>
+        <EntityType Name="payout">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="betSn" Type="Int32" />
+          <Property Name="Odds" Type="Double" />
+          <Property Name="money" Type="Double" />
+          <Property Name="realMoney" Type="Double" />
+          <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comSn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="gameSn" Type="Int32" />
+          <Property Name="topicSn" Type="Int32" />
+          <Property Name="userSn" Type="Int32" />
+          <Property Name="unitSn" Type="Int32" />
+          <Property Name="choiceSn" Type="Int32" />
+          <Property Name="topicTotalMoney" Type="Double" />
+          <Property Name="correctTotalMoney" Type="Double" />
+          <Property Name="isTrue" Type="Byte" />
+          <Property Name="rake" Type="Double" />
+        </EntityType>
+        <EntityType Name="cfgGameStatu">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="valid" Type="Int32" />
+          <Property Name="inpdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="choiceOdd">
+          <Key>
+            <PropertyRef Name="choiceSn" />
+            <PropertyRef Name="unitSn" />
+          </Key>
+          <Property Name="choiceSn" Type="Int32" Nullable="false" />
+          <Property Name="unitSn" Type="Int32" Nullable="false" />
+          <Property Name="Odds" Type="Double" />
+        </EntityType>
+        <EntityType Name="api">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userSn" Type="Int32" />
+          <Property Name="sdate" Type="DateTime" Precision="3" />
+          <Property Name="edate" Type="DateTime" Precision="3" />
+          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="apiStatus" Type="Byte" />
+          <Property Name="apiModel" Type="Byte" />
+          <Property Name="valid" Type="Byte" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" />
+          <Property Name="apidate" Type="DateTime" Precision="3" />
+          <Property Name="apiplace" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="price">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="priceMoney" Type="Double" />
+          <Property Name="apiCount" Type="Int32" />
+          <Property Name="apisId" Type="Int32" />
+          <Property Name="unitSn" Type="Int32" />
+        </EntityType>
+        <EntityType Name="choice">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="topicSn" Type="Int32" />
+          <Property Name="choiceStr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="topic">
+          <Key>
+            <PropertyRef Name="sn" />
+          </Key>
+          <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="apiSn" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="apieTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="valid" Type="Byte" />
+          <Property Name="unitSn" Type="Int32" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" />
+          <Property Name="layer" Type="Int32" />
+          <Property Name="apitype" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sitdbModelStoreContainer" CdmEntityContainer="sitdbEntities">
+          <EntitySetMapping Name="bets">
+            <EntityTypeMapping TypeName="sitdbModel.bet">
+              <MappingFragment StoreEntitySet="bets">
+                <ScalarProperty Name="Odds" ColumnName="Odds" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="choiceSn" ColumnName="choiceSn" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="comSn" ColumnName="comSn" />
+                <ScalarProperty Name="userSn" ColumnName="userSn" />
+                <ScalarProperty Name="topicSn" ColumnName="topicSn" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cfgUnits">
+            <EntityTypeMapping TypeName="sitdbModel.cfgUnit">
+              <MappingFragment StoreEntitySet="cfgUnit">
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="comSn" ColumnName="comSn" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companys">
+            <EntityTypeMapping TypeName="sitdbModel.company">
+              <MappingFragment StoreEntitySet="companys">
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="comID" ColumnName="comID" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="sitdbModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="comSn" ColumnName="comSn" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payouts">
+            <EntityTypeMapping TypeName="sitdbModel.payout">
+              <MappingFragment StoreEntitySet="payouts">
+                <ScalarProperty Name="rake" ColumnName="rake" />
+                <ScalarProperty Name="isTrue" ColumnName="isTrue" />
+                <ScalarProperty Name="correctTotalMoney" ColumnName="correctTotalMoney" />
+                <ScalarProperty Name="topicTotalMoney" ColumnName="topicTotalMoney" />
+                <ScalarProperty Name="choiceSn" ColumnName="choiceSn" />
+                <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+                <ScalarProperty Name="userSn" ColumnName="userSn" />
+                <ScalarProperty Name="topicSn" ColumnName="topicSn" />
+                <ScalarProperty Name="gameSn" ColumnName="gameSn" />
+                <ScalarProperty Name="comSn" ColumnName="comSn" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="realMoney" ColumnName="realMoney" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="Odds" ColumnName="Odds" />
+                <ScalarProperty Name="betSn" ColumnName="betSn" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cfgGameStatus">
+            <EntityTypeMapping TypeName="sitdbModel.cfgGameStatu">
+              <MappingFragment StoreEntitySet="cfgGameStatus">
+                <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="choiceOdds">
+            <EntityTypeMapping TypeName="sitdbModel.choiceOdd">
+              <MappingFragment StoreEntitySet="choiceOdds">
+                <ScalarProperty Name="Odds" ColumnName="Odds" />
+                <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+                <ScalarProperty Name="choiceSn" ColumnName="choiceSn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="apis">
+            <EntityTypeMapping TypeName="sitdbModel.api">
+              <MappingFragment StoreEntitySet="apis">
+                <ScalarProperty Name="apiplace" ColumnName="apiplace" />
+                <ScalarProperty Name="apidate" ColumnName="apidate" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="apiModel" ColumnName="apiModel" />
+                <ScalarProperty Name="apiStatus" ColumnName="apiStatus" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="userSn" ColumnName="userSn" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prices">
+            <EntityTypeMapping TypeName="sitdbModel.price">
+              <MappingFragment StoreEntitySet="prices">
+                <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+                <ScalarProperty Name="apisId" ColumnName="apisId" />
+                <ScalarProperty Name="apiCount" ColumnName="apiCount" />
+                <ScalarProperty Name="priceMoney" ColumnName="priceMoney" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="choices">
+            <EntityTypeMapping TypeName="sitdbModel.choice">
+              <MappingFragment StoreEntitySet="choices">
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="choiceStr" ColumnName="choiceStr" />
+                <ScalarProperty Name="topicSn" ColumnName="topicSn" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="topics">
+            <EntityTypeMapping TypeName="sitdbModel.topic">
+              <MappingFragment StoreEntitySet="topics">
+                <ScalarProperty Name="apitype" ColumnName="apitype" />
+                <ScalarProperty Name="layer" ColumnName="layer" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="apieTitle" ColumnName="apieTitle" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="apiSn" ColumnName="apiSn" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.NewsViewModel>
+
+@{
+    Layout = null;
+}
+
+    <div class="widget widget_popular_news">
+        <div class="sportsmagazine-fancy-title2"><h2>全部資訊</h2></div>
+        <ul style="border: 1px solid #2f334c;">
+@foreach (var item in Model)
+{
+    if (item.p_class == 1)
+    {
+            <li class="widget-theleague">
+                <div class="imgwidth"><img src="@item.image"></div>
+                <div class="popular_news_text">
+                    <small>活動</small>
+                    <a href="@Url.Action("Details",new { id = item.Id })">@item.title</a>
+                    <a href="@Url.Action("Details",new { id = item.Id })"><div id="jshtml">@Html.DisplayFor(model => item.news_content)</div></a>
+                    <time datetime="2008-02-14 20:00">@item.real_time</time>
+                </div>
+            </li>
+    }else if(item.p_class == 2)
+    {
+
+            <li class="widget-injuries">
+                <div class="imgwidth"><img src="@item.image"></div>
+                <div class="popular_news_text">
+                    <small>停權</small>
+                    <a href="@Url.Action("Details",new { id = item.Id })">@item.title</a>
+                    <a href="@Url.Action("Details",new { id = item.Id })"><div id="jshtml">@Html.DisplayFor(model => item.news_content)</div></a>
+                    <time datetime="2008-02-14 20:00">@item.real_time</time>
+                </div>
+            </li>
+    }else if(item.p_class == 3)
+    {
+
+
+            <li>
+                <div  class="imgwidth"><img src="@item.image"></div>
+                <div class="popular_news_text">
+                    <small>公告</small>
+                    <a href="@Url.Action("Details",new { id = item.Id })">@item.title</a>
+                    <a href="@Url.Action("Details",new { id = item.Id })"><div id="jshtml">@Html.DisplayFor(model => item.news_content)</div></a>
+                    <time datetime="2008-02-14 20:00">@item.real_time</time>
+                </div>
+            </li>
+    }
+}
+        </ul>
+    </div>
+
+
+

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "_Menu";
+}
+
+<ul class="nav navbar-nav" id="navmenu">
+
+    <li>
+        <div class="progress" style="height: 4px;margin-bottom: 0px;">
+            <div class="progress-bar" id="progressmenu" role="progressbar" style="width:0%;background-color:rgb(228, 177, 42)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <a href="@Url.Action("Index", "Home",null, Request.Url.Scheme)">首頁</a>
+
+    </li>
+    <li>
+        <div class="progress" style="height: 4px;margin-bottom: 0px;">
+            <div class="progress-bar" id="progressmenu" role="progressbar" style="width: 0%;background-color:rgb(228, 177, 42)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        @Html.ActionLink("遊戲大廳", "Index", "game")
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <ul class="sportsmagazine-dropdown-menu">
+
+                <li>@Html.ActionLink("新增新賽局", "Create", "game")</li>
+                <li>@Html.ActionLink("新增新隊伍", "Index", "Teams")</li>
+                <li>@Html.ActionLink("遊戲&聯賽類別", "Index", "cfgPlayGames")</li>
+
+
+            </ul>
+
+        }
+
+    </li>
+    <li>
+        <div class="progress" style="height: 4px;margin-bottom: 0px;">
+            <div class="progress-bar" id="progressmenu" role="progressbar" style="width: 0%;background-color:rgb(228, 177, 42)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        @Html.ActionLink("教學", "About", "Home")
+    </li>
+    <li>
+        <div class="progress" style="height: 4px;margin-bottom: 0px;">
+            <div class="progress-bar" id="progressmenu" role="progressbar" style="width: 0%;background-color:rgb(228, 177, 42)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        @Html.ActionLink("排行榜", "News", "Home")
+    </li>
+    <li>
+        <div class="progress" style="height: 4px;margin-bottom: 0px;">
+            <div class="progress-bar" id="progressmenu" role="progressbar" style="width: 0%;background-color:rgb(228, 177, 42)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        @Html.ActionLink("最新消息", "Index", "News")
+    </li>
+    @*@if (Request.IsAuthenticated)
+        {
+            <li id="newshome">
+                @Html.ActionLink("個人投注記錄", "BetsByUserID", "bet")
+            </li>
+        }
+        @* @if (Request.IsAuthenticated && User.IsInRole("UserAdmin"))
+            {
+                <li>
+                    <a href="#">後台管理</a>
+                    <ul class="sportsmagazine-dropdown-menu">
+
+                        <li>@Html.ActionLink("任務管理", "Index", "Mission")</li>
+                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+
+
+                    </ul>
+
+                </li>
+            }*@
+
+</ul>
+
+
+<script>
+    $(document).ready(function () {
+        $("#navmenu li").hover(function () {        
+            $(this).find("#progressmenu").css("width", "100%");
+
+        }, function () {
+            $(this).find("#progressmenu").css("width", "0%");
+
+         });
+
+
+
+
+    });
+
+
+
+</script>
+

@@ -1,0 +1,53 @@
+﻿@model SITW.Models.Ranking_content
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 獎勵管理</h3>
+        <div class="row mt">
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <h4 class="mb"><i class="fa fa-angle-right"></i> 獎勵刪除區</h4>
+
+                    <h3>確定要刪除這個排名獎勵</h3>
+                    <div>                 
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                               名次
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.ranknumber)
+                            </dd>
+
+                            <dt>
+                                獎勵內容
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.rankcontent)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-default" /> |
+                               @Html.ActionLink("返回", "Index")
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</section>

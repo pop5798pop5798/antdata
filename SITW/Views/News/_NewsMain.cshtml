@@ -1,0 +1,141 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.NewsViewModel>
+
+@{
+    Layout = null;
+}
+<head>
+    <meta property="og:url" content="@Url.Action("Index", "Home",null, Request.Url.Scheme)">
+
+</head>
+
+<style>
+    #news_all {
+        height: 223px;      
+        
+    }
+        #news_all a {
+            font-size: 17px;
+            color: #e4b12a;
+            font-weight: 400;
+        }
+        #news_all:hover {
+            height: 223px;          
+            
+        }
+        #news_all:hover a {
+            color: #fff;
+            font-weight: 400;
+            
+        }
+
+            #news_all:hover figcaption {
+                border: 1px solid rgb(128,100,27);
+            }
+    .sportsmagazine-blog-grid section {
+        background-color: rgba(0, 1, 2, 0.6196078431372549);
+        background-image: none;
+    }
+    .popular_news_text small{
+
+        margin:30px 0;
+    }
+
+</style>
+
+
+<!--// Blog's \\-->
+<div class="sportsmagazine-blog sportsmagazine-blog-grid">
+    <ul class="row">
+        @foreach (var item in Model)
+        {
+            if (item.p_class == 1)
+            {
+                <li class="col-md-4 sportsmagazine-the-league">
+                    <div id="news_all">
+                        <figure class="abgne-frame">
+                            <img src="@Html.DisplayFor(modelItem => item.image)" alt="" width="360" height="225">
+                            <a class="overlay" href="@Url.Action("Details", new { id = item.Id })"></a>
+                            <figcaption>
+                                <span>
+                                    <small>
+
+
+                                        活動
+
+                                    </small>
+                                </span>
+                               
+                            </figcaption>
+                        </figure>
+                        <section>
+                            <h5 style="height:54px"><a href="@Url.Action("Details", new { id = item.Id })">@Html.DisplayFor(modelItem => item.title)</a></h5>
+
+                        </section>
+                        
+                    </div>
+                </li>
+            }
+            else if(item.p_class == 2)
+            {
+                <li class="col-md-4">
+                    <div id="news_all">
+                        <figure class="abgne-frame">
+                            <img src="@Html.DisplayFor(modelItem => item.image)" alt="" width="360" height="225">
+                            <a class="overlay" href="@Url.Action("Details", new { id = item.Id })"></a>
+                            <figcaption>
+                                <span>
+                                    <small>
+
+
+                                        停權
+
+                                    </small>
+                                </span>
+                               
+                            </figcaption>
+                        </figure>
+                        <section>
+                            <h5 style="height:54px"><a  href="@Url.Action("Details", new { id = item.Id })">@Html.DisplayFor(modelItem => item.title)</a></h5>
+
+                        </section>
+                       
+                        </div>
+</li>
+
+
+            }
+			else if(item.p_class == 3)
+            {
+                <li class="col-md-4 sportsmagazine-the-team">
+                    <div id="news_all">
+                        <figure class="abgne-frame">
+                            <img src="@Html.DisplayFor(modelItem => item.image)" alt="" width="360" height="225">
+                            <a class="overlay" href="@Url.Action("Details", new { id = item.Id })"></a>
+                            <figcaption>
+                                <span>
+                                    <small>
+
+
+                                        公告
+
+                                    </small>
+                                </span>
+                               
+                            </figcaption>
+                        </figure>
+                        <section>
+                            <h5 style="height:54px"><a  href="@Url.Action("Details", new { id = item.Id })">@Html.DisplayFor(modelItem => item.title)</a></h5>
+
+                        </section>
+                        
+                        </div>
+</li>
+
+
+            }
+        }
+        <li id="liheight">
+        </li>
+
+    </ul>
+</div>

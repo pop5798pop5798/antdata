@@ -1,0 +1,39 @@
+﻿@model SITW.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0) {
+    }
+    else {
+        
+        <ul class="sportsmagazine-login-social">
+            @foreach (AuthenticationDescription p in loginProviders)
+            {
+                switch (p.AuthenticationType)
+                {
+                    case "Facebook":
+                    <li >
+                        <a href="#" provider="@p.AuthenticationType" class="color-one OAuthLogin"><i class="fa fa-facebook"></i>@p.AuthenticationType</a>
+                    </li>
+                    break;
+                case "Google":
+                    <li>
+                        <a href="#" provider="@p.AuthenticationType" class="color-three OAuthLogin"><i class="fa fa-google"></i>@p.AuthenticationType</a>
+                    </li>
+                    break;
+
+
+                }
+            }
+        </ul>
+        
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { id = "OAuthForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("provider")
+        }
+    }
+}

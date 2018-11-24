@@ -1,0 +1,100 @@
+﻿@model SITW.Models.ViewModel.RankRewardViewModel
+
+@{
+    Layout = null;       
+}
+
+<div class="sportsmagazine-account">
+    <div class="sportsmagazine-wishlist">
+        @if (ViewBag.time == 1)
+        {
+            <br>
+            foreach (var item in Model.RewardTitle)
+            {
+                if (item.title != null)
+                {
+                    <h4 style="text-align:center">@item.title</h4>
+                }
+                if (item.starttime != null)
+                {
+                    <h6>
+                        競猜賽季:
+                        @item.starttime.ToString("yyyy/MM/dd")  - @item.endtime.ToString("yyyy/MM/dd")
+                    </h6>
+                }
+            }
+            if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <a class="ticket-buy-btn-2" href="@Url.Action("Index")">排行獎勵修改</a>
+            }
+            <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                <thead class="cf">
+                    <tr>
+                        <th style="border: 1px solid #2f334c;">排名</th>
+                        <th class="numeric" style="border: 1px solid #2f334c;">排行獎勵</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.RewardData)
+                {
+                    <tbody>
+                        <tr style="color:#e5b22a;" id="placard">
+                            <td style="border: 1px solid #2f334c;" data-title="排名">@item.ranknumber</td>
+                            <td style="border: 1px solid #2f334c;" data-title="排行獎勵"><h1 style="color:#e5b22a;font-size:14px;margin:0;line-height:2;">@item.rankcontent</h1></td>
+                        </tr>
+                    </tbody>
+
+
+                }
+
+            </table>
+        }
+        else
+        {
+            <h1 style="text-align:center;font-size:20px;border-bottom:1px solid #333;padding-bottom:20px;">下注即抽 <span style="color:#e5b22a;">OPPO A73</span> <span style="color:#f22447">( 1名 )</span>、<span style="color:#e5b22a;">700貝殼幣</span> <span style="color:#f22447">( 45名 )</span></h1>
+            <h6>
+                競猜賽季:
+                2018/03/19  - 2018/04/30
+            </h6>
+            <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                <thead class="cf">
+                    <tr>
+                        <th style="border: 1px solid #3b3b3b;">排名</th>
+                        <th class="numeric" style="border: 1px solid #3b3b3b;">排行獎勵</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color:#e5b22a;" id="placard">
+                        <td style="border: 1px solid #3b3b3b;" data-title="排名">1         </td>
+                        <td style="border: 1px solid #3b3b3b;" data-title="排行獎勵"><h1 style="color:#e5b22a;font-size:14px;margin:0;line-height:2;">Apple Watch Series 3</h1></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr style="color:#e5b22a;" id="placard">
+                        <td style="border: 1px solid #3b3b3b;" data-title="排名">2~10      </td>
+                        <td style="border: 1px solid #3b3b3b;" data-title="排行獎勵"><h1 style="color:#e5b22a;font-size:14px;margin:0;line-height:2;">MSI GK-701 RGB GAMING 電競 鍵盤</h1></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr style="color:#e5b22a;" id="placard">
+                        <td style="border: 1px solid #3b3b3b;" data-title="排名">11~15     </td>
+                        <td style="border: 1px solid #3b3b3b;" data-title="排行獎勵"><h1 style="color:#e5b22a;font-size:14px;margin:0;line-height:2;">3500貝殼幣</h1></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr style="color:#e5b22a;" id="placard">
+                        <td style="border: 1px solid #3b3b3b;" data-title="排名">16~20     </td>
+                        <td style="border: 1px solid #3b3b3b;" data-title="排行獎勵"><h1 style="color:#e5b22a;font-size:14px;margin:0;line-height:2;">華碩 ROG Sica 電競滑鼠</h1></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+
+
+        }
+
+
+
+    </div>
+
+</div>

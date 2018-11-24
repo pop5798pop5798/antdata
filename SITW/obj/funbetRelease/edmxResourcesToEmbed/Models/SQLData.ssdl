@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sitwModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Assets">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="unitSn" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="unitSn" Type="int" Nullable="false" />
+    <Property Name="assets" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssetsRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="unitSn" Type="int" Nullable="false" />
+    <Property Name="gameSn" Type="int" />
+    <Property Name="topicSn" Type="int" />
+    <Property Name="choiceSn" Type="int" />
+    <Property Name="assets" Type="float" Nullable="false" />
+    <Property Name="type" Type="int" Nullable="false" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cfgLevelExp">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="levelNum" Type="int" Nullable="false" />
+    <Property Name="expNum" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cfgMissionEnd">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="500" />
+    <Property Name="sqlquery" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="valid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cfgMissionStart">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="500" />
+    <Property Name="sqlquery" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="valid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cfgPlayGame">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cName" Type="nvarchar" MaxLength="50" />
+    <Property Name="eName" Type="varchar" MaxLength="100" />
+    <Property Name="shortName" Type="nvarchar" MaxLength="20" />
+    <Property Name="valid" Type="tinyint" />
+    <Property Name="gamelogo" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="cfgUnit">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="showStr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="tinyint" />
+    <Property Name="valid" Type="int" Nullable="false" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+    <Property Name="iconURL" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="cfgVedio">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="iframehtml" Type="nvarchar" MaxLength="4000" Nullable="false" />
+    <Property Name="valid" Type="tinyint" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+    <Property Name="includeURL" Type="varchar" MaxLength="2000" />
+    <Property Name="RegularStr" Type="varchar" MaxLength="500" />
+    <Property Name="ReplaceStr" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Dota2League">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar(max)" />
+    <Property Name="leagueid" Type="nvarchar(max)" />
+    <Property Name="valid" Type="int" />
+  </EntityType>
+  <EntityType Name="GamePosts">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameSn" Type="int" Nullable="false" />
+    <Property Name="VedioRecordSn" Type="int" />
+    <Property Name="valid" Type="int" Nullable="false" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+    <Property Name="TeamASn" Type="int" />
+    <Property Name="TeamBSn" Type="int" />
+    <Property Name="sdate" Type="datetime" />
+    <Property Name="edate" Type="datetime" />
+    <Property Name="PlayGameSn" Type="int" />
+    <Property Name="Synchronize" Type="int" />
+  </EntityType>
+  <EntityType Name="GlobalSetting">
+    <Key>
+      <PropertyRef Name="settingName" />
+    </Key>
+    <Property Name="settingName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="settingValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="valid" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="GlobalSettingRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="settingName" Type="nvarchar" MaxLength="50" />
+    <Property Name="settingValueO" Type="nvarchar" MaxLength="50" />
+    <Property Name="settingValueN" Type="nvarchar" MaxLength="50" />
+    <Property Name="editTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Leagues">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="shortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="imageURL" Type="nvarchar" MaxLength="500" />
+    <Property Name="playGamesn" Type="int" />
+  </EntityType>
+  <EntityType Name="MissionAssets">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="missionSn" Type="int" Nullable="false" />
+    <Property Name="assets" Type="float" Nullable="false" />
+    <Property Name="unitSn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MissionEnd">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="missionSn" Type="int" Nullable="false" />
+    <Property Name="Compare" Type="int" Nullable="false" />
+    <Property Name="num" Type="int" Nullable="false" />
+    <Property Name="missionEndtSn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Missions">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="sdate" Type="datetime" Nullable="false" />
+    <Property Name="edate" Type="datetime" Nullable="false" />
+    <Property Name="valid" Type="int" Nullable="false" />
+    <Property Name="cycle" Type="int" Nullable="false" />
+    <Property Name="imgURL" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="MissionStart">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="missionSn" Type="int" Nullable="false" />
+    <Property Name="Compare" Type="int" Nullable="false" />
+    <Property Name="num" Type="int" Nullable="false" />
+    <Property Name="missionStartSn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NewsMenu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="placard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="content" Type="ntext" Nullable="false" />
+    <Property Name="real_time" Type="datetime" StoreGeneratedPattern="Computed" />
+    <Property Name="manager" Type="nchar" MaxLength="10" />
+    <Property Name="time" Type="datetime" />
+    <Property Name="endtime" Type="datetime" />
+    <Property Name="image" Type="nvarchar(max)" />
+    <Property Name="p_class" Type="int" />
+    <Property Name="mail_bear" Type="int" />
+  </EntityType>
+  <EntityType Name="Ranking_content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ranknumber" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="rankcontent" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ranking_title">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nchar" MaxLength="10" />
+    <Property Name="endtime" Type="datetime" Nullable="false" />
+    <Property Name="starttime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rewards">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="missionSn" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="num" Type="int" Nullable="false" />
+    <Property Name="unitSn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Seasons">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="sdate" Type="datetime" Nullable="false" />
+    <Property Name="edate" Type="datetime" Nullable="false" />
+    <Property Name="viewSDate" Type="datetime" />
+    <Property Name="viewEDate" Type="datetime" />
+    <Property Name="valid" Type="tinyint" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SMSRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="msg" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="shortName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="imageURL" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="leagueSn" Type="int" Nullable="false" />
+    <Property Name="valid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="UserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserMissions">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="missionSn" Type="int" Nullable="false" />
+    <Property Name="assetsRecordSn" Type="int" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+    <Property Name="valid" Type="int" Nullable="false" />
+    <Property Name="sdate" Type="datetime" Nullable="false" />
+    <Property Name="edate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Hometown" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="RegistrationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VedioRecord">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="vediourl" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="valid" Type="tinyint" />
+    <Property Name="inpdate" Type="datetime" Nullable="false" />
+    <Property Name="cfgVedioSn" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VerifyRecords">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="VerifyType" Type="tinyint" Nullable="false" />
+    <Property Name="VerifyContent" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="VerifyDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_UserClaims_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserClaims" Type="Self.UserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserLogins_dbo_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserLogins" Type="Self.UserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_UserRoles_dbo_Roles_RoleId">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sitwModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssetsRecord" EntityType="Self.AssetsRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cfgLevelExp" EntityType="Self.cfgLevelExp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cfgMissionEnd" EntityType="Self.cfgMissionEnd" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cfgMissionStart" EntityType="Self.cfgMissionStart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cfgPlayGame" EntityType="Self.cfgPlayGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cfgUnit" EntityType="Self.cfgUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cfgVedio" EntityType="Self.cfgVedio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dota2League" EntityType="Self.Dota2League" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GamePosts" EntityType="Self.GamePosts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlobalSetting" EntityType="Self.GlobalSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlobalSettingRecord" EntityType="Self.GlobalSettingRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Leagues" EntityType="Self.Leagues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MissionAssets" EntityType="Self.MissionAssets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MissionEnd" EntityType="Self.MissionEnd" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Missions" EntityType="Self.Missions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MissionStart" EntityType="Self.MissionStart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewsMenu" EntityType="Self.NewsMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="placard" EntityType="Self.placard" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ranking_content" EntityType="Self.Ranking_content" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ranking_title" EntityType="Self.Ranking_title" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rewards" EntityType="Self.Rewards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seasons" EntityType="Self.Seasons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SMSRecord" EntityType="Self.SMSRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserMissions" EntityType="Self.UserMissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VedioRecord" EntityType="Self.VedioRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VerifyRecords" EntityType="Self.VerifyRecords" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_UserClaims_dbo_Users_UserId" Association="Self.FK_dbo_UserClaims_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserClaims" EntitySet="UserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserLogins_dbo_Users_UserId" Association="Self.FK_dbo_UserLogins_dbo_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserLogins" EntitySet="UserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_UserRoles_dbo_Roles_RoleId" Association="Self.FK_dbo_UserRoles_dbo_Roles_RoleId">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

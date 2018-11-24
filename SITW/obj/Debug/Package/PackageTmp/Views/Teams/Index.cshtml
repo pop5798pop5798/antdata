@@ -1,0 +1,102 @@
+﻿@model  IEnumerable<SITW.Models.ViewModel.TeamsViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <h2>隊伍管理</h2>
+
+            <p>
+                @Html.ActionLink("新增隊伍", "Create")
+            </p>
+            <div class="sportsmagazine-wishlist">
+                <table id="example" class="col-md-12 table-bordered table-striped table-condensed cf" cellspacing="0" style="width:100%;">
+                    <thead id="cf" style="border-bottom:1px solid #333">
+                        <tr>
+                            <th style="cursor:pointer">&nbsp; 隊伍名稱 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th style="cursor:pointer">&nbsp; 隊伍簡稱 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th style="cursor:pointer">&nbsp; 隊伍圖片 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th style="cursor:pointer">&nbsp; 聯賽類別 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th style="cursor:pointer">&nbsp; 遊戲類別 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            <th style="cursor:pointer"></th>
+                        </tr>
+                    </thead>
+                    <tbody style="color:#b9b9b9">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@Html.DisplayFor(modelItem => item.teamspost.name) </td>
+                                <td>@Html.DisplayFor(modelItem => item.teamspost.shortName) </td>
+                                <td><img src="@Html.DisplayFor(modelItem => item.teamspost.imageURL)" width="50" height="50" /> </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.leagues.shortName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cfplaygame.cName)
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("編輯", "Edit", new { id = item.teamspost.sn }) |
+                                    @Html.ActionLink("刪除", "Delete", new { id = item.teamspost.sn })
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/Scripts/jquery.dataTables.min.js"></script>
+    <script src="/Scripts/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#example').DataTable({
+                "order": [[1, "desc"]], "ordering": true, "paging": true, "info": true, "searching": true,
+                "language": {
+                    "lengthMenu": "顯示隊伍_MENU_ ",
+                    "info": "目前 _START_ to _END_ 共 _TOTAL_ 隊", "paginate": {
+                        "next": "", "previous": ""
+                    }
+                }, "initComplete": function () {
+                    this.api().columns([3, 4]).every(function () {
+                        var column = this;
+                        var select = $('<select><option value="">全部</option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search(val ? '^' + val + '$' : '', true, false)
+                                    .draw();
+                            });
+
+                        column.data().unique().sort().each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    });
+                }
+            });
+
+
+        });
+    </script>
+}

@@ -1,0 +1,495 @@
+﻿@{ 
+
+    string date = DateTime.Now.ToString("MMddmm");
+}
+
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108232903-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-108232903-1');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1.0; minimum-scale=1.0; user-scalable=0;">
+    <meta name="site_name" content="Funbet ESports Web 熊i猜-掌握電競新樂趣" />
+    <meta name="title" content="@ViewBag.Title| Funbet ESports Web" />
+    <meta name="author" content="Funbet">
+    <meta name="copyright" content="熊i猜競猜遊戲平台由 競猜數位Funbet 提供">
+    <meta property="og:site_name" content="Funbet ESports Web 熊i猜-掌握電競新樂趣" />
+    <meta name="description" content="@ViewBag.Description" />
+    <meta name="keywords" content="熊i猜,雄i猜,競猜數位,Funbet,雄猜,熊猜,League of Legends,esports,esports betting,esports bet,LCK,LPL,LMS,LCS,電競,英雄聯盟,遊戲,CSGO" />
+    <meta property="og:title" content="@ViewBag.Title">
+    <meta name="application-name" content="熊i猜-掌握電競新樂趣">
+    <meta property="og:url" content="@Url.Action("Index", "Home", null, Request.Url.Scheme)">
+    <meta name="google-site-verification" content="d5ds_1YpFVldyL6cM80uqIYkXwsYHZWmQHKGDipbqu4" />
+    <meta name="google" content="nositelinkssearchbox" />
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#2f334c">
+    <title>@ViewBag.Title| Funbet ESports Web</title>
+
+    <link href="/Content/bootstrap.css?@date" rel="stylesheet">
+    <link href="/Content/bootstrap-toggle.min.css?@date" rel="stylesheet">
+    <link href="/Content/bootstrap-datetimepicker.min.css?@date" rel="stylesheet">
+    <link href="/Content/bootstrap-select.min.css?@date" rel="stylesheet">
+    <link rel="stylesheet" href="/Content/css/menustyle.css?@date">
+    <link rel="stylesheet" href="/Content/css/menupushy.css?@date">
+    <link rel="canonical" href="http://funbet.com.tw" />
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="http://funbet.com.tw">
+
+    @Styles.Render("~/Content/css_dark_scheme")
+
+    @RenderSection("css", required: false)
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/themejs")
+    @Scripts.Render("~/bundles/FullWebSite")
+    @RenderSection("scripts", required: false)
+
+
+
+
+    <!-- Css Files -->
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanstc.css" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/cwtexyen.css" />
+
+    <style>
+        .abgne_float_ad {
+            display: none;
+            position: absolute;
+        }
+    </style>
+    @*<!-- iZooto Code -->
+        <script>window._izq = window._izq || []; window._izq.push(["init"]);</script>
+        <script src="https://cdn.izooto.com/scripts/b7a06217ddd971b67153f3922b8be4b4a5f95c81.js"></script>*@
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '175557429659755');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=175557429659755&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- Facebook Pixel Code -->
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '175557429659755');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=175557429659755&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- Facebook Pixel Code -->
+
+    <script type="application/ld+json">
+        "@@context": "http://schema.org",
+        "@@type": "SoftwareApplication",
+        "name": "熊i猜-掌握電競新樂趣 | 遊戲平台",
+        "operatingSystem": "Windows，MAC，IOS，ANDROID",
+        "image": "http://funbet.com.tw/Content/images/logo-1.png",
+        "applicationCategory": "遊戲平台",
+        "author" : {
+        "@@type" : "Person",
+        "name" : "競猜數位Funbet"
+        },
+        "aggregateRating": {
+        "@@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "24"
+        },
+        "offers": {
+        "@@type": "Offer",
+        "price": "0",
+        "priceCurrency": "NTD"
+        }
+
+
+
+    </script>
+
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "WebSite",
+        "url": "http://funbet.com.tw/",
+        "potentialAction": {
+        "@@type": "SearchAction",
+        "target": "http://funbet.com.tw/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+        }
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "Person",
+        "name": "競猜數位Funbet ",
+        "url": "http://funbet.com.tw",
+        "sameAs": [
+        "https://www.facebook.com/funbet.esport"
+        ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "Organization",
+        "url": "http://funbet.com.tw",
+        "logo": "http://funbet.com.tw/Content/images/logo-1.png"
+        }
+    </script>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js?@date" async=""></script>
+    <script>
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: "6447188b-b261-4b0d-9130-4439e8ba90b9",
+                autoRegister: true,
+                notifyButton: {
+                    enable: true,
+                    offset: {
+                        bottom: '110px',
+                        left: '0px', /* Only applied if bottom-left */
+                        right: '10px' /* Only applied if bottom-right */
+                    }, text: {
+                        'tip.state.unsubscribed': '訂閱熊報信',
+                        'tip.state.subscribed': "取消訂閱熊報信",
+                        'dialog.main.title': '熊i猜-熊報信',
+                        'dialog.main.button.unsubscribe': '取消訂閱',
+                        'message.prenotify': '點擊訂閱熊報信',
+                        'message.action.subscribed': "感謝訂閱",
+                        'message.action.resubscribed': "你訂閱了熊報信",
+                        'dialog.main.button.subscribe': '繼續訂閱',
+                        'message.action.unsubscribed': "你取消熊報信"
+                    }, colors: { // Customize the colors of the main button and dialog popup button
+                        'circle.background': 'rgb(28, 45, 125)',
+                        'circle.foreground': 'white',
+                        'badge.background': 'rgb(28, 45, 125)',
+                        'badge.foreground': 'white',
+                        'badge.bordercolor': 'white',
+                        'pulse.color': 'white',
+                        'dialog.button.background.hovering': 'rgb(28, 45, 125)',
+                        'dialog.button.background.active': 'rgb(28, 45, 125)',
+                        'dialog.button.background': 'rgb(28, 45, 125)',
+                        'dialog.button.foreground': 'white'
+                    }
+                }, welcomeNotification: {
+                    "title": "熊i猜-熊報信",
+                    "message": "歡迎訂閱熊報信 ! !",
+                    // "url": "" /* Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
+                },
+                promptOptions: {
+                    siteName: '熊i猜-掌握電競新樂趣',
+                    /* actionMessage limited to 90 characters */
+                    actionMessage: "訂閱熊報信，快速取得最新賽局及活動",
+                    exampleNotificationTitle: '熊i猜-熊報信',
+                    exampleNotificationMessage: '歡迎訂閱熊報信!!',
+                    exampleNotificationCaption: '可以隨時取消訂閱',
+                    /* acceptButtonText limited to 15 characters */
+                    acceptButtonText: "訂閱",
+                    /* cancelButtonText limited to 15 characters */
+                    cancelButtonText: "稍後"
+                }
+            });
+        });
+    </script>
+
+
+
+
+    <style>
+        #onesignal-popover-container #onesignal-popover-dialog {
+            background-image: url(https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/background.png?t=20171205);
+        }
+
+            #onesignal-popover-container #onesignal-popover-dialog .popover-body-message {
+                color: #63b4e5 !important;
+            }
+
+            #onesignal-popover-container #onesignal-popover-dialog .popover-button.primary {
+                background: #63b4e5 !important;
+            }
+
+            #onesignal-popover-container #onesignal-popover-dialog .popover-button.secondary {
+                color: #63b4e5 !important;
+                border: 1px solid #63b4e5;
+            }
+
+        #onesignal-popover-container.slide-down {
+            top: initial;
+            bottom: 0;
+        }
+
+        #onesignal-popover-container {
+            left: initial;
+        }
+    </style>
+
+
+</head>
+<body>
+    <!-- 手機版menu -->
+    <nav class="pushy pushy-left" data-focus="#first-link" style="border:1px solid #333">
+        <div class="pushy-content">
+            @Html.Partial("_LoginPartial_phone")
+        </div>
+    </nav>
+
+
+    <!-- Site Overlay -->
+    <div class="site-overlay"></div>
+    <!--// Main Wrapper \\-->
+    <div class="perspective effect-airbnb">
+        <div class="sportsmagazine-main-wrapper">
+
+            <!--// Header \\-->
+            <header id="sportsmagazine-header" class="sportsmagazine-header-one">
+                <!--// TopStrip \\-->
+                <div class="sportsmagazine-topstrip">
+                    <div class="container">
+                        <div class="row">
+                            <aside class="col-md-4">
+
+                                @Html.Action("_News", "News")
+                            </aside>
+                            <aside class="col-md-8">
+                                <ul class="sportsmagazine-user-section"></ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+                <!--// TopStrip \\-->
+                <!--// MainSection \\-->
+                <div class="sportsmagazine-main-header">
+                    <div class="container">
+                        <div class="row">
+                            <aside class="col-md-2">
+                                <a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)" class="sportsmagazine-logo" id="logoview">
+                                    <img src="/Content/images/logo-1.png" alt="熊i猜-掌握電競新樂趣">
+                                </a>
+                                @* <a href="@Url.Action("Index", "Home")" class="sportsmagazine-logo" id="logoview">
+                                        <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/Merry%20Christmas/Logo20171225.png" alt="">
+                                    </a>*@
+
+                            </aside>
+                            <div class="col-md-10">
+                                <div class="sportsmagazine-left-section">
+                                    <button class="menu-btn">&#9776;</button>
+                                    <nav class="navbar navbar-default">
+
+                                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                            @Html.Partial("_Menu")
+
+                                        </div>
+                                    </nav>
+
+                                    @*<a data-toggle="modal" data-target="#searchModal" href="#" class="sportsmagazine-search-btn sportsmagazine-colorhover"><i class="fa fa-search"></i></a>*@
+                                </div>
+                                <div class="sportsmagazine-right-section">
+
+
+
+                                    @Html.Partial("_LoginPartial")
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--// MainSection \\-->
+
+
+
+            </header>
+            <!--// Header \\-->
+
+            @RenderBody()
+
+            @Html.Partial("_MenuPhone")
+
+
+
+            <!--// Footer \\-->
+            <footer id="sportsmagazine-footer" class="sportsmagazine-footer-one">
+
+                <!--// Footer Widget \\-->
+                <div class="sportsmagazine-footer-widget">
+                    <div class="container">
+                        <div class="row">
+
+                            <aside class="col-md-12 widget widget_contact_info">
+                                <a href="@Url.Action("Index", "Home",null, Request.Url.Scheme)" class="footer-logo"><img src="/Content/images/logo-1.png" alt=""></a>
+                                <ul class="sportsmagazine-social-network">
+                                    <li><a href="@Url.Action("Index","game")">遊戲大廳</a> <i></i></li>
+                                    <li><a href="@Url.Action("About","Home")">遊戲教學</a> <i></i></li>
+                                    <li><a href="@Url.Action("News","Home")"> 排行榜</a> <i></i></li>
+                                    <li><a href="@Url.Action("Index","News")"> 熱門活動</a> <i></i></li>
+                                    <li><a href="@Url.Action("PrivacyPolicy","Home")"> 線上隱私權政策 </a></li>
+                                </ul>
+                                <ul class="sportsmagazine-info-list">
+                                    <li>
+                                        <p>熊i猜競猜遊戲平台由 競猜數位Funbet 提供</p>
+                                    </li>
+                                </ul>
+
+                            </aside>
+                        </div>
+                    </div>
+                    <a href="#" class="sportsmagazine-back-top"><i class="fa fa-angle-up"></i></a>
+                </div>
+                <!--// Footer Widget \\-->
+
+
+            </footer>
+            <!--// Footer \\-->
+            <!--// Main Wrapper \\-->
+
+
+        </div>
+    </div>
+    <div class="abgne_float_ad">
+
+
+        <div id="MyBlog">
+            <a target="_blank" href="https://zh-tw.facebook.com/funbet.esport/"><img src="~/Content/images/rwd/fb-pc-2.png"></a>
+        </div>
+
+    </div>
+    <div id="MyBlog2">
+        <a target="_blank" href="https://zh-tw.facebook.com/funbet.esport/"><img src="~/Content/images/rwd/fb.jpg"></a>
+    </div>
+    <script type="text/javascript" src="~/Scripts/menupushy.js"></script>
+
+
+
+
+    <!-- Google AdWords -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 833451514;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/833451514/?guid=ON&amp;script=0" />
+        </div>
+    </noscript>
+    <!-- Google AdWords -->
+    <!-- Google AdWords -->
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 833451514;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/833451514/?guid=ON&amp;script=0" />
+        </div>
+    </noscript>
+    <!-- Google AdWords -->
+    @*    <!--Tawk.to線上客服系統-->
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+              var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+              Tawk_API.visitor = {
+                  name  : '@User.Identity.Name',
+                  email : ''
+              };
+              (function () {
+                  var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                  s1.async = true;
+                  s1.src = 'https://embed.tawk.to/5a1e73efbb0c3f433d4cbe66/default';
+                  s1.charset = 'UTF-8';
+                  s1.setAttribute('crossorigin', '*');
+                  s0.parentNode.insertBefore(s1, s0);
+              })();
+        </script>
+        <!--End of Tawk.to Script-->
+    *@
+
+    <script>
+        $(window).load(function () {
+            var $win = $(window),
+                $ad = $('.abgne_float_ad').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
+                _width = $ad.width(),
+                _height = $ad.height(),
+                _diffY = 120, _diffX = 20,	// 距離右及下方邊距
+                _moveSpeed = 700;	// 移動的速度
+
+            // 先把 #abgne_float_ad 移動到定點
+            $ad.css({
+                top: $(document).height(),
+                left: $win.width() - _width - _diffX,
+                opacity: 1
+            });
+
+            // 幫網頁加上 scroll 及 resize 事件
+            $win.bind('scroll resize', function () {
+                var $this = $(this);
+
+                // 控制 #abgne_float_ad 的移動
+                $ad.stop().animate({
+                    top: $this.scrollTop() + $this.height() - _height - _diffY,
+                    left: $this.scrollLeft() + $this.width() - _width - _diffX
+                }, _moveSpeed);
+            }).scroll();	// 觸發一次 scroll()
+        });
+
+
+
+
+    </script>
+
+
+</body>
+
+
+</html>

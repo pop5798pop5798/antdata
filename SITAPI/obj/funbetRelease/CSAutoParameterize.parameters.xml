@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="SQLData-Web.config Connection String" description="SQLData 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="data source=111.90.148.51;initial catalog=sitdb;persist security info=True;user id=funbetadmin;Password=TN#83h5*VB;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\username\\source\\repos\\SIT2-3\\SITAPI\\obj\\funbetRelease\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SQLData']/@connectionString" />
+  </parameter>
+  <parameter name="sitdbEntities-Web.config Connection String" description="sitdbEntities 應用程式在 web.config 中用來存取資料庫的連接字串。" defaultValue="metadata=res://*/Models.SQLData.csdl|res://*/Models.SQLData.ssdl|res://*/Models.SQLData.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=111.90.148.51;initial catalog=sitdb;persist security info=True;user id=funbetadmin;password=TN#83h5*VB;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\username\\source\\repos\\SIT2-3\\SITAPI\\obj\\funbetRelease\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='sitdbEntities']/@connectionString" />
+  </parameter>
+</parameters>

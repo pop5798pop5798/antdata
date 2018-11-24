@@ -1,0 +1,12 @@
+﻿@media (max-width: 767px) {
+    .sportsmagazine-topstrip {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        margin: 100px 0px 0px 0px;
+    }
+    
+    .sportsmagazine-cart-box2 {
+        margin:-550px 0 0 0;
+    }
+}

@@ -1,0 +1,188 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.GamePostViewModel>
+@{
+    Layout = null;
+}
+<style>
+    .main-content {
+        height: 210px;
+        background: #1b1b1b;
+    }
+
+    .noise {
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: .1;
+    }
+
+  
+
+    .pc_view_red {
+        color: red;
+    }
+     .pc_view:hover, .pc_view_red:hover {
+            color: #fff;
+     }
+
+
+</style>
+
+
+<input type="hidden" id="pgamesn" name="pgamesn" value="@ViewBag.pgamesn" />
+<div class="sportsmagazine-fancy-title2">
+    <h2>@ViewBag.pgame
+        <div class="search-form" style="float:right">
+            <input id="search-input" style="border:1px solid #e5b22a;background-color:rgba(255, 255, 255, 0.00);vertical-align:top;" type="text" placeholder="搜尋隊伍或聯賽" /><button style="border:1px solid #e4b12a;background-color:#000;margin:0px 10px 0px 10px;vertical-align:top;"><i style="padding:3px 5px 3px 5px" class="fa fa-search" aria-hidden="true"></i></button>
+            <style id="m-search"></style>
+        </div>
+    
+    </h2>
+</div>
+<div class="sportsmagazine-wishlist" style="float:left;box-shadow:2px 2px 2px rgba(0, 0, 0, 0.6), 4px 4px 6px rgba(0, 0, 0, 0.4), 6px 6px 12px rgba(0, 0, 0, 0.4)">
+
+    <div class="sportsmagazine-wishlist-graph" style="height:79vh;border:1px solid #2f334c">
+        @foreach (var item in Model)
+        {
+            <input type="hidden" id="tableview" name="tableview" value="@item.TeamA.imageURL" />
+
+                            <div class="gamebody" data-index="@item.gamesearch">
+                                @if (item.endguess == 0)
+                                {
+                                    <div style="position:absolute;z-index:500;transform:rotate(-20deg);"><img src="https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/guess_stop.png" /></div>
+                                }
+                                else if(item.endguess == 2)
+                                {
+                                    <div style="position:absolute;z-index:500;transform:rotate(-20deg);"><img src="https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/game_Soon.png" /></div>
+                                }
+
+                                <table class="tablegame">
+
+
+                                    <thead>
+                                        <tr>
+                                            <th colspan="6">
+                                                <div style="float:left;width:100%;">
+                                                    <img src="@item.PlayGame.gamelogo">@ViewBag.PlayGame @Html.DisplayFor(modelItem => item.game.title)
+
+                                                    @if (item.vedio_url == "")
+                                                    {
+                                                        <span class="pc_view" style="float:right;margin:0 10px 0 10px"><i class="fa fa-television" aria-hidden="true"></i></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="pc_view_red" style="float:right;margin:0 10px 0 10px"><i class="fa fa-television" aria-hidden="true"></i></span>
+                                                    }
+                                                    <div id="movie_iframe">
+
+                                                        @if (item.vedio_url == "")
+                                                        {
+                                                            <div class="sportsmagazine-featured-slider">
+                                                                <div class="sportsmagazine-featured-slider-layer">
+                                                                    <div class="main-content">
+                                                                        @if (item.TeamA != null || item.TeamB != null)
+                                                                        {
+                                                                            <h1 style="text-align:center;font-size:18px;line-height:70px">暫無比賽直播</h1>
+                                                                        }
+                                                                        <h2 style="color:#e5b22a;text-align:center;line-height:100px;text-shadow:0 0 0.2em #333">VS</h2>
+                                                                        @if (item.TeamA != null)
+                                                                        {
+                                                                            <img src="@item.TeamA.imageURL" style="max-width:60px;position:absolute;top:30%;left:15%" alt="">
+                                                                        }
+
+                                                                        @if (item.TeamB != null)
+                                                                        {
+                                                                            <img src="@item.TeamB.imageURL" style="max-width:60px;position:absolute;right:15%;top:30%;" alt="">
+                                                                        }
+                                                                        <canvas id="noise-@item.game.sn" class="noise"></canvas>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="hidden" id="vedioval" value="@item.vedio_url" />
+                                                            <iframe width="560" height="315" allowfullscreen="1" src="" frameborder="0"></iframe>
+                                                        }
+
+                                                    </div>
+                                                </div>
+</th>
+
+                                        </tr>
+                                        <tr>
+                                            <th colspan="3">
+                                                @Html.Hidden("gametime", (item.game.gamedate.HasValue ? item.game.gamedate.Value.ToString("yyyy-MM-dd HH:mm") : ""))
+                                                <div name="sportsmagazine-countdown"> </div>
+                                            </th>
+                                            <th colspan="3"><span><a id="morespan" href="@Url.Action("Details","game", new { id = item.gamepost.sn })">即刻競猜</a></span></th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td id="gametd1">
+                                                <figure id="figureid">
+                                                    @if (item.TeamA != null)
+                                                    {
+                                                        <img src="@item.TeamA.imageURL" alt="">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/Content/extra-images/upload-photo.png?id=20171208" alt="">
+                                                    }
+                                                </figure>
+                                            </td>
+                                            <td><h6>@item.TeamA.shortName</h6></td>
+                                            <td id="gametd2" rowspan="2">@item.game.comment</td>
+                                            <td rowspan="2">@Html.DisplayFor(modelItem => item.game.betModelString) </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <figure id="figureid">
+                                                    @if (item.TeamB != null)
+                                                    {
+                                                        <img src="@item.TeamB.imageURL" alt="">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="/Content/extra-images/upload-photo.png?id=20171208" alt="">
+                                                    }
+                                                </figure>
+                                            </td>
+                                            <td><h6>@item.TeamB.shortName</h6></td>
+
+
+                                        </tr>
+                                    </tbody>
+
+
+                                </table>
+
+
+
+                            </div>
+        }
+        <div id="tablegamenull">
+            <table style="height:79vh;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/gamenull.png" />暫無賽事
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

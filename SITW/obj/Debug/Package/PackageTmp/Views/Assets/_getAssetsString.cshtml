@@ -1,0 +1,42 @@
+﻿@model List<SITW.Models.ViewModel.AssetsViewModel>
+@{
+    Layout = null;
+}
+
+<style>
+    span a{
+        float:right;
+        border:1px solid #000;
+        background-color:#ff0000;
+        color:#fff;
+        padding:0px 5px 0px 5px;
+        margin:0px 10px 0px 0px; 
+
+
+    }
+
+        span a:hover {
+
+            border:1px solid #fff;
+        }
+
+
+</style>
+
+
+@foreach (var avm in Model)
+{
+    if(avm.unitSn == 2)
+    {
+        <h5>@avm.unitName ： @avm.Asset <img style="width:22px;margin-top:-1px;" title="@avm.unitName" src="~/Content/@avm.iconURL" /> <span><a href="@Url.Action("DepositPage","Home")"> 儲值 </a></span></h5>
+    }
+    else
+    {
+        <h5>
+            @avm.unitName ： @avm.Asset <img style="width:22px;margin-top:-1px;" title="@avm.unitName" src="~/Content/@avm.iconURL" />
+        </h5>
+
+    }
+
+}
+

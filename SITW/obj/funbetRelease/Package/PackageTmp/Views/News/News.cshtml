@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SITW.Models.placard>
+
+@{
+    ViewBag.Title = "_News";
+}
+@{
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+
+}
+
+<section id="main-content">
+    <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i> 公告管理</h3>
+
+        <!-- COMPLEX TO DO LIST -->
+        <div class="row mt">
+            <div class="col-md-8">
+                <section class="task-panel tasks-widget">
+                    <div class="panel-heading">
+                        <div class="pull-left"><h5><i class="fa fa-tasks"></i> 全部公告</h5></div>
+                        <br>
+                    </div>
+                    <div class="panel-body">
+                        <div class="task-content">
+
+                            <ul id="sortable" class="task-list">
+                                @foreach (var item in Model)
+                                {
+                                    <li>                                      
+                                        <div class="task-checkbox">
+                                            <span class="task-title-sp">@Html.DisplayFor(modelItem => item.title)</span>
+                                        </div>
+                                        <div class="task-title">
+                                            <span class="task-title-sp" style="font-size:12px;font-weight:300">@Html.DisplayFor(modelItem => item.real_time)</span>
+                                           
+                                            <div class="pull-right hidden-phone">
+                                                <button class="btn btn-success btn-xs fa fa-eye" onclick="location.href='@Url.Action("Details",new { id = item.Id })'" ></button>
+                                                <button class="btn btn-primary btn-xs fa fa-pencil"  onclick="location.href='@Url.Action("Edit",new { id = item.Id })'"></button>
+                                                <button class="btn btn-danger btn-xs fa fa-trash-o"  onclick="location.href='@Url.Action("Delete",new { id = item.Id })'"></button>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div class=" add-task-row">
+                            <a class="btn btn-success btn-sm pull-left" href="@Url.Action("Create")">新增公告</a>    
+                            <a class="btn btn-success btn-sm pull-right" href="@Url.Action("Index")">查看首頁公告</a> 
+                        </div>
+                    </div>
+                </section>
+            </div><!-- /col-md-12-->
+        </div><!-- /row -->
+    </section>
+</section>

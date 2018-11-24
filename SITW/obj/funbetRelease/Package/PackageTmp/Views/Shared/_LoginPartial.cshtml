@@ -1,0 +1,155 @@
+﻿@using Microsoft.AspNet.Identity
+
+<style>
+    .banner-btn i{
+        display:inline-block;
+        position:relative;
+        margin:0 5px;
+        height:17px;
+        width:5px;
+
+    }
+
+
+</style>
+
+@if (Request.IsAuthenticated)
+{
+    List<SITW.Models.ViewModel.MissionNoteModel> mnmList = new List<SITW.Models.ViewModel.MissionNoteModel>();
+    if (Session["MissionCode"] != null)
+    {
+        mnmList = (List<SITW.Models.ViewModel.MissionNoteModel>)Session["MissionCode"];
+    }
+        <div class="ManagaMenua" id="ManagaMenu"><div class="managelogo" ></div>
+        <div id="ManagaMenu" class="sportsmagazine-cart-box" style="background:rgba(28, 35, 49, 0.89);border:2px solid rgb(228, 177, 42);">          
+                            <div class="box-border"></div>
+                    
+                            <h5>會員帳號 ：<span id="username_menu"> @User.Identity.GetUserName() </span></h5>
+                            @*Html.Action("_getAssetsString", "Assets")*@
+                            <div id="getAssets"></div>
+                        
+                            @Html.Action("_PartialRank","Ranking", new { cycle = 10, num = 100, pclass = 1, unitSn = 1 })
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()"><h5><span style="line-height:0px" class="sportsmagazine-color">登出</span></h5></a>
+                            }
+                                
+            </div>
+    
+    
+    
+    </div>
+        <h5 class="menutitle">
+            <a href="#" class="sportsmagazine-open-cart">@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = @User.Identity.GetUserName(), id = "username"})  </a> 
+        </h5>
+        
+
+
+        <h5 class="menumission" >
+            <a href="#" style="color:#fff;letter-spacing:1px" class="sportsmagazine-open-cart">
+                任務日誌
+            </a>
+        </h5>
+        <div class="sportsmagazine-cart-box2">
+            <button type="button" class="close" id="buttonclose" style="color:#ffffff;">x</button>
+            <h2>任務</h2>
+            @Html.Action("MissionNote", "Mission")
+
+
+        </div>
+        <h5 class="menumannal" ><a href="@Url.Action("BetsByUserID", "bet")"><span style="line-height:0px" class="sportsmagazine-color">投注記錄</span></a>  </h5>
+
+
+
+
+
+      
+
+
+}
+else
+{
+     
+       
+
+        <ul class="nav navbar-nav">
+            <li style="padding:20px 32px 18px 32px">
+                <a class="sportsmagazine-menu-btn"><div class="banner-btn">登入<i></i>註冊</div></a>
+
+            </li>
+        </ul>
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var content = $("#username").text();
+
+        if (content.length > 7)
+        {
+            content = content.substr(0, 7)
+            $("#username").html(content + '***');
+        }
+
+        var menucontent = $('#username_menu').text();
+        menucontent = menucontent.replace(/gmail.com/, '');
+        menucontent = menucontent.replace(/yahoo.com.tw/, '');
+        menucontent = menucontent.replace(/@@/, '');
+        $('#username_menu').html(menucontent);
+         $.get("@Url.Action("_getAssetsString", "Assets")", function (data) {
+                    var message = $("#getAssets");
+                    message.html(data);
+                });
+ 
+         $('#ManagaMenu').on("mouseover", function () {
+            jQuery('.sportsmagazine-cart-box').show(300);
+               $.get("@Url.Action("_getAssetsString", "Assets")", function (data) {
+                var message = $("#getAssets");
+                message.html(data);
+            });
+            return false;
+         });
+         var boxlist;
+         jQuery(".sportsmagazine-cart-box").on("mouseover", function () {
+             boxlist = 0;
+         });
+
+         jQuery(".sportsmagazine-cart-box").on("mouseleave", function () {
+             boxlist = 1;
+         });
+
+         jQuery('html').on("mouseover", function () {
+             if (boxlist !== 0) {
+                 jQuery(".sportsmagazine-cart-box").fadeOut();
+
+             }
+
+
+         });
+
+                $(document).ready(function () {
+                    $(".sportsmagazine-menu-btn").attr("href", "@Url.Action("Login", "Account")");
+
+
+                  });          
+
+
+
+    });
+
+
+</script>
+
+
+
+<style>
+
+    .viewgo #imgview:hover {
+        opacity: 0.8;
+    }
+   
+
+</style>

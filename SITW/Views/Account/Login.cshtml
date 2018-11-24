@@ -1,0 +1,149 @@
+﻿@using SITW.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "登入| 熊i猜";
+    ViewBag.Description = "登入-熊i猜 - 電競免費競猜平台 !歡迎來到熊i猜，立即註冊開啟競猜之旅 現在註冊送2000魚骨幣試玩";
+}
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "item": {
+    "@@id": "http://funbet.com.tw/",
+    "name": "首頁",
+    "image": "http://funbet.com.tw/Content/images/logo-1.png"
+    }
+    },{
+    "@@type": "ListItem",
+    "position": 2,
+    "item": {
+    "@@id": "http://funbet.com.tw/Account/Login",
+    "name": "登入"
+    }
+    }]
+    }
+</script>
+
+
+@if (ViewData["Message"] != null)
+{
+    <script type="text/javascript">
+        alert("@ViewData["Message"]");
+    </script>
+}
+
+<!-- Page Title-->
+<div class="page-title">
+    <div class="container">
+        <div class="column">
+            <h1>Login / Register Account</h1>
+        </div>
+        <div class="column">
+            <ul class="breadcrumbs">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="separator">&nbsp;</li>
+                <li>
+                    <a href="account-orders.html">Account</a>
+                </li>
+                <li class="separator">&nbsp;</li>
+                <li>Login / Register</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Page Content-->
+<div class="container padding-bottom-3x mb-2">
+    <div class="row">
+        <div class="col-md-6">
+            
+               
+            <div class="card-body">
+
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4 class="margin-bottom-1x">Or using form below</h4>
+                    <div class="form-group input-group">
+
+
+                        <input class="form-control" id="Name" name="Name" type="text" placeholder="用戶名" required><span class="input-group-addon"><i class="icon-user"></i></span>
+                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group input-group">
+                        <input class="form-control" id="Password" name="Password" type="password" placeholder="密碼" required><span class="input-group-addon"><i class="icon-lock"></i></span>
+                    </div>
+                    <div class="d-flex flex-wrap justify-content-between padding-bottom-1x">
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="remember_me" checked>
+                            <label class="custom-control-label" for="remember_me">Remember me</label>
+                        </div><a class="navi-link" href="account-password-recovery.html">Forgot password?</a>
+                    </div>
+                    <div class="text-center text-sm-right">
+                        <button class="btn btn-primary margin-bottom-none" type="submit">登入</button>
+                    </div>
+                }
+            </div>
+                
+                
+        </div>
+        <div class="col-md-6">
+            <div class="padding-top-3x hidden-md-up"></div>
+            <h3 class="margin-bottom-1x">No Account? Register</h3>
+            <p>Registration takes less than a minute but gives you full control over your orders.</p>
+            @Html.Action("Register")
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @*<script src='https://www.google.com/recaptcha/api.js?hl=zh-TW'></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".OAuthLogin").click(function () {
+            $("#OAuthForm").find("input[name=provider]").val($(this).attr("provider"));
+            $("#OAuthForm").submit();
+            $("#loginpage").css("color", "#e4b12a");
+            $("#missionpage").click(function () {
+                $("#missionpage").css("color", "#e4b12a");
+                $("#loginpage").css("color", "#ebdec2");
+                $("#betpage").css("color", "#ebdec2");
+            });
+
+            $("#betpage").click(function () {
+                $("#missionpage").css("color", "#ebdec2");
+                $("#loginpage").css("color", "#ebdec2");
+                $("#betpage").css("color", "#e4b12a");
+
+            });
+        });
+    });
+
+</script>
+<script>
+    jQuery(document).ready(function () {
+        $('.rc-anchor-light.rc-anchor-normal').css('border', '1px solid #5d5741');
+        $('.rc-anchor-light').css('background-color', 'rgba(0, 0, 0, 0.23921568627450981)', 'color', '#ebdec2');
+    });
+</script>
+
+}
+

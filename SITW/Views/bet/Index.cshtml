@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SITDto.betDto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comSn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userSn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.topicSn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.choiceSn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.money)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unitSn)
+        </th>
+        <th></th>
+    </tr>
+@if(Model!=null)
+{ 
+    foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comSn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userSn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.topicSn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.choiceSn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.money)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unitSn)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { id= item.sn }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+}
+</table>

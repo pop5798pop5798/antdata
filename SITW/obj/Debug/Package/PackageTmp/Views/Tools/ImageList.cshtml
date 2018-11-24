@@ -1,0 +1,17 @@
+﻿@model SITW.Models.ViewModel.ImageListViewModel
+@{
+    Layout = null;
+}
+<div name="imageList" class="sportsmagazine-gallery sportsmagazine-fixture-gallery imageList">
+    <ul>
+        @foreach (var img in Model.ImageList)
+        {
+        <li>
+            <div>
+                <img src="@img.MediaLink" alt="">
+                <i class="fa fa-check-circle-o"></i>
+            </div>
+        </li>
+        }
+    </ul>
+</div>

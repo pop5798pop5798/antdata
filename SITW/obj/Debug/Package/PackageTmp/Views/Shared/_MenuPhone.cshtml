@@ -1,0 +1,173 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "_MenuPhone";
+
+
+}
+<style>
+
+    .sportsmagazine-cart-boxphone {
+        float: left;
+        background-color: rgba(28, 35, 49, 0.89);
+        padding: 15px 38px;
+        width: 100%;
+        border: 2px #2f334c solid;
+    }
+
+        .sportsmagazine-cart-boxphone ul li figure {
+            float: left;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 0px;
+            z-index: 1;
+            overflow: hidden
+        }
+
+        .sportsmagazine-cart-boxphone h5 {
+            padding-bottom: 13px;
+            margin-bottom: 29px;
+            font-size: 15px;
+            float: left;
+            border-bottom: 1px #2f334c solid;
+            width: 280px;
+            color: #e5b22a;
+        }
+
+        .sportsmagazine-cart-boxphone ul li figure ~ .sportsmagazine-cartbox-text {
+            padding-left: 110px;
+        }
+    .menubuttom i {
+        color: #1a212f;
+        text-shadow: 1px 1px 0 #e34d39, -1px -1px 0 #e34d39, 1px -1px 0 #e34d39, -1px 1px 0 #e34d39, 1px 1px 0 #e34d39;
+        font-size: 30px;
+    }
+
+</style>
+
+
+
+@if (Request.IsAuthenticated)
+{
+
+    <!--// Main Content \\-->
+    <div class="menubuttom">
+        <a href="@Url.Action("Index","game")" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <img style="width:30px;" src="https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/game_img.png" />
+
+            </div>
+            <span id="gamepage" style="color:#ebdec2;margin-left:20%">競猜</span>
+        </a>
+        <a href="@Url.Action("News","Home")" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-trophy" aria-hidden="true"></i>
+            </div>
+            <span id="rankpage" style="color:#ebdec2;margin-left:20%;">排行</span>
+        </a>
+        <a href="@Url.Action("Index","News")" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+
+            </div>
+            <span id="newspage" style="color:#ebdec2;margin-left:22%">公告</span>
+        </a>
+        <a href="#" data-toggle="modal" data-target="#missionsModal" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-book" aria-hidden="true"></i>
+            </div>
+            <span id="missionpage" style="color:#ebdec2;margin-left:18%">任務</span>
+        </a>
+        <a href="" data-toggle="modal" data-target="#notesModal" style="padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-gamepad" aria-hidden="true"></i>
+            </div>
+            <span id="betpage" style="color:#ebdec2;"> 競猜歷史 </span>
+        </a>
+    </div>
+    <!-- missionsModal -->
+    <div class="loginmodal modal fade" id="missionsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="sportsmagazine-login-box">
+                <div class="sportsmagazine-cart-boxphone">             
+                    <h5>任務</h5>
+
+                    @Html.Action("MissionNote", "Mission")
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- missionsModal -->
+    <div class="loginmodal modal fade" id="notesModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="sportsmagazine-login-box">            
+
+                @*@Html.Action("_BetsByUserIDPhone", "bet");*@
+                <div id="menuphonelayout" style="height:80vh;overflow-y:auto;"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function () {
+        $.get("@Url.Action("_BetsByUserIDPhone", "bet")", function (data) {
+
+            $("#menuphonelayout").html(data);
+        })
+
+    });
+
+
+
+    </script>
+
+}
+else
+{
+
+    <!--// Main Content \\-->
+    <div class="menubuttom">
+        <a href="@Url.Action("Index","game")" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <img style="width:30px;" src="https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/game_img.png" />
+
+            </div>
+            <span id="gamepage" style="color:#ebdec2;margin-left:20%">競猜</span>
+        </a>
+        <a href="@Url.Action("News","Home")" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-trophy" aria-hidden="true"></i>
+            </div>
+            <span id="rankpage" style="color:#ebdec2;margin-left:20%;">排行</span>
+        </a>
+        <a href="@Url.Action("Index","News")" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+
+            </div>
+            <span id="newspage" style="color:#ebdec2;margin-left:22%">公告</span>
+        </a>
+        <a href="@Url.Action("About","Home")" style="width:19%;padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-book" aria-hidden="true"></i>
+            </div>
+            <span id="teachingpage" style="color:#ebdec2;margin-left:18%">教學</span>
+        </a>
+        <a href="@Url.Action("Login","Account")" style="padding:5px 3% 10px 3%;/*background:#1d2d7c;*/float:left;cursor:pointer">
+            <div style="margin-left:20%;">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            </div>
+            <span id="loginpage" style="color:#ebdec2;"> 登入註冊 </span>
+        </a>
+    </div>
+
+
+}
+
+
+
+

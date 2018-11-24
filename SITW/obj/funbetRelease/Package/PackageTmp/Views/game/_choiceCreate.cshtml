@@ -1,0 +1,59 @@
+﻿@model SITW.Models.ViewModel.GamePostViewModel
+@{
+    Layout = null;
+    int i = ViewBag.index ?? 0;
+    int ti = ViewBag.topicIndex ?? 0;
+    int tci = ViewBag.allindex ?? 0;
+}
+
+
+
+
+@for (var counti = 0;counti < tci; counti++)
+{
+<div name="choiceDiv" class="form-horizontal">
+
+    @Html.HiddenFor(model => model.game.topicList[ti].choiceList[i + counti].hashSn)
+    @Html.HiddenFor(model => model.game.topicList[ti].choiceList[i + counti].valid)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <h4>請新增選項 @(i + counti + 1)</h4>
+    <hr />
+    @if (Model.game.topicList[ti].choiceList[i + counti].sn == 0)
+    {
+        <div class="form-group">
+            <div class="control-label col-md-2">
+            </div>
+            <div class="col-md-10">
+                <span style="top:-70px" class="btn btn-danger btn-block" data-ajax="true" name="delChoice">刪除選項</span>
+            </div>
+        </div>
+    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.game.topicList[ti].choiceList[i + counti].choiceStr, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.game.topicList[ti].choiceList[i + counti].choiceStr, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.game.topicList[ti].choiceList[i + counti].choiceStr, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @* 選項備註<div class="form-group">
+            @Html.LabelFor(model => model.game.topicList[ti].choiceList[i + counti].comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.game.topicList[ti].choiceList[i + counti].comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.game.topicList[ti].choiceList[i + counti].comment, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+    @Html.HiddenFor(model => model.game.topicList[ti].choiceList[i + counti].bearSn)
+    @Html.ValidationMessageFor(model => model.game.topicList[ti].choiceList[i + counti].bearSn, "", new { @class = "text-danger" })
+
+
+    <div class="form-group" name="Oddsgroup">
+        @Html.LabelFor(model => model.game.topicList[ti].choiceList[i + counti].Odds, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.game.topicList[ti].choiceList[i + counti].Odds, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.game.topicList[ti].choiceList[i + counti].Odds, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>
+}

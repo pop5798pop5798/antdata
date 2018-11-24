@@ -1,0 +1,84 @@
+﻿@model SITW.Models.ViewModel.BetsByUserID
+@{ 
+    Layout = null;
+    ViewBag.Title = "下注紀錄";
+}
+<style>
+    .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        border-bottom: 1px solid #2f334c;
+    }
+    table > thead > tr > th, table > tbody > tr > th, table > tfoot > tr > th, table > thead > tr > td, table > tbody > tr > td, table > tfoot > tr > td {
+        border: 0px;
+    }
+
+
+</style>
+
+
+
+            <div class="sportsmagazine-wishlist" id="newsmargin">
+                <h4>競猜歷史</h4>
+                <div class="sportsmagazine-wishlist-graph">
+                    <div id="no-more-tables">
+                        <table class="col-md-13 table-bordered table-striped table-condensed cf">
+                                @if (Model.BetList != null && Model.BetList.Count > 0)
+                                {
+                                    <thead class="cf" style="border-bottom:1px solid #2f334c">
+                                        <tr>
+                                        <th>主題</th>
+                                        <th>題目</th>
+                                        <th class="numeric">競猜項目</th>
+                                        <th class="numeric">幣別</th>
+                                        <th class="numeric">賠率</th>
+                                        <th class="numeric">金額</th>
+                                        <th class="numeric">結果</th>
+                                        <th class="numeric">時間</th>
+                                        </tr>
+                                </thead>
+                                    foreach (var item in Model.BetList)
+                                    {
+                                    <tbody style="color:#e5b22a;font-weight:100">
+                                        <tr>
+                                            <td data-title="主題">@Html.DisplayFor(modelItem => item.game)</td>
+                                            <td data-title="題目">@Html.DisplayFor(modelItem => item.topic)</td>
+                                            <td data-title="競猜項目" class="numeric">@Html.DisplayFor(modelItem => item.choice)</td>
+                                            <td data-title="幣別" class="numeric">@Html.DisplayFor(modelItem => item.unit)</td>
+                                            <td data-title="賠率" class="numeric">@item.Odds</td>                                
+                                            <td data-title="金額" class="numeric">@Html.DisplayFor(modelItem => item.money)</td>
+                                            <td data-title="結果" class="numeric">
+                                                @if (new string[] { "unknow", "invalid" }.Contains(item.isTrueValue))
+                                                {
+                                                    if (item.gameStatus == 5)
+                                                    {
+                                                        <span style="color:#63b4e5"> 無效並返還 </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.DisplayFor(modelItem => item.isTrue)
+                                                    }
+
+                                                }
+
+                                                else
+                                                {
+                                                    if (item.realmoney < 0)
+                                                    {
+                                                        @Html.Label("realMoney", item.realmoney.ToString(), new { title = item.showTitle, @class = "betResult", @style = "color:#f92552" })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Label("realMoney", item.realmoney.ToString(), new { title = item.showTitle, @class = "betResult" })
+                                                    }
+
+                                                }
+
+                                            </td>
+                                            <td data-title="時間" class="numeric">@Html.DisplayFor(modelItem => item.betDatetime)</td>
+                                        </tr>                                   
+                                        </tbody>
+                                    }
+                                }                                                                                                    
+                        </table>
+                    </div>
+                </div>
+            </div>

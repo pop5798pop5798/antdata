@@ -1,0 +1,226 @@
+﻿@model SITW.Models.ViewModel.GamePostViewModel
+
+@{
+    ViewBag.Title = "Create";
+    int index = Model.game.topicList.Count;
+
+}
+
+@using SITW.Helper
+<style>
+    .btn-block {
+        position: absolute;
+        height: 35px;
+        right: 15px;
+        width: 30%;
+        top: -30px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+
+        <h2>新增</h2>
+
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "gameForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <h4>賽局</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.gamepost.PlayGameSn, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.PlayGameSelect("gamepost.PlayGameSn", Model.gamepost.PlayGameSn)
+                        @Html.ValidationMessageFor(model => model.gamepost.PlayGameSn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div id="pugame"></div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.game.sdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.game.sdate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                        @Html.ValidationMessageFor(model => model.game.sdate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.game.edate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.game.edate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                        @Html.ValidationMessageFor(model => model.game.edate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.game.title, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.game.title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.game.title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.game.comment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.game.comment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.game.comment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.game.gamedate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.game.gamedate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                        @Html.ValidationMessageFor(model => model.game.gamedate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @* 遊戲地點 <div class="form-group">
+                        @Html.LabelFor(model => model.game.gameplace, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.game.gameplace, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.game.gameplace, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.game.betModel, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        <div id="betModels" class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary" for="betModel1">
+                                <input type="radio" name="game.betModel" id="betModel1" value="1" autocomplete="off"> 賠率模式
+                            </label>
+                            <label class="btn btn-primary" for="betModel2">
+                                <input type="radio" name="game.betModel" id="betModel2" value="2" autocomplete="off"> 總彩池模式
+                            </label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.game.betModel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group" id="rakegroup">
+                    @Html.LabelFor(model => model.game.rake, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.game.rake, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.game.rake, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="control-label col-md-2">
+                        題目
+                    </div>
+                    <div class="col-md-5">
+                        <!-- topics! -->
+                        <div id="topic-group">
+
+                        </div>
+                        @Ajax.ActionLink(linkText: "增加題目", actionName: "_topicCreate", controllerName: "game", routeValues: new { index = index }, ajaxOptions: new AjaxOptions
+                       {
+                           InsertionMode = InsertionMode.InsertAfter,
+                           UpdateTargetId = "topic-group",
+                           OnSuccess = "indexIterate"
+                       },
+                            htmlAttributes: new { id = "addTopic", @class = "btn btn-default" })
+                        @Html.ValidationMessageFor(model => model.game.topicList, "", new { @class = "text-danger" })
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="form-group" id="rakegroup">
+                    <label class="control-label col-md-2" for="vedio_vediourl">直播網址連結</label>
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.vedio.vediourl, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.vedio.vediourl, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a href="https://www.twitch.tv/" target="_blank" style="position:relative;left:25%">twitch連結</a>
+                    <a href="https://www.youtube.com/" target="_blank" style="position:relative;left:30%">youtube連結</a>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        <div id="dota2dialog" title="DOTA2資料" style="display:none">
+            讀取中.....
+        </div>
+        <div id="loldialog" title="LOL資料" style="display:none">
+            讀取中.....
+        </div>
+
+        <div>
+            @Html.ActionLink("返回", "Index")
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="~/Scripts/GameCreaet.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.get("@Url.Action("gameSelect", "game")", { playgame: 0 }, function (data) {
+        var message = $("#pugame");
+        message.html(data);
+        $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () {
+
+            syncTeamTopic()
+        });
+    });
+
+
+
+    $("#gamepost_PlayGameSn").change(function () {
+        var s = $("#gamepost_PlayGameSn").val();
+        if ($("#gamepost_PlayGameSn").val() != 0) {
+            $.get("@Url.Action("gameSelect", "game")", { playgame: s }, function (data) {
+                var message = $("#pugame");
+                message.html(data);
+                $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () { syncTeamChoice() });
+
+                $("#gamepost_TeamASn,#gamepost_TeamBSn").change(function () {
+
+                    syncTeamTopic()
+                });
+            });
+
+
+
+
+        }
+
+
+            });
+            $.get("@Url.Action("Dota2Upcoming", "GameAPI")", function (data) {
+                $("#dota2dialog").html(data);
+            });
+
+            $.get("@Url.Action("LOLUpcoming", "GameAPI")", function (data) {
+                $("#loldialog").html(data);
+            });
+
+
+        });
+
+
+
+
+    </script>
+}

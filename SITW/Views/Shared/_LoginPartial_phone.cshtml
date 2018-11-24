@@ -1,0 +1,200 @@
+﻿@using Microsoft.AspNet.Identity
+
+<style>
+    #phone-menu-btn{
+        display:inline-block;
+        color:#ffc835;
+        border:1px solid #505050;
+        line-height:1;
+        font-size:19px;
+        border-radius:5px;
+        padding:0;
+        margin-left:28px;
+
+    }
+    span a {
+        float: right;
+        border: 1px solid #000;
+        background-color: #ff0000;
+        color: #fff;
+        padding: 0px 5px 0px 5px;
+        margin: 0px 10px 0px 0px;
+    }
+
+        span a:hover {
+            border: 1px solid #fff;
+        }
+    #pushy-fish {
+        padding: 4px 10px;
+        list-style-type: none;
+        color: #fff;
+        
+    }
+        #pushy-fish h5 {
+            color:#fff;
+            font-weight: 400;
+            font-size:16px;
+        }
+        #pushy-fish a {
+            background: -webkit-linear-gradient(top,#fff 0,#fff 40%,#fff 60%,#fff 85%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color:transparent;
+            font-weight:500;
+        }
+    .menutitle_phone {
+        float: left;
+        margin-top: 5px;
+        margin-left: 10px;
+        font-size: 22px;
+        line-height: 30px;
+        background: -webkit-linear-gradient(top,#ffb900 0,#e4a831 40%,#f1ba29 60%,#ffe7a9 85%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight:800;
+        letter-spacing:1px;
+    }
+    #avatar {
+        line-height: 55px;
+        background-color: #0057ff;
+        background-image: url(https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/background.png?t=20171205);
+        cursor:pointer;
+        padding:10px 30px 65px;
+    }
+
+
+
+</style>
+
+@if (Request.IsAuthenticated)
+{
+<ul>
+    <li class="pushy-link" style="list-style-type:none;border-bottom:1px solid #333">
+        <a style="margin-left:50px;" href="@Url.Action("Index", "Home",null, Request.Url.Scheme)"><img src="/Content/images/logo-1.png" /></a>
+
+    </li>
+
+
+
+
+
+
+    <li id="avatar">
+        <a style="float:left;" href="@Url.Action("Index","Manage")"><div style="width:60px;height:60px" class="managelogo"></div></a>
+        <h5 class="menutitle_phone">
+
+            <a style="font-size:14px;" id="username_menu_phone">@User.Identity.GetUserName()</a>
+            <i class="fa fa-angle-up" style="float:left" aria-hidden="true"></i>
+
+        </h5>
+    </li>
+
+    <li id="ManagaMenu-2">
+        <ul style="margin-left:20px">
+            <li id="pushy-fish">
+                <div id="getAssets_phone"></div>
+            </li>
+            @Html.Action("_PartialRank", "Ranking", new { cycle = 10, num = 100, pclass = 2, unitSn = 1 })
+
+
+
+            <li id="pushy-fish">
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h5><a href="javascript:document.getElementById('logoutForm').submit()"><span style="line-height:0px;font-size:16px;font-weight:400;" class="sportsmagazine-color">登出</span></a></h5>
+                }
+            </li>
+        </ul>
+    </li>
+
+    <li class="pushy-link">
+        <i style="font-size:30px;color: #e5b22a;" class="fa fa-book" aria-hidden="true"></i>
+    @Html.ActionLink("教學", "About", "Home")</li>
+</ul>
+
+
+}
+else
+{
+    <ul>
+        <li class="pushy-link" style="list-style:none;margin-left:46px">
+            <a href="@Url.Action("Index", "Home",null, Request.Url.Scheme)" ><img src="/Content/images/logo-1.png" /></a>
+
+        </li>
+
+        <li>
+            <a id="phone-menu-btn"><div class="banner-btn" style="padding:11px 65px 12px 65px">登入<i></i>註冊</div></a>
+
+        </li>
+
+           
+    </ul>
+}
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var content = $("#username_menu_phone").text();
+
+        if (content.length > 7) {
+            content = content.substr(0, 7)
+            $("#username_menu_phone").html(content + '***');
+        }
+            
+
+        var menucontent = $('#username_menu_phone').text();
+        menucontent = menucontent.replace(/gmail.com/, '');
+        menucontent = menucontent.replace(/yahoo.com.tw/, '');
+        menucontent = menucontent.replace(/@@/, '');
+        $('#username_menu_phone').html(menucontent);
+        $.get("@Url.Action("_getAssetsString", "Assets")", function (data) {
+                var message = $("#getAssets_phone");
+                message.html(data);
+            });
+
+         $('.menu-btn').on('click', function () {
+            $.get("@Url.Action("_getAssetsString", "Assets")", function (data) {
+                var message = $("#getAssets_phone");
+                message.html(data);
+            });
+
+
+            togglePushy();
+        });
+
+         $("#phone-menu-btn").attr("href", "@Url.Action("Login", "Account")");
+
+         $("#ManagaMenu-2").show();
+         $("#avatar").on('click',function() {
+
+             $("#ManagaMenu-2").slideToggle(500);
+             if ($(".menutitle_phone i").attr("class") == "fa fa-angle-up")
+             {
+                 $(".menutitle_phone i").attr("class", "fa fa-angle-down");
+             } else {
+                 $(".menutitle_phone i").attr("class", "fa fa-angle-up");
+             }
+
+         });
+
+
+
+
+    });
+
+
+</script>
+
+
+
+
+
+<style>
+
+    .viewgo #imgview:hover {
+        opacity: 0.8;
+    }
+   
+
+</style>

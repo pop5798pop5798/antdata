@@ -1,0 +1,22 @@
+﻿@model SITW.Models.ViewModel.RankingViewModel
+@{
+    Layout = null;
+}
+@if (ViewBag.pclass == 1)
+{
+    <h5>目前排名：@ViewBag.ord</h5>
+    <h5>獲利金額：@ViewBag.WinMoney </h5>
+
+}
+else
+{
+    <li id="pushy-fish">
+       <h5>目前排名：@ViewBag.ord</h5>
+    </li>
+    <li id="pushy-fish">
+        <h5>獲利金額：@ViewBag.WinMoney </h5>
+    </li>
+
+}
+
+

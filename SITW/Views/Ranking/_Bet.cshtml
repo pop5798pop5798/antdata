@@ -1,0 +1,40 @@
+﻿@model SITW.Models.ViewModel.RankingViewModel
+@{
+    Layout = null;
+}
+
+
+<div class="widget widget_team_ranking">
+    <div class="sportsmagazine-fancy-title2"><h2>排行榜</h2></div>
+  
+    <div class="ranking-title-table">
+        <ul class="ranking-title-row">
+            <li>排行</li>
+            <li>玩家</li>
+            <li>金額</li>
+        </ul>
+    </div>
+    
+
+    <div class="ranking-content-table">
+        @foreach (var item in Model.rankinglist)
+        {
+            <ul class="ranking-content-row">
+                <li>@(Model.rankinglist.IndexOf(item) + 1)</li>
+                <li>
+                    <div class="ranking-logo">
+                        <span>@Html.DisplayFor(modelItem => item.UserName)</span>
+                    </div>
+                </li>
+                <li>@Html.DisplayFor(modelItem => item.Assets)</li>
+            </ul>           
+        }
+    </div>
+    
+</div>
+
+
+
+
+
+

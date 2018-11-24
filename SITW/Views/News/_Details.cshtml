@@ -1,0 +1,85 @@
+﻿@model SITW.Models.placard
+
+
+
+<style>
+    .sportsmagazine-bloglarge-text p {
+        border-bottom-color: rgba(255, 255, 255, 0.00);
+    }
+</style>
+<div class="sportsmagazine-main-content">
+
+    <!--// Main Section \\-->
+    <div class="sportsmagazine-main-section sportsmagazine-bloglarge-full">
+        <div class="container">
+            <div class="row">
+
+                <aside class="col-md-5">
+                    <div class="sportsmagazine-blog sportsmagazine-bloglarge">
+                        <ul class="row">
+                            <li class="col-md-12">
+                                <div class="sportsmagazine-bloglarge-text">
+                                    <time datetime="2008-02-14 20:00">@Html.DisplayFor(model => model.real_time)</time>
+                                    <h1 style="font-size:30px">@Html.DisplayFor(model => model.title)</h1>
+                                    <div id="jshtml">@Html.HiddenFor(model => model.content)</div>
+
+
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+                <div class="col-md-7">
+                    <div class="sportsmagazine-blog sportsmagazine-bloglarge">
+                        <ul class="row">                         
+                            <li class="col-md-12">
+                                <div class="sportsmagazine-bloglarge-text">
+                                    @Html.Action("_Rank", "Ranking", new { cycle = 4, num = 100 })
+
+
+
+                                 </div>
+
+                            </li>
+                        </ul>
+                      </div>                                                     
+                 </div>
+
+
+                </div>
+            </div>
+            </div>
+    </div>
+
+
+
+
+
+               
+
+
+
+                @section Scripts {
+                    <script>
+                        $(document).ready(function () {
+                            var content = $('#content').val();
+                            $('#jshtml').append(content);
+
+                        });
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+
+                            $('#example').DataTable({
+                                "order": [[1, "desc"]], "ordering": false, "paging": false, "info": false, "searching": true,
+                                "language": {
+                                    "lengthMenu": "目前顯示_MENU_ 位",
+                                    "info": "目前 _START_ to _END_ 共 _TOTAL_ 人", "paginate": {
+                                        "next": "", "previous": ""
+                                    }, "search": "封號搜尋"
+                                }
+                            });
+                        });
+                    </script>
+                }

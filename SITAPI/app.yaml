@@ -1,0 +1,4 @@
+runtime: aspnetcore
+env: flex
+skip_files:
+- logs/

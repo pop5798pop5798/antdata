@@ -1,0 +1,89 @@
+﻿@*model SITW.Models.Teams*@
+@model SITW.Models.ViewModel.TeamsViewModel
+@{
+    ViewBag.Title = "Edit";
+    // var teamsget = Model.TeamsGet;
+}
+@using SITW.Helper
+<h2>Edit</h2>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "teamsForm", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+        <div class="form-horizontal">
+            <h4>Teams</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(Model => Model.sn)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">隊伍名稱</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(Model => Model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(Model => Model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">隊伍簡稱</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(Model => Model.shortName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(Model => Model.shortName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">隊伍圖片(104*104)</label>
+                <div class="col-md-10">
+
+                    <input type="file" id="image" name="image" value="@Model.imageURL" class="form-control">
+
+                    @Html.ValidationMessageFor(Model => Model.imageURL, "", new { @class = "text-danger" })
+                    <h3>或選擇 <button type="button" class="btn btn-success" id="image-button">現有圖片</button>   </h3>
+
+
+                    <div class="form-group" id="image-box">
+                        <div class="col-md-6">
+                            @Html.Action("ImageList", "Tools", new { path = "Teams" })
+                        </div>
+                    </div>  
+                    @Html.HiddenFor(model => model.imageURL)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">League</label>
+                <div class="col-md-5">
+                    @Html.AreaGameSelect("leagueSn", Model.leagueSn)
+                    @Html.ValidationMessageFor(Model => Model.leagueSn, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+
+
+        </div>
+
+    
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('li img').on('click',function () {
+            $('#imageURL').val($(this).attr('src'));           
+
+        });
+        
+    });
+</script>

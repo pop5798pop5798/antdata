@@ -1,0 +1,19 @@
+﻿<html>
+<body style="color:grey; font-size:15px;">
+<font face="Helvetica, Arial, sans-serif">
+
+<div style="position:absolute; width:600px; background-color:0d1d36; padding:30px;">
+<img src="http://funbet.com.tw/Content/images/logo-1.png" />
+</div>
+
+<div style="background-color: rgb(255, 245, 124); width:600px; padding:30px;">
+
+{0}
+
+<br/>
+<br/>
+
+<p>熊i猜</p>
+</div>
+</body>
+</html>

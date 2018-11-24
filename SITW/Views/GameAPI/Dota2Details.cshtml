@@ -1,0 +1,226 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.GameAPIViewModel.Dota2ViewModel>
+
+@{
+    /**/
+
+    Layout = "~/Views/Shared/_Layout_admin_Game.cshtml";    
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="bs-example">
+
+            <h5>DOTA2API</h5>
+            <table id="d2List" class="table table-bordered table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th> 編號 </th>
+                        <th>系列</th>
+                        <th>聯賽類型 </th>
+                        <th> 賽局名稱 </th>
+                        <th> 勝方 </th>
+                        <th> 敗方 </th>
+                        <th>比賽開始時間 </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        foreach (var match in item.d2match)
+                        {
+                            <tr>
+                                <td>@match.timeid </td>
+                                <td>BO @match.d2BOcount-@match.d2BO </td>
+                                <td>@item.leaguename.name </td>
+                                <td>@match.match_name</td>
+                                <td>@match.dire_team</td>
+                                <td>@match.radiant_team</td>
+                                <td>@match.strar_time</td>
+                                <th>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong-@match.match_id">
+                                        詳細資料
+                                    </button>
+
+                                </th>
+
+                            </tr>
+
+
+                        }
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+</section>
+@foreach (var item in Model)
+{
+    foreach (var match in item.d2match)
+    {
+
+        <div class="modal fade" id="exampleModalLong-@match.match_id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table id="gList" class="table table-bordered table-sm" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th style="cursor:pointer;">&nbsp;  </th>
+                                    <th style="cursor:pointer;width:20%;">&nbsp; 擊殺數 </th>
+                                    <th style="cursor:pointer;width:10%;">&nbsp; 死亡數 </th>
+                                    <th style="cursor:pointer;width:15%;">&nbsp; 助攻數 </th>
+
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @for (var winitem = 0; winitem < match.Dota2PlayerList.result.players.Count(); winitem++)
+                                {
+                                    if (winitem == 0)
+                                    {
+                                        <tr>
+                                            <td data-title="輸方隊伍名稱">輸方隊伍名稱</td>
+                                            <td data-title="名稱">@match.Dota2PlayerList.result.radiant_name</td>
+                                            <td data-title=""></td>
+                                            <td data-title=""></td>
+
+
+                                        </tr>
+                                    }
+                                    if (winitem == 5)
+                                    {
+                                        <tr>
+                                            <td data-title="勝方隊伍名稱">勝方隊伍名稱</td>
+                                            <td data-title="名稱">@match.Dota2PlayerList.result.dire_name</td>
+                                            <td data-title=""></td>
+                                            <td data-title=""></td>
+
+
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td data-title="隊員">@match.Dota2PlayerList.result.players[winitem].account_id </td>
+                                        <td data-title="擊殺數">@match.Dota2PlayerList.result.players[winitem].kills</td>
+                                        <td data-title="死亡數">@match.Dota2PlayerList.result.players[winitem].deaths</td>
+                                        <td data-title="助攻數">@match.Dota2PlayerList.result.players[winitem].assists</td>
+
+
+                                    </tr>
+                                    if (winitem == 4)
+                                    {
+                                        <tr>
+                                            <td data-title="總數">總數</td>
+                                            <td data-title="總擊殺數">@match.Dota2PlayerList.result.radiant_score</td>
+                                            <td data-title="總死亡數"></td>
+                                            <td data-title="總助攻數"></td>
+
+
+                                        </tr>
+                                    }
+                                    if (winitem == 9)
+                                    {
+                                        <tr>
+                                            <td data-title="總數">總數</td>
+                                            <td data-title="總擊殺數">@match.Dota2PlayerList.result.dire_score</td>
+                                            <td data-title="總死亡數"></td>
+                                            <td data-title="總助攻數"></td>
+
+
+                                        </tr>
+                                    }
+
+
+                                }
+                            </tbody>
+
+
+                        </table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+
+
+
+<!-- Modal -->
+
+
+
+
+<script src="/Scripts/jquery.dataTables.min.js"></script>
+<script src="/Scripts/dataTables.bootstrap.min.js"></script>
+<script src="//cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+<Script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".form_datetime").datetimepicker(
+            {
+                timepicker: false,
+                format: 'Y/m/d'
+            });
+
+        $('#d2List').DataTable({
+            "order": [[0, "desc"]], "ordering": true, "paging": true, "info": true, "searching": true,
+            "language": {
+                "lengthMenu": "顯示賽局_MENU_ ",
+                "info": "目前 _START_ to _END_ 共 _TOTAL_ 局", "paginate": {
+                    "next": "", "previous": ""
+                }
+            }
+        });
+
+
+    });
+</Script>
+
+
+
+
+
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="//cdn.datatables.net/select/1.2.5/css/select.bootstrap.min.css" />
+
+
+<style>
+
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        background-color: #96c8f9;
+    }
+</style>
+
+
+
+@*@foreach (var item in Model)
+    {
+        <span>leaguename：</span> @item.leaguename.name <br>
+        foreach (var match in item.d2match)
+        {
+            <span>match_id：</span> @match.match_id<br>
+            <span>dire_team(勝利)：</span> @match.dire_team<br>
+            <span>dire_team(敗者)：</span> @match.radiant_team<br>
+        }
+
+
+
+    }*@
+
+

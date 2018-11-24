@@ -1,0 +1,98 @@
+﻿@model SITW.Models.ViewModel.GamePostViewModel
+@{
+    Layout = null;
+    int i = ViewBag.index ?? 0;
+    int index = Model.game.topicList[i].choiceList.Count;
+    int allindex = ViewBag.choice ?? 0;
+}
+
+    
+<div name="topicDiv" class="form-horizontal">
+    @Html.HiddenFor(model => model.game.topicList[i].hashSn)
+    @Html.HiddenFor(model => model.game.topicList[i].valid)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <h4>請新增第 @(i + 1) 題 </h4>
+    @if (Model.game.topicList[i].sn == 0)
+    {
+        <div class="form-group">
+
+            <div class="control-label col-md-2">
+            </div>
+            <div class="col-md-10">
+                <span class="btn btn-danger btn-block" data-ajax="true" name="delTopic">刪除題目</span>
+            </div>
+        </div>
+    }
+    <hr />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.game.topicList[i].title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.game.topicList[i].title, new { htmlAttributes = new { @class = "form-control", @name = "topicList[0]" } })
+            @Html.ValidationMessageFor(model => model.game.topicList[i].title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.game.topicList[i].comment, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.game.topicList[i].comment, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.game.topicList[i].comment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.game.topicList[i].sdate)
+    @Html.ValidationMessageFor(model => model.game.topicList[i].sdate, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.game.topicList[i].edate)
+    @Html.ValidationMessageFor(model => model.game.topicList[i].edate, "", new { @class = "text-danger" })
+    @*<div class="form-group">
+               @Html.LabelFor(model => model.game.topicList[i].sdate, htmlAttributes: new { @class = "control-label col-md-2" })
+               <div class="col-md-10">
+                   @Html.EditorFor(model => model.game.topicList[i].sdate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                   @Html.ValidationMessageFor(model => model.game.topicList[i].sdate, "", new { @class = "text-danger" })
+               </div>
+        </div>*@
+
+    @*<<div class="form-group">
+            @Html.LabelFor(model => model.game.topicList[i].edate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.game.topicList[i].edate, new { htmlAttributes = new { @class = "form-control form_datetime" } })
+                @Html.ValidationMessageFor(model => model.game.topicList[i].edate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group" name="choiceListGroup">
+        <div class="control-label col-md-2">
+            選項
+        </div>
+        <div class="col-md-10">
+            <!-- choces! -->
+            <div id="choice-group-@i">
+                @for (int ci = 0; ci < Model.game.topicList[i].choiceList.Count; ci++)
+                {
+                    Html.RenderAction("_choiceEdit", "game", new { model = Model.game, topicIndex = i, index = ci });
+                }
+            </div>
+
+            <div class="col-md-3">
+                <input class="form-control text-box single-line" id="allnumber-@i" type="text" value="1">
+            </div>
+            <input type="hidden" id="topicIndex" value="@i" />
+            @Ajax.ActionLink(linkText: "選項新增", actionName: "_choiceCreate", controllerName: "game", routeValues: new { index = index, topicIndex = i, allnumber = 1}, ajaxOptions: new AjaxOptions
+       {
+           InsertionMode = InsertionMode.InsertAfter,
+           UpdateTargetId = "choice-group-" + i,
+           OnSuccess = "indexIterateChoice(" + i +")"
+       },
+            htmlAttributes: new { id = "addChoice"+i, @class = "btn btn-default" })
+
+
+            @Html.ValidationMessageFor(model => model.game.topicList[i].choiceList, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+</div>
+
+

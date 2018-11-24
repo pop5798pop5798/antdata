@@ -1,0 +1,58 @@
+﻿@model SITW.Models.ViewModel.DetailUserViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details.</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.user.UserName)
+        </dd>
+    </dl>
+</div>
+<h4>List of roles for this user</h4>
+@if (ViewBag.RoleNames.Count == 0)
+{
+    <hr />
+    <p>No roles found for this user.</p>
+}
+
+<table class="table">
+
+    @foreach (var item in Model.RolesList)
+    {
+        <tr>
+            <td>
+                @item
+            </td>
+        </tr>
+    }
+</table>
+<table class="table">
+    @foreach (var avm in Model.avList)
+    {
+        <tr>
+            <td>
+                @avm.Asset
+                @avm.unitName
+                @Html.ActionLink("贈送", "Create", "Assets", new { userId = Model.user.Id ,unitSn=avm.unitSn }, null)
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.user.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+

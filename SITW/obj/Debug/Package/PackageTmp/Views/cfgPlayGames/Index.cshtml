@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SITW.Models.cfgPlayGame>
+
+@{
+    ViewBag.Title = "Index";
+   
+}
+
+<h2 style="margin-top:100px;">遊戲類別管理</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gamelogo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shortName)
+        </td>
+        <td>
+            <img style="max-width:30%;" src="@item.gamelogo">          
+        </td>
+        <td>
+            @if(item.valid == 1)
+            {
+                <span>顯示</span>
+            }
+            else
+            {
+                <span>不顯示</span>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.sn }) |
+            @Html.ActionLink("Details", "Details", new { id=item.sn }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.sn })
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.Action("Index","Leagues")

@@ -1,0 +1,329 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.GamePostViewModel>
+
+@{
+    ViewBag.Title = "遊戲大廳| 熊i猜";
+}
+<style>
+    table > tbody > tr > td {
+        text-align: center;
+        color: #FFC107;
+    }
+
+        table > tbody > tr > td a {
+            color: #58cafd;
+        }
+    div[name="sportsmagazine-countdown-stop"] {
+        color: #FF5722;
+    }
+    table > thead > tr > th, table > tbody > tr > th, table > tfoot > tr > th, table > thead > tr > td, table > tbody > tr > td, table > tfoot > tr > td {
+        border: 0px;
+    }
+        
+
+
+
+
+</style>
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="menu-admin">
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+            <p>
+                <a class="ticket-buy-btn-2" href="@Url.Action("Create")">新增新賽局</a>
+
+                @if (ViewContext.RouteData.Values["action"].ToString() == "Index")
+                {
+                    <a class="ticket-buy-btn-2" href="@Url.Action("AdminIndex")">顯示未派彩</a>
+                    <a class="ticket-buy-btn-2" href="@Url.Action("Payout")">顯示已派彩</a>
+                }
+                else if (ViewContext.RouteData.Values["action"].ToString() == "AdminIndex")
+                {
+                    <a class="ticket-buy-btn-2" href="@Url.Action("Index")">顯示目前開盤</a>
+                    <a class="ticket-buy-btn-2" href="@Url.Action("Payout")">顯示已派彩</a>
+                }
+                else
+                {
+                    <a class="ticket-buy-btn-2" href="@Url.Action("Index")">顯示目前開盤</a>
+                    <a class="ticket-buy-btn-2" href="@Url.Action("AdminIndex")">顯示未派彩</a>
+
+
+                }
+
+            </p>
+                <br />
+            }
+
+        </div>
+
+
+        <div class="sportsmagazine-wishlist" >
+
+            <div class="sportsmagazine-wishlist-graph" style="margin-top:100px;">
+                <div id="no-more-tables">
+                    <table id="example" class="col-md-13 table-bordered table-striped table-condensed cf" cellspacing="0" style="width:100%;">
+                        <thead id="cf" style="border-bottom:1px solid #333">
+                            <tr>
+                                <th style="cursor:pointer;width:10%;">&nbsp; 比賽時間 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th style="cursor:pointer;width:10%;">&nbsp; 賽局標題 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th style="cursor:pointer;width:10%;">&nbsp; 賽局備註 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th style="cursor:pointer;width:10%;">&nbsp; 賽局隊伍 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th style="cursor:pointer">&nbsp; 賽局模式 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th style="cursor:pointer">&nbsp; 競猜狀態 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th style="cursor:pointer">&nbsp; 剩餘時間 <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                <th style="cursor:pointer"></th>
+                            </tr>
+                        </thead>
+                        <tbody style="color:#b9b9b9">
+                            @foreach (var item in Model)
+                            {
+                                if (item.game == null)
+                                {
+                                    continue;
+                                }
+                            <tr>
+                                <td data-title="比賽時間">@Html.DisplayFor(modelItem => item.game.gamedate) </td>
+                                <td data-title="賽局標題">@Html.DisplayFor(modelItem => item.game.title) </td>
+                                <td data-title="賽局備註">@Html.DisplayFor(modelItem => item.game.comment) </td>
+                                <td data-title="賽局隊伍">
+                                    @if (item.TeamA != null)
+                                    {
+                                        <img style="max-width:20%" src="@item.TeamA.imageURL" alt="" />
+
+                                        <h6 style="color:#e4b12a">@item.TeamA.shortName</h6>
+
+
+                                    }
+                                    else
+                                    {
+
+                                        <img style="max-width:20%" src="/Content/extra-images/upload-photo.png?id=20171208" alt="">
+
+                                        <h6 style="color:#e4b12a"></h6>
+
+
+
+                                    } <span>VS</span>
+                                    <br>
+                                    @if (item.TeamB != null)
+                                    {
+                                        <img style="max-width:20%" src="@item.TeamB.imageURL" alt="" />
+
+                                        <h6 style="color:#e4b12a">@item.TeamB.shortName</h6>
+
+
+                                    }
+                                    else
+                                    {
+
+                                        <img style="max-width:20%" src="/Content/extra-images/upload-photo.png?id=20171208" alt="">
+
+                                        <h6 style="color:#e4b12a"></h6>
+
+
+
+                                    }
+
+
+
+                                </td>
+                                <td data-title="賽局模式">
+                                    @Html.DisplayFor(modelItem => item.game.betModelString)
+                                </td>
+                                <td data-title="競猜狀態">
+                                    @Html.DisplayFor(modelItem => item.game.Status)
+                                </td>
+
+                                <td data-title="剩餘時間">
+                                    @Html.Hidden("gametime", (item.game.gamedate.HasValue ? item.game.gamedate.Value.ToString("yyyy-MM-dd HH:mm") : ""))
+                                    <div name="sportsmagazine-countdown"> </div>
+                                    <div name="sportsmagazine-countdown-stop"> </div>
+
+
+                                    @if (item.game.canbet)
+                                    {
+                                        <i aria-hidden="true"></i>
+
+                                    }
+
+                                </td>
+
+
+                                <td>
+                                    @if (new byte[] { 1 }.Contains(item.game.gameStatus.Value))
+                                    {
+                                        <a href="#" name="startBet" id="startBet">
+                                            開始競猜 <span style="color:#ffd800">|</span>
+                                            <input type="hidden" id="game_sn" value="@item.game.sn">
+                                        </a>
+                                    }
+                                    @Html.ActionLink("查看", "Details", new { id = item.gamepost.sn }) |
+                                    @Html.ActionLink("編緝", "Edit", new { id = item.gamepost.sn }) |
+                                    @Html.ActionLink("管理", "DetailsAdmin", new { id = item.gamepost.sn })|
+                                    <a id="gticreate" href="" target="_blank">
+                                        GTI建立
+                                        <input type="hidden" id="gtivalue" value="@item.gamepost.sn">
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    @section Scripts {
+        <script src="/Scripts/jquery.dataTables.min.js"></script>
+        <script src="/Scripts/dataTables.bootstrap.min.js"></script>
+
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                $("[name=sportsmagazine-countdown]").each(
+                    function (i, obj) {
+                        var d = new Date($(obj).siblings("[name=gametime]").val());
+                        var dt = new Date();
+
+                        if (Date.parse(d).valueOf() > Date.parse(dt).valueOf()) {
+                            $(obj).countdown({
+                                until: d,
+                                compact: true,
+                                layout: ' <b>{dn} 天 {hnn} 小時 {mnn} 分 {snn} 秒</b> {desc}'
+                            });  
+                            $(obj).css("color", "#ebdec2");
+                        } else {
+
+                            $(obj).html("結束競猜");
+                            $(obj).css("color", "#FF5722");
+
+                           
+                        }
+                       
+                    });
+
+               
+
+
+               /*$("[name=sportsmagazine-countdown]").each(
+                    function (i, obj) {
+                        var d = new Date($(obj).siblings("[name=gametime]").val());
+                        var dt = new Date()
+                    if (Date.parse(d).valueOf() < Date.parse(dt).valueOf()) 
+                     {
+                            $("[name=sportsmagazine-countdown]").html("結束競猜");
+                            $("[name=sportsmagazine-countdown]").attr('name', 'sportsmagazine-countdown-stop');
+
+                    } else {
+                        $("[name=sportsmagazine-countdown]").css("color", "#ebdec2");
+                    }
+                 });*/
+                $("tr #gticreate").on('click', function () {
+                    var gv = $(this).find("#gtivalue").val();
+                    var gtiurl = "http://funbet.games/Account/BearLoginByURL?par=vnTy73o73S6DInB9blni0jLxdfSZO%2BxbU9/dyY4VcUr9rCNcS9ErKMzWjixZlA6CPATa9f8aKtLqASTHeb7xKnoqPOrCD34odGD2w1jmr2NaMycREjIlJe0bUdfD8qcx&bearid=" + gv;
+                    $(this).attr("href", gtiurl);
+                    $(this).css("color", "#58cafd");
+
+
+                });
+
+                $('#example').DataTable({
+                    "order": [[6, "desc"]], "ordering": true, "paging": true, "info": true, "searching": true,
+                    "language": {
+                        "lengthMenu": "顯示賽局_MENU_ ",
+                        "info": "目前 _START_ to _END_ 共 _TOTAL_ 局", "paginate": {
+                            "next": "", "previous": ""
+                        }
+                    }
+                });
+              
+
+
+                $("tr #startBet").each(
+                    function (i, obj) {
+                        $(obj).click(function () {
+                            var gameid = $(this).find("#game_sn").val();
+                            
+                            $.post("@Url.Action("StartBet", "game")", { id: gameid }).done(function (data) {
+                                if (data.toLowerCase() == 'true')
+                                    location.reload();
+                                else
+                                    alert("Error");
+                            });
+                        });
+
+
+
+                });
+
+
+            });
+        </script>
+
+
+
+        
+    }
+
+<script>
+    $(document).ready(function () {       
+                      
+           /* $("tr #gticreate").each(
+                function (i, obj) {             
+                    var gv = $(obj).find("#gtivalue").val();
+                    var gtiurl = "http://funbet.games/Account/BearLoginByURL?par=vnTy73o73S6DInB9blni0jLxdfSZO%2BxbU9/dyY4VcUr9rCNcS9ErKMzWjixZlA6CPATa9f8aKtLqASTHeb7xKnoqPOrCD34odGD2w1jmr2NaMycREjIlJe0bUdfD8qcx&bearid=" + gv;
+                    $(obj).attr("href", gtiurl);
+                    $(obj).css("color", "#58cafd");
+
+
+             });*/
+       /* $("tr #gticreate").on('click', function () {
+            var gv = $(this).find("#gtivalue").val();
+            var gtiurl = "http://funbet.games/Account/BearLoginByURL?par=vnTy73o73S6DInB9blni0jLxdfSZO%2BxbU9/dyY4VcUr9rCNcS9ErKMzWjixZlA6CPATa9f8aKtLqASTHeb7xKnoqPOrCD34odGD2w1jmr2NaMycREjIlJe0bUdfD8qcx&bearid=" + gv;
+            $(this).attr("href", gtiurl);
+            $(this).css("color", "#58cafd");
+
+
+        });*/
+           
+
+
+    });
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

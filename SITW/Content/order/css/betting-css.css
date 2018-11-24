@@ -1,0 +1,65 @@
+﻿input[type="tel"], input[type="number"] {
+    background-color: #0f0f10;
+    border: 1px solid #e5b22a;
+    width: 50%;
+}
+
+tspan {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.sportsmagazine-login-box h5 {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.choiceRow_disable {
+    cursor: auto;
+    opacity: 0.5;
+}
+
+.choiceRow {
+    /*background-image:*/
+    cursor: pointer;
+    border-top: 1px solid #333;
+}
+
+
+
+.bettable td {
+    /*background-image:*/
+    line-height: 2;
+    text-align: left;
+    padding: 10px 20px 10px 20px;
+    color: #ebdec2;
+}
+
+.bettable > tbody > tr > td:nth-of-type(2) {
+    color: #e5b22a;
+    width: 25%;
+    padding: 10px 0px 10px 0px;
+}
+
+.bettable > tbody > tr > td:nth-of-type(3) {
+    color: #cacaca;
+    width: 25%;
+    padding: 10px 0 10px 0;
+}
+
+.bettable tr:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+    .bettable tr:hover td:nth-of-type(2) {
+        color: #ffdc11;
+    }
+
+    .bettable tr:hover td:nth-of-type(3) {
+        color: #fbfbfb;
+    }
+
+table {
+    margin-bottom: 0;
+}

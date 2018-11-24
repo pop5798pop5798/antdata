@@ -1,0 +1,58 @@
+﻿@model IEnumerable<SITW.Models.ViewModel.LeaguesViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<h2>聯賽類別管理</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            聯賽名稱
+        </th>
+        <th>
+            聯賽簡稱
+        </th>
+        <th>
+            區域
+        </th>
+        <th>
+           聯賽圖示
+        </th>
+        <th>
+           遊戲類型
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaguesData.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaguesData.shortName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaguesData.place)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaguesData.imageURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Playgame.cName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LeaguesData.sn }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LeaguesData.sn }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LeaguesData.sn })
+        </td>
+    </tr>
+}
+
+</table>

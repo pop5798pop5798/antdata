@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sitwModelStoreContainer" CdmEntityContainer="sitwEntities">
+    <EntitySetMapping Name="Assets">
+      <EntityTypeMapping TypeName="sitwModel.Assets">
+        <MappingFragment StoreEntitySet="Assets">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="assets" ColumnName="assets" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssetsRecord">
+      <EntityTypeMapping TypeName="sitwModel.AssetsRecord">
+        <MappingFragment StoreEntitySet="AssetsRecord">
+          <ScalarProperty Name="choiceSn" ColumnName="choiceSn" />
+          <ScalarProperty Name="topicSn" ColumnName="topicSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="gameSn" ColumnName="gameSn" />
+          <ScalarProperty Name="assets" ColumnName="assets" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MissionEnd">
+      <EntityTypeMapping TypeName="sitwModel.MissionEnd">
+        <MappingFragment StoreEntitySet="MissionEnd">
+          <ScalarProperty Name="missionEndtSn" ColumnName="missionEndtSn" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="Compare" ColumnName="Compare" />
+          <ScalarProperty Name="missionSn" ColumnName="missionSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Missions">
+      <EntityTypeMapping TypeName="sitwModel.Missions">
+        <MappingFragment StoreEntitySet="Missions">
+          <ScalarProperty Name="imgURL" ColumnName="imgURL" />
+          <ScalarProperty Name="cycle" ColumnName="cycle" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="edate" ColumnName="edate" />
+          <ScalarProperty Name="sdate" ColumnName="sdate" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MissionStart">
+      <EntityTypeMapping TypeName="sitwModel.MissionStart">
+        <MappingFragment StoreEntitySet="MissionStart">
+          <ScalarProperty Name="missionStartSn" ColumnName="missionStartSn" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="Compare" ColumnName="Compare" />
+          <ScalarProperty Name="missionSn" ColumnName="missionSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMissions">
+      <EntityTypeMapping TypeName="sitwModel.UserMissions">
+        <MappingFragment StoreEntitySet="UserMissions">
+          <ScalarProperty Name="edate" ColumnName="edate" />
+          <ScalarProperty Name="sdate" ColumnName="sdate" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="assetsRecordSn" ColumnName="assetsRecordSn" />
+          <ScalarProperty Name="missionSn" ColumnName="missionSn" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cfgMissionEnd">
+      <EntityTypeMapping TypeName="sitwModel.cfgMissionEnd">
+        <MappingFragment StoreEntitySet="cfgMissionEnd">
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="sqlquery" ColumnName="sqlquery" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cfgMissionStart">
+      <EntityTypeMapping TypeName="sitwModel.cfgMissionStart">
+        <MappingFragment StoreEntitySet="cfgMissionStart">
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="sqlquery" ColumnName="sqlquery" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MissionAssets">
+      <EntityTypeMapping TypeName="sitwModel.MissionAssets">
+        <MappingFragment StoreEntitySet="MissionAssets">
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="assets" ColumnName="assets" />
+          <ScalarProperty Name="missionSn" ColumnName="missionSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cfgUnit">
+      <EntityTypeMapping TypeName="sitwModel.cfgUnit">
+        <MappingFragment StoreEntitySet="cfgUnit">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="iconURL" ColumnName="iconURL" />
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="showStr" ColumnName="showStr" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GlobalSetting">
+      <EntityTypeMapping TypeName="sitwModel.GlobalSetting">
+        <MappingFragment StoreEntitySet="GlobalSetting">
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="settingValue" ColumnName="settingValue" />
+          <ScalarProperty Name="settingName" ColumnName="settingName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cfgVedio">
+      <EntityTypeMapping TypeName="sitwModel.cfgVedio">
+        <MappingFragment StoreEntitySet="cfgVedio">
+          <ScalarProperty Name="ReplaceStr" ColumnName="ReplaceStr" />
+          <ScalarProperty Name="RegularStr" ColumnName="RegularStr" />
+          <ScalarProperty Name="includeURL" ColumnName="includeURL" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="iframehtml" ColumnName="iframehtml" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VedioRecord">
+      <EntityTypeMapping TypeName="sitwModel.VedioRecord">
+        <MappingFragment StoreEntitySet="VedioRecord">
+          <ScalarProperty Name="cfgVedioSn" ColumnName="cfgVedioSn" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="vediourl" ColumnName="vediourl" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leagues">
+      <EntityTypeMapping TypeName="sitwModel.Leagues">
+        <MappingFragment StoreEntitySet="Leagues">
+          <ScalarProperty Name="playGamesn" ColumnName="playGamesn" />
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="place" ColumnName="place" />
+          <ScalarProperty Name="shortName" ColumnName="shortName" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="sitwModel.Teams">
+        <MappingFragment StoreEntitySet="Teams">
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="leagueSn" ColumnName="leagueSn" />
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="shortName" ColumnName="shortName" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cfgLevelExp">
+      <EntityTypeMapping TypeName="sitwModel.cfgLevelExp">
+        <MappingFragment StoreEntitySet="cfgLevelExp">
+          <ScalarProperty Name="expNum" ColumnName="expNum" />
+          <ScalarProperty Name="levelNum" ColumnName="levelNum" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="placard">
+      <EntityTypeMapping TypeName="sitwModel.placard">
+        <MappingFragment StoreEntitySet="placard">
+          <ScalarProperty Name="mail_bear" ColumnName="mail_bear" />
+          <ScalarProperty Name="p_class" ColumnName="p_class" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="manager" ColumnName="manager" />
+          <ScalarProperty Name="real_time" ColumnName="real_time" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsMenu">
+      <EntityTypeMapping TypeName="sitwModel.NewsMenu">
+        <MappingFragment StoreEntitySet="NewsMenu">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seasons">
+      <EntityTypeMapping TypeName="sitwModel.Seasons">
+        <MappingFragment StoreEntitySet="Seasons">
+          <ScalarProperty Name="viewEDate" ColumnName="viewEDate" />
+          <ScalarProperty Name="viewSDate" ColumnName="viewSDate" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="edate" ColumnName="edate" />
+          <ScalarProperty Name="sdate" ColumnName="sdate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ranking_content">
+      <EntityTypeMapping TypeName="sitwModel.Ranking_content">
+        <MappingFragment StoreEntitySet="Ranking_content">
+          <ScalarProperty Name="rankcontent" ColumnName="rankcontent" />
+          <ScalarProperty Name="ranknumber" ColumnName="ranknumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="sitwModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GlobalSettingRecord">
+      <EntityTypeMapping TypeName="sitwModel.GlobalSettingRecord">
+        <MappingFragment StoreEntitySet="GlobalSettingRecord">
+          <ScalarProperty Name="editTime" ColumnName="editTime" />
+          <ScalarProperty Name="settingValueN" ColumnName="settingValueN" />
+          <ScalarProperty Name="settingValueO" ColumnName="settingValueO" />
+          <ScalarProperty Name="settingName" ColumnName="settingName" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rewards">
+      <EntityTypeMapping TypeName="sitwModel.Rewards">
+        <MappingFragment StoreEntitySet="Rewards">
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="missionSn" ColumnName="missionSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="sitwModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SMSRecord">
+      <EntityTypeMapping TypeName="sitwModel.SMSRecord">
+        <MappingFragment StoreEntitySet="SMSRecord">
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="msg" ColumnName="msg" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserClaims">
+      <EntityTypeMapping TypeName="sitwModel.UserClaims">
+        <MappingFragment StoreEntitySet="UserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="sitwModel.UserLogins">
+        <MappingFragment StoreEntitySet="UserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="sitwModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VerifyRecords">
+      <EntityTypeMapping TypeName="sitwModel.VerifyRecords">
+        <MappingFragment StoreEntitySet="VerifyRecords">
+          <ScalarProperty Name="VerifyDate" ColumnName="VerifyDate" />
+          <ScalarProperty Name="VerifyContent" ColumnName="VerifyContent" />
+          <ScalarProperty Name="VerifyType" ColumnName="VerifyType" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserRoles" TypeName="sitwModel.UserRoles" StoreEntitySet="UserRoles">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Ranking_title">
+      <EntityTypeMapping TypeName="sitwModel.Ranking_title">
+        <MappingFragment StoreEntitySet="Ranking_title">
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransferRecords">
+      <EntityTypeMapping TypeName="sitwModel.TransferRecords">
+        <MappingFragment StoreEntitySet="TransferRecords">
+          <ScalarProperty Name="flagUpdateDate" ColumnName="flagUpdateDate" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="flag" ColumnName="flag" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="cur" ColumnName="cur" />
+          <ScalarProperty Name="credit" ColumnName="credit" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="actype" ColumnName="actype" />
+          <ScalarProperty Name="billno" ColumnName="billno" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLoginRecord">
+      <EntityTypeMapping TypeName="sitwModel.UserLoginRecord">
+        <MappingFragment StoreEntitySet="UserLoginRecord">
+          <ScalarProperty Name="loginResult" ColumnName="loginResult" />
+          <ScalarProperty Name="loginDate" ColumnName="loginDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="sitwModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserToken">
+      <EntityTypeMapping TypeName="sitwModel.UserToken">
+        <MappingFragment StoreEntitySet="UserToken">
+          <ScalarProperty Name="t_edate" ColumnName="t_edate" />
+          <ScalarProperty Name="t_sdate" ColumnName="t_sdate" />
+          <ScalarProperty Name="t_level" ColumnName="t_level" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APIPosts">
+      <EntityTypeMapping TypeName="sitwModel.APIPosts">
+        <MappingFragment StoreEntitySet="APIPosts">
+          <ScalarProperty Name="coverhref" ColumnName="coverhref" />
+          <ScalarProperty Name="categorySn" ColumnName="categorySn" />
+          <ScalarProperty Name="edate" ColumnName="edate" />
+          <ScalarProperty Name="sdate" ColumnName="sdate" />
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="ApiSn" ColumnName="ApiSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApiTypes">
+      <EntityTypeMapping TypeName="sitwModel.ApiTypes">
+        <MappingFragment StoreEntitySet="ApiTypes">
+          <ScalarProperty Name="gamelogo" ColumnName="gamelogo" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="shortName" ColumnName="shortName" />
+          <ScalarProperty Name="eName" ColumnName="eName" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApiDataType">
+      <EntityTypeMapping TypeName="sitwModel.ApiDataType">
+        <MappingFragment StoreEntitySet="ApiDataType">
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="apiType" ColumnName="apiType" />
+          <ScalarProperty Name="jName" ColumnName="jName" />
+          <ScalarProperty Name="eName" ColumnName="eName" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,56 @@
+﻿@model SITW.Models.ViewModel.GameBetDetailViewModel
+@{
+    Layout = null;
+}
+<div class="modal-dialog" role="document">
+    <div class="sportsmagazine-betting-box">
+        <a href="#" data-dismiss="modal" class="sportsmagazine-login-close sportsmagazine-color">X</a>
+        <h4>@Model.topicTitle</h4>
+        @using (Html.BeginForm("Create", "bet", FormMethod.Post, new {name = "betForm" }))
+        {
+            @Html.Hidden("EchoiceSn", Model.EchoiceSn)
+            <h5>
+                目前餘額： 
+                <span class="salmon_money"><br/>
+                    @foreach (var avm in Model.avList)
+                    {
+                        <img style="width:22px" title="@avm.unitName" src="~/Content/@avm.iconURL" /> @avm.Asset
+                    }
+                </span>
+            </h5>
+            <h5>競猜選項： <span>@Model.choiceStr</span></h5>
+            <h5>下注金額： 
+                <span>
+                    @Html.TextBoxFor(p => p.money, new { type = "tel", inputmode = "numeric", @class = "form-control", onkeyup = "showOddsDetail()" })
+                </span> 
+            </h5>
+            <h5>
+                選擇貨幣： <br/>
+                @foreach (SITW.Models.ViewModel.choiceOddsViewModel u in Model.choiceBetList)
+                {
+                    int i = Model.choiceBetList.IndexOf(u);
+                    <span>
+                        <input id="unitSn@(u.unitSn)" value="@u.unitSn" type="radio" Odds="@u.Odds" name="unitSn" onclick="showOddsDetail()">
+                        <label style='display: inline;' for="unitSn@(u.unitSn)">@u.unitStr 
+                        @if (Model.betModel == 1)
+                        {
+                            @:× @u.Odds
+                        }
+                        </label>
+                    </span>
+                }
+                <br/>
+            </h5>
+            if(Model.betModel == 1)
+            {
+            <h5>
+                預估獲利： <span class="oddsDetail"></span>
+                <br>
+            </h5>
+            }
+            <a class="betButton canbet" style="cursor:pointer"><i class="fa fa-diamond" style="margin:0px 10px 0px 5px"></i>點 擊 下 注</a>
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>
+

@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sitdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="bet">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comSn" Type="Int32" />
+    <Property Name="userSn" Type="Int32" />
+    <Property Name="topicSn" Type="Int32" />
+    <Property Name="choiceSn" Type="Int32" />
+    <Property Name="money" Type="Double" />
+    <Property Name="unitSn" Type="Int32" />
+    <Property Name="Odds" Type="Double" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="cfgUnit">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comSn" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="game">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comSn" Type="Int32" />
+    <Property Name="userSn" Type="Int32" />
+    <Property Name="sdate" Type="DateTime" Precision="3" />
+    <Property Name="edate" Type="DateTime" Precision="3" />
+    <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="gameStatus" Type="Byte" />
+    <Property Name="betModel" Type="Byte" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="rake" Type="Double" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="None" />
+    <Property Name="gamedate" Type="DateTime" Precision="3" />
+    <Property Name="gameplace" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="betUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" DefaultValue="1" />
+    <Property Name="payDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="topic">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comSn" Type="Int32" />
+    <Property Name="gameSn" Type="Int32" />
+    <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="totalmoney" Type="Double" />
+    <Property Name="sdate" Type="DateTime" Precision="3" />
+    <Property Name="edate" Type="DateTime" Precision="3" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="unitSn" Type="Int32" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="main" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comSn" Type="Int32" />
+    <Property Name="userID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityContainer Name="sitdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bets" EntityType="Self.bet" />
+    <EntitySet Name="cfgUnits" EntityType="Self.cfgUnit" />
+    <EntitySet Name="companys" EntityType="Self.company" />
+    <EntitySet Name="games" EntityType="Self.game" />
+    <EntitySet Name="topics" EntityType="Self.topic" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="choices" EntityType="sitdbModel.choice" />
+    <EntitySet Name="payouts" EntityType="sitdbModel.payout" />
+    <EntitySet Name="cfgGameStatus" EntityType="sitdbModel.cfgGameStatu" />
+    <EntitySet Name="choiceOdds" EntityType="sitdbModel.choiceOdd" />
+  </EntityContainer>
+  <EntityType Name="choice">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comSn" Type="Int32" />
+    <Property Name="topicSn" Type="Int32" />
+    <Property Name="choiceStr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Odds" Type="Double" />
+    <Property Name="isTrue" Type="Byte" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="totalMoney" Type="Double" />
+    <Property Name="bearSn" Type="String" />
+  </EntityType>
+  <EntityType Name="payout">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="betSn" Type="Int32" />
+    <Property Name="Odds" Type="Double" />
+    <Property Name="money" Type="Double" />
+    <Property Name="realMoney" Type="Double" />
+    <Property Name="createDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="comSn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="gameSn" Type="Int32" />
+    <Property Name="topicSn" Type="Int32" />
+    <Property Name="userSn" Type="Int32" />
+    <Property Name="unitSn" Type="Int32" />
+    <Property Name="choiceSn" Type="Int32" />
+    <Property Name="topicTotalMoney" Type="Double" />
+    <Property Name="correctTotalMoney" Type="Double" />
+    <Property Name="isTrue" Type="Byte" />
+    <Property Name="rake" Type="Double" />
+  </EntityType>
+  <EntityType Name="cfgGameStatu">
+    <Key>
+      <PropertyRef Name="sn" />
+    </Key>
+    <Property Name="sn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Int32" />
+    <Property Name="inpdate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="choiceOdd">
+    <Key>
+      <PropertyRef Name="choiceSn" />
+      <PropertyRef Name="unitSn" />
+    </Key>
+    <Property Name="choiceSn" Type="Int32" Nullable="false" />
+    <Property Name="unitSn" Type="Int32" Nullable="false" />
+    <Property Name="Odds" Type="Double" />
+  </EntityType>
+</Schema>

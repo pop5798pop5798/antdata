@@ -1,0 +1,80 @@
+﻿@model SITW.Models.AssetsRecord
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>AssetsRecord</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UserId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.unitSn)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.unitSn)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.gameSn)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.gameSn)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.assets)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.assets)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.type)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.type)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.inpdate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.inpdate)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

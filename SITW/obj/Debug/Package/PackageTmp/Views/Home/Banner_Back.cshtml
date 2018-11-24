@@ -1,0 +1,255 @@
+﻿@* 5月banner   *@
+
+<style>
+
+    /*下雪特效*/
+    .snow-canvas {
+        display: block;
+        width: 100%;
+        /* height: 100%;*/
+        top: 0;
+        right: 0;
+        position: fixed;
+        pointer-events: none;
+    }
+    /*動態背景*/
+    @@keyframes rotate {
+        0% {
+            transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+        }
+
+        100% {
+            transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+        }
+    }
+
+    .sportsmagazine-footer-one {
+        margin: 0;
+    }
+
+    /*三隻熊*/
+    .bear-banner {
+        max-width: 35%;
+        position: absolute;
+        left: 30%;
+        top: 20%;
+    }
+
+    .star {
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #FFF;
+        top: 0px;
+        left: 800px;
+        position: relative;
+        transform-origin: 100% 0;
+        animation: star-ani 4s linear infinite;
+        -webkit-animation: star-ani 5s linear infinite;
+        box-shadow: 0 0 5px 5px rgba(255, 255, 255, .3);
+        opacity: 0;
+        z-index: 2;
+    }
+
+        .star:after {
+            content: '';
+            display: block;
+            top: 0px;
+            left: 4px;
+            border: 0px solid #fff;
+            border-width: 0px 90px 2px 90px;
+            border-color: transparent transparent transparent rgba(255, 255, 255, .3);
+            transform: rotate(-45deg) translate3d(1px, 3px, 0);
+            box-shadow: 0 0 1px 0 rgba(255, 255, 255, .1);
+            transform-origin: 0% 100%;
+            animation: shooting-ani 3s infinite ease-out;
+        }
+
+    .pink {
+        top: 100px;
+        left: 1200px;
+        background: #fff;
+        animation-delay: 3s;
+        -webkit-animation-delay: 3s;
+        -moz-animation-delay: 3s;
+    }
+
+        .pink:after {
+            border-color: transparent transparent transparent #fff;
+            animation-delay: 3s;
+            -webkit-animation-delay: 3s;
+            -moz-animation-delay: 3s;
+        }
+
+    .blue {
+        top: 120px;
+        left: 1500px;
+        background: #fff;
+        animation-delay: 7s;
+        -webkit-animation-delay: 7s;
+        -moz-animation-delay: 7s;
+    }
+
+        .blue:after {
+            border-color: transparent transparent transparent #fff;
+            -webkit-animation-delay: 7s;
+            -moz-animation-delay: 7s;
+            animation-delay: 7s;
+        }
+
+
+
+
+
+    @@keyframes star-ani {
+        0% {
+            opacity: 0;
+            transform: scale(0) translate3d(0, 0, 0);
+        }
+
+        20% {
+            opacity: 0.8;
+            transform: scale(0.2) translate3d(-100px, 100px, 0);
+        }
+
+        40% {
+            opacity: 0.8;
+            transform: scale(0.4) translate3d(-200px, 200px, 0);
+        }
+
+        60% {
+            opacity: 0.8;
+            transform: scale(0.6) translate3d(-300px, 300px, 0);
+        }
+
+        80% {
+            opacity: 1;
+            transform: scale(1) translate3d(-350px, 350px, 0);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1.2) translate3d(-400px, 380px, 0);
+        }
+    }
+    /*@@media screen and (max-width:1620px) and (min-width:1200px)
+        {
+            .sportsmagazine-banner-one, .sportsmagazine-banner, .sportsmagazine-banner-one-layer
+            {
+                position:absolute;
+
+            }
+
+
+        }
+        @@media screen and (max-width:2000px) and (min-width:1620px) {
+            .sportsmagazine-banner-one, .sportsmagazine-banner, .sportsmagazine-banner-one-layer {
+                position: absolute;
+            }
+        }*/
+
+    .right-banner {
+        position: absolute;
+        right: 25%;
+        top: 92%;
+        max-width: 40%;
+    }
+</style>
+
+
+
+
+
+
+
+<div class="sportsmagazine-banner">
+    <!--// Slider \\-->
+    <div class="sportsmagazine-banner-one">
+
+        <div class="sportsmagazine-banner-one-layer">
+            @*動態背景 <div class="stars"></div> *@
+
+
+            <img id="imgphone" src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180501/banner_phone.jpg?@date" alt="">
+            <div class="error"></div>
+
+            @*<span class="sportsmagazine-banner-pattren" >
+
+
+                </span>*@
+
+
+
+            <div class="sportsmagazine-banner-caption">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="sportsmagazine-banner-wrap">
+                                <h1>2018英雄聯盟 MSI 季中邀請賽</h1>
+                                <p style="color:#e9dcc1"></p>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <a href="@Url.Action("Index", "game")" class="sportsmagazine-banner-btn"><div class="banner-btn">進入大廳</div></a>
+                                    <a href="@Url.Action("Index","News")" class="sportsmagazine-banner-btn"><div class="banner-btn">瞭解更多</div></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Login", "Account")" class="sportsmagazine-banner-btn"><div class="banner-btn">立即登入</div></a>
+                                    <a href="@Url.Action("Register", "Account")" class="sportsmagazine-banner-btn"><div class="banner-btn">免費註冊</div></a>
+                                }
+
+                            </div>
+
+
+                            <div class="sportsmagazine-banner-thumb">  </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--// Slider \\-->
+</div>
+
+<div id="imgpcweb" class="impcwebclass"></div>
+
+<div class="bear-banner">
+    <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180501/banner_main.png?@date" />
+    <div class="right-banner">
+        <a> <img src="https://storage.googleapis.com/funbet-180608.appspot.com/Banners/20180501/banner_buttom.png?@date" /></a>
+        @*<h4>
+                [ 現在註冊 ]<p>
+                    送2000魚骨幣試玩!
+            </h4>*@
+    </div>
+</div>
+
+
+
+
+<script src="http://www.jqueryscript.net/demo/jQuery-Plugin-For-Water-Ripple-Animation-ripples/js/jquery.ripples.js"></script>
+<script>
+    $(document).ready(function () {
+        try {
+            $("#imgpcweb").ripples(
+                {
+                    resolution: 256,
+                    perturbance: 0.02
+                });
+        }
+        catch (e) {
+            $('error').show().text(e);
+
+        }
+
+        $()
+
+
+
+    });
+
+
+</script>

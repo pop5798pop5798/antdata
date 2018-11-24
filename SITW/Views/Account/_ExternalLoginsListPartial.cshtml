@@ -1,0 +1,41 @@
+﻿@model SITW.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0)
+    {
+    }
+    else
+    {
+
+<div class="row margin-bottom-1x">
+        @foreach (AuthenticationDescription p in loginProviders)
+        {
+            switch (p.AuthenticationType)
+            {
+                case "Facebook":
+                    <div class="col-xl-4 col-md-6 col-sm-4"><a class="btn btn-sm btn-block facebook-btn OAuthLogin" href="#" provider="@p.AuthenticationType"><i class="socicon-facebook"></i>&nbsp;@p.AuthenticationType</a></div>
+                    @*<a href="#" provider="@p.AuthenticationType" class="color-one OAuthLogin"><i class="fa fa-facebook"></i>@p.AuthenticationType</a>*@
+
+                    break;
+                case "Google":
+                   
+                    @*<a href="#" provider="@p.AuthenticationType" class="color-three OAuthLogin"><i class="fa fa-google"></i>@p.AuthenticationType</a>*@
+                    <div class="col-xl-4 col-md-6 col-sm-4"><a class="btn btn-sm btn-block google-btn OAuthLogin"  href="#" provider="@p.AuthenticationType"><i class="socicon-googleplus"></i>&nbsp;@p.AuthenticationType</a></div>
+                    break;
+
+
+            }
+        }
+    </div>
+
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { id = "OAuthForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("provider")
+        }
+    }
+}

@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "熊i猜-掌握電競新樂趣";
+    ViewBag.Description = "熊i猜-電競免費競猜平台 ! 裡頭提供了各式各樣的電競賽事讓玩家開心遊玩競猜，現在就趕快揪好友上排行拿獎品，掌握電競新樂趣就要熊i猜";
+    string date = DateTime.Now.ToString("MMddmmss");
+}
+
+<script type="application/ld+json">
+    {
+    "@@context": "http://schema.org",
+    "@@type": "BreadcrumbList",
+    "itemListElement": [{
+    "@@type": "ListItem",
+    "position": 1,
+    "item": {
+    "@@id": "http://funbet.com.tw/",
+    "name": "首頁",
+    "image": "http://funbet.com.tw/Content/images/logo-1.png"
+    }
+    }]
+    }
+</script>
+
+
+
+<link href="/Content/css/responsive-home.css?@date" rel="stylesheet">
+
+
+        @Html.Action("_Banner", "Home")
+   
+
+
+
+    <div class="sportsmagazine-main-content">
+       
+        <!--// Main Section \\-->
+        <div class="sportsmagazine-main-section">
+            <div class="container">
+                <div class="row">
+
+
+                    <div id="pugame">
+
+                    </div>
+                    <div class="col-md-8">
+
+                        <div id="homenews">
+                            @Html.Action("_HomeNews", "News")
+                        </div>
+                    </div>
+
+                    <aside class="col-md-4">
+
+
+                        <!--// Widget TeamRanking \\-->
+                        @Html.Action("_Win", "Ranking", new { cycle = 10, num = 10, unitSn = 1 })
+                        <!--// Widget TeamRanking \\-->
+
+                    </aside>
+                    <!--// SideBaar \\-->
+
+                </div>
+            </div>
+        </div>
+        <!--// Main Section \\-->
+
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryajax")
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                
+                $("#gamepage").css("color", "#e4b12a");
+                $("#missionpage").click(function () {
+                    $("#missionpage").css("color", "#e4b12a");
+                    $("#gamepage").css("color", "#ebdec2");
+                    $("#betpage").css("color", "#ebdec2");
+                });
+
+                $("#betpage").click(function () {
+                    $("#missionpage").css("color", "#ebdec2");
+                    $("#gamepage").css("color", "#ebdec2");
+                    $("#betpage").css("color", "#e4b12a");
+
+                });
+
+                $.get("@Url.Action("_popularGame", "game")", function (data) {
+                  var message = $("#pugame");
+                  message.html(data);
+                  var obj = $('div[name="widgetnext"] time').text();
+                  if (!obj) {
+                      $('#titleshow').css('display', 'none');
+                  }
+                
+                $('#indexhome').addClass("active");
+                $("[name=sportsmagazine-countdown]").each(
+                    function (i, obj) {
+                        var d = new Date($(obj).siblings("[name=gametime]").val());
+                        if (d.toString() != "Invalid Date") {
+                            $(obj).countdown({
+                                until: d,
+                                compact: true,
+                                layout: ' <b>{dn} 天 {hnn} 小時 {mnn} 分 {snn} 秒</b> {desc}'
+                            });
+                        }
+                        else
+                        {
+                            $(obj).parents(".widget_match_countdown").hide();
+                        }
+                    });
+
+
+                $('.sportsmagazine-fixture-slider').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 5000,
+                    infinite: true,
+                    dots: false,
+                    prevArrow: "<span class='slick-arrow-left'><i class='fa fa-angle-left'></i></span>",
+                    nextArrow: "<span class='slick-arrow-right'><i class='fa fa-angle-right'></i></span>",
+                });
+
+
+                });
+               @* $.get("@Url.Action("_HomeNews", "News")", function (data) {
+                    var message = $("#homenews");
+                    message.html(data);
+
+                    $("li #jshtml").each(
+                        function (index) {
+                            var content = $(this).text();
+                             content = content.replace(/<\/?[^>]*>/g, ''); //去除HTML tag
+                             content = content.replace(/[ | ]*\n/g, '\n'); //去除行尾空白
+                             content = content.replace(/&nbsp;/ig, '');
+                             content = content.substr(0, 60)
+
+                             $(this).html(content + '... (繼續閱讀)');
+
+
+                    });
+
+                });*@
+
+
+                $(".right-banner a").attr("href", "@Url.Action("Register", "Account")")
+                
+
+
+        });
+        </script>
+     
+
+
+        @*---------------下雪JS-------------------------
+            <script src="/Scripts/snow-plugin.js"></script>
+                <script>
+                    $(function () {
+                        $(".snow-canvas").snow();
+                    });
+                </script>
+                --------------------------------------END*@
+
+        @*---------------------------button移動-----------
+            <script>
+                $(document).ready(function () {
+                    $(".right-banner").hover(function () {
+                        $(".right-banner").animate({ top: '15%' });
+                    }, function () {
+                        $(".right-banner").animate({ top: '10%' });
+                    });
+                });
+
+
+            </script>
+             ---------------------------------------------END*@
+
+
+        @*------------------------------動態背景-----------------------
+            <script src='/Scripts/stopExecutionOnTimeout.js?t=1'></script>
+                <script>
+                                $(document).ready(function () {
+                                    var stars = 800;
+                                    var $stars = $('.stars');
+                                    var r = 800;
+                                    for (var i = 0; i < stars; i++) {
+                                        if (window.CP.shouldStopExecution(1)) {
+                                            break;
+                                        }
+                                        var $star = $('<div/>').addClass('star');
+                                        $stars.append($star);
+                                    }
+                                    window.CP.exitedLoop(1);
+                                    $('.star').each(function () {
+                                        var cur = $(this);
+                                        var s = 0.2 + Math.random() * 1;
+                                        var curR = r + Math.random() * 300;
+                                        cur.css({
+                                            transformOrigin: '0 0 ' + curR + 'px',
+                                            transform: ' translate3d(0,0,-' + curR + 'px) rotateY(' + Math.random() * 360 + 'deg) rotateX(' + Math.random() * -50 + 'deg) scale(' + s + ',' + s + ')'
+                                        });
+                                    });
+                                });
+
+                </script>
+                ----------------------------------------------------END*@
+
+        @*------------------------------閃耀-----------------------
+    <script type="text/javascript" src="/Scripts/Sparkle/stars.js"></script>*@
+
+       
+
+       
+    }

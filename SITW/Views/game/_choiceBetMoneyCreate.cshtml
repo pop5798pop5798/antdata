@@ -1,0 +1,32 @@
+﻿@model SITW.Models.ViewModel.GamePostViewModel
+@{
+    Layout = null;
+    int i = ViewBag.index ?? 0;
+    int ci = ViewBag.choiceIndex ?? 0;
+    int ti = ViewBag.topicIndex ?? 0;
+    int unitSn = Model.game.topicList[ti].choiceList[ci].betMoney[i].unitSn;
+}
+
+
+    
+<div name="choiceUnitDiv" unit="@unitSn" class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.game.topicList[ti].choiceList[ci].betMoney[i].unitSn, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <label class="control-label" style="text-align: left;">
+                @(((SITW.Models.ViewModel.choiceOddsViewModel)ViewBag.choiceOddsViewModel).unitStr)
+                @Html.HiddenFor(model=>model.game.topicList[ti].choiceList[ci].betMoney[i].unitSn)
+                @Html.HiddenFor(model => model.game.topicList[ti].choiceList[ci].betMoney[i].choiceSn)
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.game.topicList[ti].choiceList[ci].betMoney[i].Odds, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.game.topicList[ti].choiceList[ci].betMoney[i].Odds, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.game.topicList[ti].choiceList[ci].betMoney[i].Odds, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>

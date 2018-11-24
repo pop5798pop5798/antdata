@@ -1,0 +1,61 @@
+﻿@media screen and (min-width: 1620px) and (max-width: 2000px) {
+
+     .sportsmagazine-banner-one, .sportsmagazine-banner, .sportsmagazine-banner-one-layer {
+        /*position: absolute;
+        top: 10%;*/
+        
+    }
+
+    .sportsmagazine-main-content {
+        padding: 0px 0px 10px 0px;
+        /*margin: 32% 0 10%;*/
+        background-color: #000;
+        background-image: url(https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/background.png?t=20171205);
+        box-shadow: 0px -5px 8px 0px rgba(0,0,0,1);
+        border-top: 1px solid #2f334c;
+    }
+    .sportsmagazine-header-one{
+       /* position:absolute;*/
+       
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1620px) {
+    .sportsmagazine-banner-one, .sportsmagazine-banner, .sportsmagazine-banner-one-layer {
+        /*position: absolute;
+        top: 9%;*/
+        
+    }
+
+    .sportsmagazine-main-content {
+        padding: 0px 0px 10px 0px;
+        /*margin: 35% 0 10%;*/
+        background-color: #000;
+        background-image: url(https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/background.png?t=20171205);
+        box-shadow: 0px -5px 8px 0px rgba(0,0,0,1);
+        border-top: 1px solid #2f334c;
+    }
+    .sportsmagazine-header-one {
+        /*position: absolute;*/
+    }
+
+}
+@media screen and (min-width: 990px) and (max-width: 1200px) {
+    .sportsmagazine-banner-one, .sportsmagazine-banner, .sportsmagazine-banner-one-layer {
+        /*position: absolute;
+        top: 9%;*/
+        
+    }
+
+    .sportsmagazine-main-content {
+        padding: 0px 0px 10px 0px;
+        /*margin: 37% 0;*/
+        background-color: #000;
+        background-image: url(https://storage.googleapis.com/funbet-180608.appspot.com/OtherIMG/background.png?t=20171205);
+    }
+
+    .sportsmagazine-header-one {
+        /*position: absolute;*/
+        z-index: 9999;
+    }
+}

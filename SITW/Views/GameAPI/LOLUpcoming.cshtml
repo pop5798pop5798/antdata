@@ -1,0 +1,126 @@
+﻿@model IEnumerable<SITW.Models.GameAPIModels.LOLUpcoming.RootObject>
+
+@{
+    /**/
+
+    //Layout = "~/Views/Shared/_Layout_admin_Game.cshtml";
+    Layout = null;
+}
+<section id="main-content">
+    <section class="wrapper">
+        <div class="bs-example">
+
+            <h5>LOL2API</h5>
+            <table id="lolList" class="table table-bordered table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="width:10%"> 編號 </th>
+                        <th style="width:10%">系列</th>
+                        <th style="width:20%">聯賽類型 </th>
+                        <th style="width:20%"> 賽局名稱 </th>
+                        <th style="width:20%">比賽開始時間 </th>
+                        <th style="width:10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td> @item.id </td>
+                            <td>BO @item.number_of_games</td>
+                            <td> @item.league.name <img style="max-width:50px;" src="@item.league.image_url" /> @item.serie.season - @item.tournament.name</td>
+                            <td>
+                                <img style="max-width:50px;" src="@item.opponents[0].opponent.image_url" />  @item.opponents[0].opponent.name <span>VS</span> <br> <img style="max-width:50px;" src="@item.opponents[1].opponent.image_url" /> @item.opponents[1].opponent.name
+                            </td>
+                            <td>@item.dtstring </td>
+                            <td>
+                                <a id="dota2data" href="#">
+                                    <input type="hidden" name="dota2begin_at" value="@item.dtstring">
+                                    <input type="hidden" name="team1" value=" @item.opponents[0].opponent.name">
+                                    <input type="hidden" name="team2" value=" @item.opponents[1].opponent.name">
+                                    <input type="hidden" name="league" value="@item.league.name - @item.serie.season - @item.tournament.name">
+                                    填入資料
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+</section>
+
+
+@ViewData["dota2"]
+
+
+
+<!-- Modal -->
+
+
+
+
+<script src="/Scripts/jquery.dataTables.min.js"></script>
+<script src="/Scripts/dataTables.bootstrap.min.js"></script>
+<script src="//cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+<Script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".form_datetime").datetimepicker(
+            {
+                timepicker: false,
+                format: 'Y/m/d'
+            });
+
+        $('#lolList').DataTable({
+            "order": [[0, "desc"]], "ordering": false, "paging": true, "info": true, "searching": true,
+            "language": {
+                "lengthMenu": "顯示賽局_MENU_ ",
+                "info": "目前 _START_ to _END_ 共 _TOTAL_ 局", "paginate": {
+                    "next": "", "previous": ""
+                }
+            }
+        });
+
+
+    });
+</Script>
+
+
+
+
+
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="//cdn.datatables.net/select/1.2.5/css/select.bootstrap.min.css" />
+
+
+<style>
+
+
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        background-color: #96c8f9;
+    }
+</style>
+
+
+
+@*@foreach (var item in Model)
+    {
+        <span>leaguename：</span> @item.leaguename.name <br>
+        foreach (var match in item.d2match)
+        {
+            <span>match_id：</span> @match.match_id<br>
+            <span>dire_team(勝利)：</span> @match.dire_team<br>
+            <span>dire_team(敗者)：</span> @match.radiant_team<br>
+        }
+
+
+
+    }*@
+
+

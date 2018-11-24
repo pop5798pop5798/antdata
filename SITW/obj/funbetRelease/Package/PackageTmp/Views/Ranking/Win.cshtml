@@ -1,0 +1,27 @@
+﻿@model SITW.Models.ViewModel.RankingViewModel
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    @foreach (var item in Model.rankinglist)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

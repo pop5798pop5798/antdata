@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="sitdbModelStoreContainer" CdmEntityContainer="sitdbEntities">
+    <EntitySetMapping Name="bets">
+      <EntityTypeMapping TypeName="sitdbModel.bet">
+        <MappingFragment StoreEntitySet="bets">
+          <ScalarProperty Name="Odds" ColumnName="Odds" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="choiceSn" ColumnName="choiceSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="comSn" ColumnName="comSn" />
+          <ScalarProperty Name="userSn" ColumnName="userSn" />
+          <ScalarProperty Name="topicSn" ColumnName="topicSn" />
+          <ScalarProperty Name="money" ColumnName="money" />
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cfgUnits">
+      <EntityTypeMapping TypeName="sitdbModel.cfgUnit">
+        <MappingFragment StoreEntitySet="cfgUnit">
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="comSn" ColumnName="comSn" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companys">
+      <EntityTypeMapping TypeName="sitdbModel.company">
+        <MappingFragment StoreEntitySet="companys">
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="comID" ColumnName="comID" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="sitdbModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="sn" ColumnName="sn" />
+          <ScalarProperty Name="comSn" ColumnName="comSn" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payouts">
+      <EntityTypeMapping TypeName="sitdbModel.payout">
+        <MappingFragment StoreEntitySet="payouts">
+          <ScalarProperty Name="rake" ColumnName="rake" />
+          <ScalarProperty Name="isTrue" ColumnName="isTrue" />
+          <ScalarProperty Name="correctTotalMoney" ColumnName="correctTotalMoney" />
+          <ScalarProperty Name="topicTotalMoney" ColumnName="topicTotalMoney" />
+          <ScalarProperty Name="choiceSn" ColumnName="choiceSn" />
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="userSn" ColumnName="userSn" />
+          <ScalarProperty Name="topicSn" ColumnName="topicSn" />
+          <ScalarProperty Name="gameSn" ColumnName="gameSn" />
+          <ScalarProperty Name="comSn" ColumnName="comSn" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="realMoney" ColumnName="realMoney" />
+          <ScalarProperty Name="money" ColumnName="money" />
+          <ScalarProperty Name="Odds" ColumnName="Odds" />
+          <ScalarProperty Name="betSn" ColumnName="betSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cfgGameStatus">
+      <EntityTypeMapping TypeName="sitdbModel.cfgGameStatu">
+        <MappingFragment StoreEntitySet="cfgGameStatus">
+          <ScalarProperty Name="inpdate" ColumnName="inpdate" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="choiceOdds">
+      <EntityTypeMapping TypeName="sitdbModel.choiceOdd">
+        <MappingFragment StoreEntitySet="choiceOdds">
+          <ScalarProperty Name="Odds" ColumnName="Odds" />
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="choiceSn" ColumnName="choiceSn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="apis">
+      <EntityTypeMapping TypeName="sitdbModel.api">
+        <MappingFragment StoreEntitySet="apis">
+          <ScalarProperty Name="apiplace" ColumnName="apiplace" />
+          <ScalarProperty Name="apidate" ColumnName="apidate" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="apiModel" ColumnName="apiModel" />
+          <ScalarProperty Name="apiStatus" ColumnName="apiStatus" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="edate" ColumnName="edate" />
+          <ScalarProperty Name="sdate" ColumnName="sdate" />
+          <ScalarProperty Name="userSn" ColumnName="userSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prices">
+      <EntityTypeMapping TypeName="sitdbModel.price">
+        <MappingFragment StoreEntitySet="prices">
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="apisId" ColumnName="apisId" />
+          <ScalarProperty Name="apiCount" ColumnName="apiCount" />
+          <ScalarProperty Name="priceMoney" ColumnName="priceMoney" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="choices">
+      <EntityTypeMapping TypeName="sitdbModel.choice">
+        <MappingFragment StoreEntitySet="choices">
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="choiceStr" ColumnName="choiceStr" />
+          <ScalarProperty Name="topicSn" ColumnName="topicSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="topics">
+      <EntityTypeMapping TypeName="sitdbModel.topic">
+        <MappingFragment StoreEntitySet="topics">
+          <ScalarProperty Name="apitype" ColumnName="apitype" />
+          <ScalarProperty Name="layer" ColumnName="layer" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="unitSn" ColumnName="unitSn" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="apieTitle" ColumnName="apieTitle" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="apiSn" ColumnName="apiSn" />
+          <ScalarProperty Name="sn" ColumnName="sn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
