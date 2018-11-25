@@ -70,6 +70,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <h4 class="margin-bottom-1x">Or using form below</h4>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group input-group">
 
 
@@ -97,7 +98,13 @@
             <div class="padding-top-3x hidden-md-up"></div>
             <h3 class="margin-bottom-1x">No Account? Register</h3>
             <p>Registration takes less than a minute but gives you full control over your orders.</p>
-            @Html.Action("Register")
+            <div class="col-12 text-center text-sm-right">
+                <form action="@Url.Action("Register")">
+                <input class="btn btn-primary margin-bottom-none" type="submit" value="註冊" />
+                    </form>
+            </div>
+
+
 
         </div>
     </div>

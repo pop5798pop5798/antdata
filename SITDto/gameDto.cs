@@ -84,7 +84,7 @@ namespace SITDto
             }
         }
         [Display(Name ="遊戲模式")]
-        [Required]
+       // [Required]
         public Nullable<byte> apiModel { get; set; }
         public string apiModelString
         {
@@ -104,7 +104,7 @@ namespace SITDto
 
 
         [DisplayName("比賽時間")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm}", ApplyFormatInEditMode = true)]
         public Nullable<DateTime> gamedate { get; set; }
 
         [DisplayName("API地點")]

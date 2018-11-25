@@ -510,7 +510,7 @@ namespace SIT.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            gameDto game = new gameDto { topicList = new List<topicDto>() };
+            gameDto game = new gameDto { topicList = new List<topicDto>(), priceList = new List<priceDto> ()};
             GamePostViewModel gpvm = new GamePostViewModel { game = game, vedio = new VedioRecord() };
 
 

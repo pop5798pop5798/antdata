@@ -171,55 +171,54 @@
                             <label class="col-sm-3 control-label no-padding-right">價格</label>
                             1
                             <div class="space-4"></div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-9">
                                 API數據價格
                                 <span class="input-icon">
-                                    @Html.EditorFor(model => model.game.priceList[0].priceMoney, new { htmlAttributes = new { @class = "input-sm",@id= "spinner2" } })
+                                    @Html.EditorFor(model => model.game.priceList[0].priceMoney, new { htmlAttributes = new { @class = "input-sm", @id = "spinner2" } })
                                     @Html.ValidationMessageFor(model => model.game.priceList[0].priceMoney, "", new { @class = "text-danger" })
                                     @*<input type="text" class="input-sm" id="spinner2" />*@
                                     <i class="ace-icon fa fa-leaf blue"></i>
                                 </span>
-                            </div>
-                            <div class="col-sm-2">
                                 訪問API次數
                                 @Html.EditorFor(model => model.game.priceList[0].apiCount, new { htmlAttributes = new { @class = "input-sm", @id = "spinner1" } })
                                 @Html.ValidationMessageFor(model => model.game.priceList[0].apiCount, "", new { @class = "text-danger" })
-                                @*<input type="text" id="spinner1" />*@
-                                <div class="space-6"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">API數據介紹(內容)</label>
-                            <div class="col-sm-6">
-
-                                <div class="wysiwyg-editor" name="game.comment" id="editor1"></div>
-                                @Html.ValidationMessageFor(model => model.game.comment, "", new { @class = "text-danger" })
 
                             </div>
+                            <div class="space-6"></div>
+                          
                         </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right">API數據介紹(內容)</label>
+                                <div class="col-sm-6">
 
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">數據內容</label>
-                            1
-                            <div class="space-4"></div>
-                            <div class="col-sm-3">
-                                數據名1
-                                <input type="text" id="form-field-icon-1">
+                                    <div class="wysiwyg-editor" name="game.comment" id="editor1"></div>
+                                    @Html.ValidationMessageFor(model => model.game.comment, "", new { @class = "text-danger" })
+
+                                </div>
                             </div>
-                            <div class="col-sm-2">
-                                @Html.DataTypeSelect("game.topicList[0].apitypeid", 0)
-                                @Html.ValidationMessageFor(model => model.game.topicList[0].apitypeid, "", new { @class = "text-danger" })
-                                
-                                
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right">數據內容</label>
+                                1
+                                <div class="space-4"></div>
+                                <div class="col-sm-9">
+                                    數據名1
+                                    <input type="text" id="form-field-icon-1">
+                                    <div class="col-sm-3">
+                                    @Html.DataTypeSelect("game.topicList[0].apitypeid", 0)
+                                    @Html.ValidationMessageFor(model => model.game.topicList[0].apitypeid, "", new { @class = "text-danger" })
+                                        </div>
+
+                                </div>
+                                  
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Create" class="btn btn-default" />
+                                    </div>
+                                </div>
+                                }
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" />
-                            </div>
-                        </div>
-                    }
-                </div>
             </div>
         </div>
     </div>

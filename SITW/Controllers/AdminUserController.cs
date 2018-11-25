@@ -59,7 +59,7 @@ namespace SITW.Controllers
         public ActionResult Create()
         {
             gameDto game = new gameDto { topicList = new List<topicDto>() };
-            GamePostViewModel gpvm = new GamePostViewModel { game = game, vedio = new VedioRecord() };
+            GamePostViewModel gpvm = new GamePostViewModel { game = game };
 
 
             return View(gpvm);
@@ -69,8 +69,33 @@ namespace SITW.Controllers
         //[Authorize(Roles = "Admin")]
         public async System.Threading.Tasks.Task<ActionResult> Create(GamePostViewModel gpvm)
         {
+            try
+            {
+               
 
-            return View(gpvm);
+                gameDto game = gpvm.game;
+                game.userId = User.Identity.GetUserId();
+                game.comSn = 1;
+                game = await new GamesRepository().Create(game);
+
+
+
+
+                APIPosts gp = new APIPosts { ApiSn = game.sn, valid = 1, inpdate = DateTime.Now };
+
+
+                gp.sdate = gpvm.game.sdate;
+                gp.edate = gpvm.game.edate;
+                gp.categorySn = gpvm.gamepost.categorySn;
+                new GamePostsRepository().add(gp);            
+
+                APIPosts gamepost = new GamePostsRepository().getgame(game.sn);
+                return RedirectToAction("DetailsAdmin", new { id = gamepost.sn });
+            }
+            catch
+            {
+                return View(gpvm);
+            }
         }
 
         public async System.Threading.Tasks.Task<ContentResult> DataJson()

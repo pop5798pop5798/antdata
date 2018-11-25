@@ -50,6 +50,7 @@ namespace SITW.Models
         public string Email { get; set; }
     }
 
+
     public class LoginViewModel
     {
         [Required]
@@ -64,6 +65,7 @@ namespace SITW.Models
 
         [Display(Name = "記住我?")]
         public bool RememberMe { get; set; }
+        
     }
 
     public class RegisterViewModel
@@ -86,7 +88,7 @@ namespace SITW.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "{0} 的長度至少必須為 {2} 個字元。", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} 的長度至少{2}個字元。", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密碼")]
         public string Password { get; set; }

@@ -16,3 +16,12 @@ C:\Users\JOJO\source\repos\SIT2-3\SITDto\obj\Debug\SITDto.csproj.CopyComplete
 C:\Users\JOJO\source\repos\SIT2-3\SITDto\obj\Debug\SITDto.dll
 C:\Users\JOJO\source\repos\SIT2-3\SITDto\obj\Debug\SITDto.pdb
 C:\Users\JOJO\source\repos\SIT2-3\SITDto\obj\Debug\SITDto.csprojAssemblyReference.cache
+C:\Users\JOJO\source\repos\AntBlue\SITDto\bin\Debug\SITDto.dll
+C:\Users\JOJO\source\repos\AntBlue\SITDto\bin\Debug\SITDto.pdb
+C:\Users\JOJO\source\repos\AntBlue\SITDto\bin\Debug\AutoMapper.dll
+C:\Users\JOJO\source\repos\AntBlue\SITDto\bin\Debug\AutoMapper.xml
+C:\Users\JOJO\source\repos\AntBlue\SITDto\obj\Debug\SITDto.csprojAssemblyReference.cache
+C:\Users\JOJO\source\repos\AntBlue\SITDto\obj\Debug\SITDto.csproj.CoreCompileInputs.cache
+C:\Users\JOJO\source\repos\AntBlue\SITDto\obj\Debug\SITDto.csproj.CopyComplete
+C:\Users\JOJO\source\repos\AntBlue\SITDto\obj\Debug\SITDto.dll
+C:\Users\JOJO\source\repos\AntBlue\SITDto\obj\Debug\SITDto.pdb

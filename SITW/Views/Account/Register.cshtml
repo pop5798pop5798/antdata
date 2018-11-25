@@ -1,7 +1,5 @@
-﻿@using SITW.Models
-@model SITW.Models.RegisterViewModel
+﻿@model SITW.Models.RegisterViewModel
 @{
-    Layout = null;
     ViewBag.Title = "註冊| 熊i猜";
     ViewBag.Description = "註冊-熊i猜 - 電競免費競猜平台 !歡迎來到熊i猜，立即註冊開啟競猜之旅 現在註冊送2000魚骨幣試玩";
 }
@@ -29,51 +27,87 @@
     }
 </script>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "row", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="col-sm-6">
-        <div class="form-group">
-            @Html.LabelFor(m => m.LastName)
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required" })
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            @Html.LabelFor(m => m.FirstName)
-            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            @Html.LabelFor(m => m.Name)
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required" })
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email)
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password)
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="form-group">
-            @Html.LabelFor(m => m.ConfirmPassword)
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
 
+<!-- Page Title-->
+<div class="page-title">
+    <div class="container">
+        <div class="column">
+            <h1>Login / Register Account</h1>
+        </div>
+        <div class="column">
+            <ul class="breadcrumbs">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="separator">&nbsp;</li>
+                <li>
+                    <a href="account-orders.html">Account</a>
+                </li>
+                <li class="separator">&nbsp;</li>
+                <li>Register</li>
+            </ul>
         </div>
     </div>
-    <div class="col-12 text-center text-sm-right">
-        <button class="btn btn-primary margin-bottom-none" type="submit">Register</button>
-    </div>
-}
+</div>
+<!-- Page Content-->
+<div class="container padding-bottom-3x mb-2">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="padding-top-3x hidden-md-up"></div>
+            <h3 class="margin-bottom-1x">No Account? Register</h3>
+            <p>Registration takes less than a minute but gives you full control over your orders.</p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card-body">
 
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "row", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LastName) @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FirstName) @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name) @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", required = "required", maxlength = "14" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email) @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password) @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword) @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
+
+                        </div>
+                    </div>
+                    <div class="col-12 text-center text-sm-right">
+                        <button class="btn btn-primary margin-bottom-none" type="submit">註冊</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

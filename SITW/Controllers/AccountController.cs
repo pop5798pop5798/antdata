@@ -78,7 +78,8 @@ namespace SITW.Controllers
            /* if (!ModelState.IsValid || !new reCAPTCHAHelper().Validate(Request["g-recaptcha-response"]))
             {
                 return View(model);
-            }*/
+                }*/
+
 
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true

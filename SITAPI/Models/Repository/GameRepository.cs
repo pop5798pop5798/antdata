@@ -52,7 +52,7 @@ where g.valid=1
                 string query = @"
 SELECT g.*,u.userID
 into #games
-FROM dbo.games g
+FROM dbo.apis g
 JOIN dbo.users u ON u.sn=g.userSn
 where g.valid=1
 
@@ -60,10 +60,9 @@ select *
 from #games
 
 SELECT t.*
-FROM dbo.games g
+FROM dbo.apis g
 JOIN dbo.topics t ON 
-	g.comSn = t.comSn
-	AND t.gameSn=g.sn
+ t.apiSn=g.sn
 WHERE exists(
 	select *
 	from #games
@@ -77,10 +76,8 @@ SELECT c.*
 	from bets b
 	where b.choiceSn=c.sn
 ),0) as betMoneygti
-FROM dbo.games g
-JOIN dbo.topics t ON 
-	g.comSn = t.comSn
-	AND t.gameSn=g.sn
+FROM dbo.apis g
+JOIN dbo.topics t ON  t.apiSn=g.sn
 JOIN dbo.choices c ON
 	c.topicSn=t.sn
 WHERE exists(
@@ -88,16 +85,15 @@ WHERE exists(
 	from #games
 	where sn=g.sn
 )
-select c.sn as choiceSn,bu.value as unitSn, isnull(sum(b.money),0) as betMoney
-,isnull(c.Odds,0) as Odds
+select c.sn as choiceSn, isnull(sum(b.money),0) as betMoney
 from #games g
-CROSS APPLY string_split(betUnit,',') bu
-left join topics t on t.gameSn=g.sn
+left join topics t on t.apiSn=g.sn
 left join choices c on c.topicSn=t.sn
-left join bets b on b.choiceSn=c.sn and b.unitSn=bu.value
-left join choiceOdds co on co.choiceSn=c.sn and b.unitSn=bu.value
-group by c.sn,bu.value,c.Odds 
-order by c.sn,unitSn
+left join bets b on b.choiceSn=c.sn 
+left join choiceOdds co on co.choiceSn=c.sn 
+group by c.sn
+order by c.sn
+
 ";
                 using (var multi = cn.QueryMultiple(query))
                 {
