@@ -7,7 +7,7 @@
 
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
+    @RenderSection("Styles", required: false)
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="/Content/admin/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/Content/admin/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -962,6 +962,12 @@
     <script src="/Scripts/admin/jquery.hotkeys.index.min.js"></script>
     <script src="/Scripts/admin/bootstrap-wysiwyg.min.js"></script>
     <script src="/Scripts/admin/bootbox.js"></script>
+    <!-- page specific plugin scripts -->
+    <script src="/Scripts/admin/jquery.bootstrap-duallistbox.min.js"></script>
+    <script src="/Scripts/admin/jquery.raty.min.js"></script>
+    <script src="/Scripts/admin/bootstrap-multiselect.min.js"></script>
+    <script src="/Scripts/admin/select2.min.js"></script>
+    <script src="/Scripts/admin/jquery-typeahead.js"></script>
     @RenderSection("scripts", required: false)
 
     <!-- ace scripts -->

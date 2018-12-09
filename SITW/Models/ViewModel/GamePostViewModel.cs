@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SITW.Models.ViewModel
 {
@@ -112,9 +113,9 @@ namespace SITW.Models.ViewModel
             }
         }
         private string _encryptedKey { get; set; }
-
         public APIPosts gamepost { get; set; }
         public gameDto game { get; set; }
+        public List<TopicsSetting> topicsetting { get; set; }
         public VedioRecord vedio { get; set; }
         public cfgVedio cfgVedio { get; set; }
         public Teams TeamA { get; set; }
@@ -123,6 +124,8 @@ namespace SITW.Models.ViewModel
         public int endguess { get; set; }
         public string gamesearch { get; set; }
         public string vedio_url { get; set; }
+        [AllowHtml]
+        public string comment { get; set; }
 
 
 

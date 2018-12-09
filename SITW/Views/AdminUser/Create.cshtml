@@ -3,8 +3,12 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
+    int ti = 0;
 }
 @using SITW.Helper
+
+
+
 <div class="main-content">
     <div class="main-content-inner">
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -115,110 +119,126 @@
                         @Html.AntiForgeryToken()
                         <!-- PAGE CONTENT BEGINS -->
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> API數據名稱 </label>
-
-                            <div class="col-sm-9">
-                                @Html.EditorFor(model => model.game.title, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", placeholder = "API數據名稱" } })
-                                @Html.ValidationMessageFor(model => model.game.title, "", new { @class = "text-danger" })
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2">上架API數據時間</label>
-
-                            <div class="col-sm-4">
-                                <div class="input-daterange input-group">
-
-                                    @Html.EditorFor(model => model.game.sdate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "開始上架時間" } })
-                                    @Html.ValidationMessageFor(model => model.game.sdate, "", new { @class = "text-danger" })
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-exchange"></i>
-                                    </span>
-                                    @Html.EditorFor(model => model.game.edate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "下架時間" } })
-                                    @Html.ValidationMessageFor(model => model.game.edate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-3">API數據類型</label>
                             <div class="col-sm-4">
                                 @Html.PlayGameSelect("gamepost.categorySn", Model.gamepost.categorySn)
                                 @Html.ValidationMessageFor(model => model.gamepost.categorySn, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right" for="form-field-3">封面上傳</label>
-                            <div class="col-sm-4">
+                            <label class="col-sm-3 control-label no-padding-top" for="duallist"> 數據內容 </label>
 
+                            <div class="col-sm-8">
+                                <select multiple="multiple" size="10" name="duallistbox_demo1[]" id="duallist">
+                                    @foreach (var topic in Model.topicsetting)
+                                    {
+                                        <option value="@topic.id">
+                                            @topic.tName
+                                        </option>
+                                    }
+                                    @*<option value="0">
+                            名稱(字串類型)
+                        </option>*@
+                                </select>
 
+                                <div class="hr hr-16 hr-dotted"></div>
+                            </div>
+                        </div>
+                        foreach (var topichide in Model.topicsetting)
+                        {
+                            <input name="game.topicList[@ti].title" type="hidden" value="@topichide.tName" />
+                            <input name="game.topicList[@ti].apieTitle" type="hidden" value="@topichide.dataName" />
+                            <input name="game.topicList[@ti].apitypeid" type="hidden" value="@topichide.apiDataId" />
+                            <input name="game.topicList[@ti].valid" type="hidden" value="0" />
+                            ti++;
+                        }
 
-                                <div class="form-group">
-                                    <div class="col-xs-12">
-                                        <input multiple="" type="file" name="gamepost.coverhref" id="id-input-file-3" />
-                                        @Html.ValidationMessageFor(model => model.gamepost.coverhref, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> API數據名稱 </label>
+
+                                <div class="col-sm-9">
+                                    @Html.EditorFor(model => model.game.title, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", placeholder = "API數據名稱" } })
+                                    @Html.ValidationMessageFor(model => model.game.title, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-2">上架API數據時間</label>
+
+                                <div class="col-sm-4">
+                                    <div class="input-daterange input-group">
+
+                                        @Html.EditorFor(model => model.game.sdate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "開始上架時間" } })
+                                        @Html.ValidationMessageFor(model => model.game.sdate, "", new { @class = "text-danger" })
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-exchange"></i>
+                                        </span>
+                                        @Html.EditorFor(model => model.game.edate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "下架時間" } })
+                                        @Html.ValidationMessageFor(model => model.game.edate, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                            </div>
 
-                                <label>
-                                    <input type="checkbox" name="file-format" id="id-file-format" class="ace" checked onclick="return false;">
-                                    <span class="lbl"> 只充許圖片</span>
-                                </label>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-3">封面上傳</label>
+                                <div class="col-sm-4">
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <input multiple="" type="file" name="gamepost.coverhref" id="id-input-file-3" />
+                                            @Html.ValidationMessageFor(model => model.gamepost.coverhref, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <label>
+                                        <input type="checkbox" name="file-format" id="id-file-format" class="ace" checked onclick="return false;">
+                                        <span class="lbl"> 只充許圖片</span>
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right">價格</label>
+                                1
+                                <div class="space-4"></div>
+                                <div class="col-sm-9">
+                                    API數據價格
+                                    <span class="input-icon">
+                                        @Html.EditorFor(model => model.game.priceList[0].priceMoney, new { htmlAttributes = new { @class = "input-sm", @id = "spinner2" } })
+                                        @Html.ValidationMessageFor(model => model.game.priceList[0].priceMoney, "", new { @class = "text-danger" })
+                                        @*<input type="text" class="input-sm" id="spinner2" />*@
+                                        <i class="ace-icon fa fa-leaf blue"></i>
+                                    </span>
+                                    訪問API次數
+                                    @Html.EditorFor(model => model.game.priceList[0].apiCount, new { htmlAttributes = new { @class = "input-sm", @id = "spinner1" } })
+                                    @Html.ValidationMessageFor(model => model.game.priceList[0].apiCount, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="space-6"></div>
 
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">價格</label>
-                            1
-                            <div class="space-4"></div>
-                            <div class="col-sm-9">
-                                API數據價格
-                                <span class="input-icon">
-                                    @Html.EditorFor(model => model.game.priceList[0].priceMoney, new { htmlAttributes = new { @class = "input-sm", @id = "spinner2" } })
-                                    @Html.ValidationMessageFor(model => model.game.priceList[0].priceMoney, "", new { @class = "text-danger" })
-                                    @*<input type="text" class="input-sm" id="spinner2" />*@
-                                    <i class="ace-icon fa fa-leaf blue"></i>
-                                </span>
-                                訪問API次數
-                                @Html.EditorFor(model => model.game.priceList[0].apiCount, new { htmlAttributes = new { @class = "input-sm", @id = "spinner1" } })
-                                @Html.ValidationMessageFor(model => model.game.priceList[0].apiCount, "", new { @class = "text-danger" })
-
-                            </div>
-                            <div class="space-6"></div>
-                          
-                        </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right">API數據介紹(內容)</label>
                                 <div class="col-sm-6">
 
-                                    <div class="wysiwyg-editor" name="game.comment" id="editor1"></div>
-                                    @Html.ValidationMessageFor(model => model.game.comment, "", new { @class = "text-danger" })
+                                    <textarea name="comment" id="editor1" rows="10" cols="80">
+                                           
+                                        </textarea>
+                                    @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
 
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">數據內容</label>
-                                1
-                                <div class="space-4"></div>
-                                <div class="col-sm-9">
-                                    數據名1
-                                    <input type="text" name="game.topicList[0].title" id="form-field-icon-1">
-                                    <div class="col-sm-3">
-                                    @Html.DataTypeSelect("game.topicList[0].apitypeid", 0)
-                                    @Html.ValidationMessageFor(model => model.game.topicList[0].apitypeid, "", new { @class = "text-danger" })
-                                        </div>
-
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
                                 </div>
-                                  
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Create" class="btn btn-default" />
-                                    </div>
-                                </div>
-                    }
                             </div>
+                        }
+                    </div>
             </div>
         </div>
     </div>
@@ -339,8 +359,175 @@
         </div>
     </div>
 </div><!-- PAGE CONTENT ENDS -->
+
+
+
 @section Scripts
 {
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1');
+    </script>
+
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox({
+                nonSelectedListLabel: '更多數據欄位',
+                selectedListLabel: '使用中數據欄位',
+                infoTextFiltered: '<span class="label label-purple label-lg">Filtered</span>'
+            });
+            var container1 = demo1.bootstrapDualListbox('getContainer');
+            container1.find('.btn').addClass('btn-white btn-info btn-bold');
+            //var conceptName = $('select[name="duallistbox_demo1[]').find(":selected").val();
+            $('select[name ="duallistbox_demo1[]_helper1"]').on('change', function () {
+                var optionValues = [];
+                $('input[name$=".valid"]').val(0);
+                $('select[name="duallistbox_demo1[]"] option:checked').each(function () {
+                    optionValues.push($(this).val());
+                });
+                for (var i = 0; i < optionValues.length; i++) {
+                    $('input[name="game.topicList[' + optionValues[i] + '].valid"]').val(1);
+                    //alert($('input[name="game.topicList[' + optionValues[i] + '].valid"]').val());
+                }
+                demo1.bootstrapDualListbox('refresh', true);
+
+            });
+            
+            $('select[name ="duallistbox_demo1[]_helper2"]').on('change', function () {
+                var optionValues = [];
+                $('input[name$=".valid"]').val(0);
+                $('select[name="duallistbox_demo1[]"] option:checked').each(function () {
+                    optionValues.push($(this).val());
+                });
+                for (var i = 0; i < optionValues.length; i++) {
+                    $('input[name="game.topicList[' + optionValues[i] + '].valid"]').val(1);
+                   // alert($('input[name="game.topicList[' + optionValues[i] + '].valid"]').val());
+                }
+                demo1.bootstrapDualListbox('refresh', true);
+            });
+
+            
+            
+          
+
+            /**var setRatingColors = function() {
+                $(this).find('.star-on-png,.star-half-png').addClass('orange2').removeClass('grey');
+                $(this).find('.star-off-png').removeClass('orange2').addClass('grey');
+            }*/
+            $('.rating').raty({
+                'cancel': true,
+                'half': true,
+                'starType': 'i'
+                /**,
+
+                'click': function() {
+                    setRatingColors.call(this);
+                },
+                'mouseover': function() {
+                    setRatingColors.call(this);
+                },
+                'mouseout': function() {
+                    setRatingColors.call(this);
+                }*/
+            });//.find('i:not(.star-raty)').addClass('grey');
+
+
+
+            //////////////////
+            //select2
+            $('.select2').css('width', '200px').select2({ allowClear: true })
+            $('#select2-multiple-style .btn').on('click', function (e) {
+                var target = $(this).find('input[type=radio]');
+                var which = parseInt(target.val());
+                if (which == 2) $('.select2').addClass('tag-input-style');
+                else $('.select2').removeClass('tag-input-style');
+            });
+
+            //////////////////
+            $('.multiselect').multiselect({
+                enableFiltering: true,
+                enableHTML: true,
+                buttonClass: 'btn btn-white btn-primary',
+                templates: {
+                    button: '<button type="button" class="multiselect dropdown-toggle" data-toggle="dropdown"><span class="multiselect-selected-text"></span> &nbsp;<b class="fa fa-caret-down"></b></button>',
+                    ul: '<ul class="multiselect-container dropdown-menu"></ul>',
+                    filter: '<li class="multiselect-item filter"><div class="input-group"><span class="input-group-addon"><i class="fa fa-search"></i></span><input class="form-control multiselect-search" type="text"></div></li>',
+                    filterClearBtn: '<span class="input-group-btn"><button class="btn btn-default btn-white btn-grey multiselect-clear-filter" type="button"><i class="fa fa-times-circle red2"></i></button></span>',
+                    li: '<li><a tabindex="0"><label></label></a></li>',
+                    divider: '<li class="multiselect-item divider"></li>',
+                    liGroup: '<li class="multiselect-item multiselect-group"><label></label></li>'
+                }
+            });
+
+
+            ///////////////////
+
+            //typeahead.js
+            //example taken from plugin's page at: https://twitter.github.io/typeahead.js/examples/
+            var substringMatcher = function (strs) {
+                return function findMatches(q, cb) {
+                    var matches, substringRegex;
+
+                    // an array that will be populated with substring matches
+                    matches = [];
+
+                    // regex used to determine if a string contains the substring `q`
+                    substrRegex = new RegExp(q, 'i');
+
+                    // iterate through the pool of strings and for any string that
+                    // contains the substring `q`, add it to the `matches` array
+                    $.each(strs, function (i, str) {
+                        if (substrRegex.test(str)) {
+                            // the typeahead jQuery plugin expects suggestions to a
+                            // JavaScript object, refer to typeahead docs for more info
+                            matches.push({ value: str });
+                        }
+                    });
+
+                    cb(matches);
+                };
+            };
+
+            $('input.typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                    name: 'states',
+                    displayKey: 'value',
+                    source: substringMatcher(ace.vars['US_STATES']),
+                    limit: 10
+                });
+
+
+            ///////////////
+
+
+            //in ajax mode, remove remaining elements before leaving page
+            $(document).one('ajaxloadstart.page', function (e) {
+                $('[class*=select2]').remove();
+                $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox('destroy');
+                $('.rating').raty('destroy');
+                $('.multiselect').multiselect('destroy');
+            });
+           
+            
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+           
+           
+
+        });
+
+        </script>
+
     <script type="text/javascript">
         jQuery(function ($) {
 
@@ -371,7 +558,7 @@
                         $('.chosen-select').each(function () {
                             var $this = $(this);
                             $this.next().css({ 'width': $this.parent().width() });
-                        })
+                        });
                     }).trigger('resize.chosen');
                 //resize chosen on sidebar collapse/expand
                 $(document).on('settings.ace.chosen', function (e, event_name, event_val) {
@@ -379,7 +566,7 @@
                     $('.chosen-select').each(function () {
                         var $this = $(this);
                         $this.next().css({ 'width': $this.parent().width() });
-                    })
+                    });
                 });
 
 
@@ -648,7 +835,7 @@
                 'cancelClass': 'btn-sm btn-default',
                 locale: {
                     applyLabel: 'Apply',
-                    cancelLabel: 'Cancel',
+                    cancelLabel: 'Cancel'
                 }
             })
                 .prev().on(ace.click_event, function () {
@@ -759,7 +946,7 @@
                         $(this).find('.chosen-search input').css('width', '200px');
                     });
                 }
-            })
+            });
             /**
             //or you can activate the chosen plugin after modal is shown
             //this way select element becomes visible with dimensions and chosen works as expected

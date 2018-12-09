@@ -62,5 +62,6 @@ namespace SITW.Models
         public virtual DbSet<APIPosts> APIPosts { get; set; }
         public virtual DbSet<ApiTypes> ApiTypes { get; set; }
         public virtual DbSet<ApiDataType> ApiDataType { get; set; }
+        public virtual DbSet<TopicsSetting> TopicsSetting { get; set; }
     }
 }

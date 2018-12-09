@@ -33,6 +33,8 @@ namespace SITDto
         [Required]
         [DisplayName("題目主題")]
         public string title { get; set; }
+        [DisplayName("數據名稱")]
+        public string apieTitle { get; set; }
         [DisplayName("題目備註")]
         public string comment { get; set; }
         public Nullable<double> totalmoney { get; set; }

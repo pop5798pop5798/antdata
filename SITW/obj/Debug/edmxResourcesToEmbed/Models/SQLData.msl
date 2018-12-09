@@ -439,11 +439,26 @@
     <EntitySetMapping Name="ApiDataType">
       <EntityTypeMapping TypeName="sitwModel.ApiDataType">
         <MappingFragment StoreEntitySet="ApiDataType">
+          <ScalarProperty Name="tName" ColumnName="tName" />
           <ScalarProperty Name="valid" ColumnName="valid" />
           <ScalarProperty Name="apiType" ColumnName="apiType" />
           <ScalarProperty Name="jName" ColumnName="jName" />
           <ScalarProperty Name="eName" ColumnName="eName" />
           <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TopicsSetting">
+      <EntityTypeMapping TypeName="sitwModel.TopicsSetting">
+        <MappingFragment StoreEntitySet="TopicsSetting">
+          <ScalarProperty Name="valid" ColumnName="valid" />
+          <ScalarProperty Name="apiDataId" ColumnName="apiDataId" />
+          <ScalarProperty Name="dataName" ColumnName="dataName" />
+          <ScalarProperty Name="eName" ColumnName="eName" />
+          <ScalarProperty Name="jName" ColumnName="jName" />
+          <ScalarProperty Name="cName" ColumnName="cName" />
+          <ScalarProperty Name="tName" ColumnName="tName" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

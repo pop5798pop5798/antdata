@@ -73,6 +73,7 @@
     <EntitySet Name="APIPosts" EntityType="sitwModel.APIPosts" />
     <EntitySet Name="ApiTypes" EntityType="sitwModel.ApiTypes" />
     <EntitySet Name="ApiDataType" EntityType="sitwModel.ApiDataType" />
+    <EntitySet Name="TopicsSetting" EntityType="sitwModel.TopicsSetting" />
   </EntityContainer>
   <EntityType Name="MissionEnd">
     <Key>
@@ -492,9 +493,23 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="eName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="eName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="jName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="apiType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="tName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TopicsSetting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="tName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="cName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="jName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="eName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dataName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="apiDataId" Type="Int32" />
     <Property Name="valid" Type="Byte" />
   </EntityType>
 </Schema>

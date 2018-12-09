@@ -141,5 +141,8 @@ namespace SITDto
 
         private bool? _canbet { get; set; }
         public List<priceDto> priceList { get; set; }
+
+
+        
     }
 }

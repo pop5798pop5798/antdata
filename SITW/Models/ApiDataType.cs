@@ -20,5 +20,6 @@ namespace SITW.Models
         public string jName { get; set; }
         public string apiType { get; set; }
         public Nullable<byte> valid { get; set; }
+        public string tName { get; set; }
     }
 }

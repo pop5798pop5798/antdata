@@ -60,6 +60,7 @@ namespace SITW.Controllers
         {
             gameDto game = new gameDto { topicList = new List<topicDto>() };
             GamePostViewModel gpvm = new GamePostViewModel { game = game };
+            gpvm.topicsetting = new GamePostsRepository().GetTopicsAll();
 
 
             return View(gpvm);
@@ -76,6 +77,7 @@ namespace SITW.Controllers
                 gameDto game = gpvm.game;
                 game.userId = User.Identity.GetUserId();
                 game.comSn = 1;
+                game.comment = gpvm.comment;
                 game = await new GamesRepository().Create(game);
 
 
@@ -87,6 +89,7 @@ namespace SITW.Controllers
                 gp.sdate = gpvm.game.sdate;
                 gp.edate = gpvm.game.edate;
                 gp.categorySn = gpvm.gamepost.categorySn;
+                gp.coverhref = gpvm.gamepost.coverhref;
                 new GamePostsRepository().add(gp);            
 
                 APIPosts gamepost = new GamePostsRepository().getgame(game.sn);

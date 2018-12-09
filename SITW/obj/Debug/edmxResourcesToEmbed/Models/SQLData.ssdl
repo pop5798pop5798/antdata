@@ -17,8 +17,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tName" Type="nvarchar" MaxLength="50" />
     <Property Name="cName" Type="nvarchar" MaxLength="50" />
-    <Property Name="eName" Type="nvarchar" MaxLength="50" />
+    <Property Name="eName" Type="varchar" MaxLength="50" />
     <Property Name="jName" Type="nvarchar" MaxLength="50" />
     <Property Name="apiType" Type="nvarchar(max)" />
     <Property Name="valid" Type="tinyint" />
@@ -301,6 +302,19 @@
     <Property Name="leagueSn" Type="int" Nullable="false" />
     <Property Name="valid" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="TopicsSetting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="tName" Type="nvarchar(max)" />
+    <Property Name="cName" Type="nvarchar(max)" />
+    <Property Name="jName" Type="nvarchar(max)" />
+    <Property Name="eName" Type="varchar(max)" />
+    <Property Name="dataName" Type="nvarchar(max)" />
+    <Property Name="apiDataId" Type="int" />
+    <Property Name="valid" Type="tinyint" />
+  </EntityType>
   <EntityType Name="TransferRecords">
     <Key>
       <PropertyRef Name="sn" />
@@ -449,6 +463,7 @@
     <EntitySet Name="Seasons" EntityType="Self.Seasons" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SMSRecord" EntityType="Self.SMSRecord" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TopicsSetting" EntityType="Self.TopicsSetting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransferRecords" EntityType="Self.TransferRecords" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserClaims" EntityType="Self.UserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserLoginRecord" EntityType="Self.UserLoginRecord" Schema="dbo" store:Type="Tables" />

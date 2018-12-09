@@ -47,6 +47,11 @@ namespace SITW.Models.Repository
             return db.APIPosts.Where(p => p.valid == 1).ToList();
         }
 
+        public List<TopicsSetting> GetTopicsAll()
+        {
+            return db.TopicsSetting.Where(p => p.valid == 1).ToList();
+        }
+
         public List<APIPosts> getValidAll()
         {
             DateTime dt = DateTime.Now.AddHours(-2);
