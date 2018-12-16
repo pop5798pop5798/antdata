@@ -113,7 +113,10 @@
     <Property Name="priceMoney" Type="float" />
     <Property Name="apiCount" Type="int" />
     <Property Name="apisId" Type="int" />
+    <Property Name="modiDate" Type="datetime" />
+    <Property Name="createDate" Type="datetime" />
     <Property Name="unitSn" Type="int" />
+    <Property Name="valid" Type="tinyint" />
   </EntityType>
   <EntityType Name="topics">
     <Key>

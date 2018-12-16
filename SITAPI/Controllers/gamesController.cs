@@ -89,6 +89,8 @@ namespace SITAPI.Controllers
 
             game.apiStatus = 1;      //遊戲建立的時候是關閉狀態
             game.valid = 1;
+            game.createDate = DateTime.Now;
+            game.modiDate = DateTime.Now;
             db.apis.Add(game);
             db.SaveChanges();
             foreach(topicDto tD in gameD.topicList)
@@ -97,10 +99,14 @@ namespace SITAPI.Controllers
                 {
                     topic t = Mapper.Map<topic>(tD);
                     t.apiSn = game.sn;
+                    t.unitSn = 1;
+                    t.createDate = DateTime.Now;
+                    t.modiDate = DateTime.Now;
+                    t.apitype = tD.apitypeid;
                    
                     db.topics.Add(t);
                     db.SaveChanges();
-                    foreach (choiceDto cD in tD.choiceList)
+                    /*foreach (choiceDto cD in tD.choiceList)
                     {
                         if (cD.valid.HasValue && cD.valid.Value == 1)
                         {
@@ -109,9 +115,37 @@ namespace SITAPI.Controllers
                             db.choices.Add(c);
                             db.SaveChanges();
                         }
-                    }
+                    }*/
                 }
             }
+            //新增至價格表
+            foreach (priceDto pD in gameD.priceList)
+            {
+                if (pD.valid.HasValue && pD.valid.Value == 1)
+                {
+                    price p= new price();
+                    p.priceMoney = pD.priceMoney;
+                    p.apiCount = pD.apiCount;
+                    p.unitSn = 1;
+                    p.apisId = game.sn;
+                    p.createDate = DateTime.Now;
+                    p.modiDate = DateTime.Now;                  
+
+                    db.prices.Add(p);
+                    db.SaveChanges();
+                    /*foreach (choiceDto cD in tD.choiceList)
+                    {
+                        if (cD.valid.HasValue && cD.valid.Value == 1)
+                        {
+                            choice c = Mapper.Map<choice>(cD);
+                            c.topicSn = t.sn;
+                            db.choices.Add(c);
+                            db.SaveChanges();
+                        }
+                    }*/
+                }
+            }
+
             return CreatedAtRoute("DefaultApi", new { id = game.sn }, game);
         }
 

@@ -75,5 +75,6 @@ namespace SITDto
         [DisplayName("顯示於主頁")]
         public bool? main { get; set; }
         public Nullable<int> apitypeid { get; set; }
+        public Nullable<int> layer { get; set; }
     }
 }

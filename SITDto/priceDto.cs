@@ -16,5 +16,6 @@ namespace SITDto
         public Nullable<int> apiCount { get; set; }
         public Nullable<int> apisId { get; set; }
         public Nullable<int> unitSn { get; set; }
+        public Nullable<byte> valid { get; set; }
     }
 }

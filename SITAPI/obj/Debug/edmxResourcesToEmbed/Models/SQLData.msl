@@ -118,6 +118,9 @@
     <EntitySetMapping Name="prices">
       <EntityTypeMapping TypeName="sitdbModel.price">
         <MappingFragment StoreEntitySet="prices">
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+          <ScalarProperty Name="valid" ColumnName="valid" />
           <ScalarProperty Name="unitSn" ColumnName="unitSn" />
           <ScalarProperty Name="apisId" ColumnName="apisId" />
           <ScalarProperty Name="apiCount" ColumnName="apiCount" />

@@ -129,6 +129,9 @@
     <Property Name="apiCount" Type="Int32" />
     <Property Name="apisId" Type="Int32" />
     <Property Name="unitSn" Type="Int32" />
+    <Property Name="valid" Type="Byte" />
+    <Property Name="modiDate" Type="DateTime" Precision="3" />
+    <Property Name="createDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="choice">
     <Key>

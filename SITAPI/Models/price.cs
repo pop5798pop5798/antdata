@@ -19,5 +19,8 @@ namespace SITAPI.Models
         public Nullable<int> apiCount { get; set; }
         public Nullable<int> apisId { get; set; }
         public Nullable<int> unitSn { get; set; }
+        public Nullable<byte> valid { get; set; }
+        public Nullable<System.DateTime> modiDate { get; set; }
+        public Nullable<System.DateTime> createDate { get; set; }
     }
 }

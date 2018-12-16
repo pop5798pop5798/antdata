@@ -118,7 +118,10 @@
           <Property Name="priceMoney" Type="float" />
           <Property Name="apiCount" Type="int" />
           <Property Name="apisId" Type="int" />
+          <Property Name="modiDate" Type="datetime" />
+          <Property Name="createDate" Type="datetime" />
           <Property Name="unitSn" Type="int" />
+          <Property Name="valid" Type="tinyint" />
         </EntityType>
         <EntityType Name="topics">
           <Key>
@@ -294,6 +297,9 @@
           <Property Name="apiCount" Type="Int32" />
           <Property Name="apisId" Type="Int32" />
           <Property Name="unitSn" Type="Int32" />
+          <Property Name="valid" Type="Byte" />
+          <Property Name="modiDate" Type="DateTime" Precision="3" />
+          <Property Name="createDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="choice">
           <Key>
@@ -444,6 +450,9 @@
           <EntitySetMapping Name="prices">
             <EntityTypeMapping TypeName="sitdbModel.price">
               <MappingFragment StoreEntitySet="prices">
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="modiDate" ColumnName="modiDate" />
+                <ScalarProperty Name="valid" ColumnName="valid" />
                 <ScalarProperty Name="unitSn" ColumnName="unitSn" />
                 <ScalarProperty Name="apisId" ColumnName="apisId" />
                 <ScalarProperty Name="apiCount" ColumnName="apiCount" />
