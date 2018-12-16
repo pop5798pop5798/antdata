@@ -58,7 +58,7 @@ namespace SITW.Controllers
         //[Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            gameDto game = new gameDto { topicList = new List<topicDto>() };
+            gameDto game = new gameDto { topicList = new List<topicDto>(), priceList = new List<priceDto>() };
             GamePostViewModel gpvm = new GamePostViewModel { game = game };
             gpvm.topicsetting = new GamePostsRepository().GetTopicsAll();
 
@@ -72,9 +72,9 @@ namespace SITW.Controllers
         {
             try
             {
-               
 
-                gameDto game = gpvm.game;
+                gpvm.game.topicList = gpvm.game.topicList.Where(x => x.valid != 0).ToList();
+                gameDto game = gpvm.game;               
                 game.userId = User.Identity.GetUserId();
                 game.comSn = 1;
                 game.comment = gpvm.comment;
@@ -99,6 +99,20 @@ namespace SITW.Controllers
             {
                 return View(gpvm);
             }
+        }
+
+        /*[Authorize(Roles = "Admin")]*/
+        public ActionResult _priceCreate(gameDto model, int? index)
+        {
+            index = index ?? 0;
+            ViewBag.Index = index;
+            model.priceList = new List<priceDto>();
+            for (int i = 0; i <= index; i++)
+            {
+                model.priceList.Add(new priceDto { valid = 1});
+            }
+            GamePostViewModel gpvm = new GamePostViewModel { game = model };
+            return PartialView(gpvm);
         }
 
         public async System.Threading.Tasks.Task<ContentResult> DataJson()

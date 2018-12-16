@@ -4,6 +4,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
     int ti = 0;
+    int index = Model.game.priceList.Count;
 }
 @using SITW.Helper
 
@@ -150,95 +151,176 @@
                             <input name="game.topicList[@ti].title" type="hidden" value="@topichide.tName" />
                             <input name="game.topicList[@ti].apieTitle" type="hidden" value="@topichide.dataName" />
                             <input name="game.topicList[@ti].apitypeid" type="hidden" value="@topichide.apiDataId" />
+                            <input name="game.topicList[@ti].layer" type="hidden" value="0" />
                             <input name="game.topicList[@ti].valid" type="hidden" value="0" />
                             ti++;
                         }
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> API數據名稱 </label>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> API數據名稱 </label>
 
-                                <div class="col-sm-9">
-                                    @Html.EditorFor(model => model.game.title, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", placeholder = "API數據名稱" } })
-                                    @Html.ValidationMessageFor(model => model.game.title, "", new { @class = "text-danger" })
+                            <div class="col-sm-9">
+                                @Html.EditorFor(model => model.game.title, new { htmlAttributes = new { @class = "col-xs-10 col-sm-5", placeholder = "API數據名稱" } })
+                                @Html.ValidationMessageFor(model => model.game.title, "", new { @class = "text-danger" })
 
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-2">上架API數據時間</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-2">上架API數據時間</label>
 
-                                <div class="col-sm-4">
-                                    <div class="input-daterange input-group">
+                            <div class="col-sm-4">
+                                <div class="input-daterange input-group">
 
-                                        @Html.EditorFor(model => model.game.sdate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "開始上架時間" } })
-                                        @Html.ValidationMessageFor(model => model.game.sdate, "", new { @class = "text-danger" })
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-exchange"></i>
-                                        </span>
-                                        @Html.EditorFor(model => model.game.edate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "下架時間" } })
-                                        @Html.ValidationMessageFor(model => model.game.edate, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right" for="form-field-3">封面上傳</label>
-                                <div class="col-sm-4">
-
-
-
-                                    <div class="form-group">
-                                        <div class="col-xs-12">
-                                            <input multiple="" type="file" name="gamepost.coverhref" id="id-input-file-3" />
-                                            @Html.ValidationMessageFor(model => model.gamepost.coverhref, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-
-                                    <label>
-                                        <input type="checkbox" name="file-format" id="id-file-format" class="ace" checked onclick="return false;">
-                                        <span class="lbl"> 只充許圖片</span>
-                                    </label>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">價格</label>
-                                1
-                                <div class="space-4"></div>
-                                <div class="col-sm-9">
-                                    API數據價格
-                                    <span class="input-icon">
-                                        @Html.EditorFor(model => model.game.priceList[0].priceMoney, new { htmlAttributes = new { @class = "input-sm", @id = "spinner2" } })
-                                        @Html.ValidationMessageFor(model => model.game.priceList[0].priceMoney, "", new { @class = "text-danger" })
-                                        @*<input type="text" class="input-sm" id="spinner2" />*@
-                                        <i class="ace-icon fa fa-leaf blue"></i>
+                                    @Html.EditorFor(model => model.game.sdate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "開始上架時間" } })
+                                    @Html.ValidationMessageFor(model => model.game.sdate, "", new { @class = "text-danger" })
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-exchange"></i>
                                     </span>
-                                    訪問API次數
-                                    @Html.EditorFor(model => model.game.priceList[0].apiCount, new { htmlAttributes = new { @class = "input-sm", @id = "spinner1" } })
-                                    @Html.ValidationMessageFor(model => model.game.priceList[0].apiCount, "", new { @class = "text-danger" })
-
+                                    @Html.EditorFor(model => model.game.edate, new { htmlAttributes = new { @class = "input-sm form-control", placeholder = "下架時間" } })
+                                    @Html.ValidationMessageFor(model => model.game.edate, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="space-6"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-field-3">封面上傳</label>
+                            <div class="col-sm-4">
+
+
+
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <input multiple="" type="file" name="gamepost.coverhref" id="id-input-file-3" />
+                                        @Html.ValidationMessageFor(model => model.gamepost.coverhref, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <label>
+                                    <input type="checkbox" name="file-format" id="id-file-format" class="ace" checked onclick="return false;">
+                                    <span class="lbl"> 只充許圖片</span>
+                                </label>
 
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">API數據介紹(內容)</label>
-                                <div class="col-sm-6">
+                        </div>
 
-                                    <textarea name="comment" id="editor1" rows="10" cols="80">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">價格</label>
+                            1
+                            <div class="space-4"></div>
+                            <div class="col-sm-9">
+                                <style>
+                                    .edit-container {
+                                        border: 1px solid rgba(0,0,0,.14);
+                                        border-radius: 2px;
+                                        box-shadow: 2px 2px 2px rgba(0,0,0,.02);
+                                        height: 40px;
+                                        height: auto;
+                                        background: #fff;
+                                    }
+
+                                    .grid with-gap repeater-header variation {
+                                        width: 100%;
+                                        padding: 8px 8px 8px 40px;
+                                        display: flex;
+                                    }
+
+                                    .variation__name {
+                                        padding-right: 10px;
+                                        margin-right: 0;
+                                        -webkit-justify-content: center;
+                                        -ms-flex-pack: center;
+                                        justify-content: center;
+                                        flex: 6.7;
+                                        margin-right: 20px;
+                                        margin-left: 20px;
+                                    }
+
+                                    .variation__price {
+                                        padding-right: 10px;
+                                        margin-right: 0;
+                                        -webkit-justify-content: center;
+                                        -ms-flex-pack: center;
+                                        justify-content: center;
+                                        flex: 2;
+                                        margin-right: 20px;
+                                        margin-left: 20px;
+                                    }
+
+                                    .repeater {
+                                        padding: 8px 8px 8px 40px;
+                                        border: none;
+                                        display: -webkit-flex;
+                                        display: -ms-flexbox;
+                                        display: flex;
+                                        -webkit-align-items: center;
+                                        -ms-flex-align: center;
+                                        align-items: center;
+                                        -webkit-justify-content: space-between;
+                                        -ms-flex-pack: justify;
+                                        justify-content: space-between;
+                                        padding: 10px 30px 10px 0;
+                                        border-top: 1px solid #e8e8e8;
+                                        position: relative;
+                                        z-index: 1;
+                                    }
+
+                                    .variation {
+                                        display: -webkit-flex;
+                                        display: -ms-flexbox;
+                                        display: flex;
+                                        padding: 8px 8px 8px 40px;
+                                        width: 100%;
+                                    }
+
+                                    #editTitle {
+                                        display: none;
+                                    }
+                                </style>
+
+                                <div class="edit-container variation-container">
+
+                                    <div id="editTitle" class="grid with-gap repeater-header variation">
+                                        <div class="edit-label variation__price">價格</div>
+                                        <div class="edit-label variation__name">訪問次數</div>
+                                    </div>
+
+                                    <div id="topic-group">
+
+                                    </div>
+                                    @Ajax.ActionLink(linkText: "增加數據價格", actionName: "_priceCreate", controllerName: "AdminUser", routeValues: new { index = index }, ajaxOptions: new AjaxOptions
+                                   {
+                                       InsertionMode = InsertionMode.InsertAfter,
+                                       UpdateTargetId = "topic-group",
+                                       OnSuccess = "indexIterate"
+                                   },
+                                        htmlAttributes: new { id = "addTopic", @class = "btn btn-default" })
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="space-6"></div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">API數據介紹(內容)</label>
+                            <div class="col-sm-6">
+
+                                <textarea name="comment" id="editor1" rows="10" cols="80">
                                            
                                         </textarea>
-                                    @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
 
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Create" class="btn btn-default" />
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -364,6 +446,8 @@
 
 @section Scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryajax")
     <script src="~/Content/ckeditor/ckeditor.js"></script>
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor
@@ -372,6 +456,21 @@
     </script>
 
     <!-- inline scripts related to this page -->
+    <script>
+       
+
+        function indexIterate() {
+            $("#editTitle").css("display", "flex"); 
+            var newHref = $("#addTopic").attr("href");
+            currentIndex = $("div[name=topicDiv]").length;
+            timeindex = currentIndex;
+            var newerHref = newHref.replace(/(?:index=)[0-9]+/i, "index=" + currentIndex);
+            $("#addTopic").attr("href", newerHref);
+
+
+        }
+    </script>
+
     <script type="text/javascript">
         jQuery(function ($) {
             var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox({
@@ -395,7 +494,7 @@
                 demo1.bootstrapDualListbox('refresh', true);
 
             });
-            
+
             $('select[name ="duallistbox_demo1[]_helper2"]').on('change', function () {
                 var optionValues = [];
                 $('input[name$=".valid"]').val(0);
@@ -404,14 +503,14 @@
                 });
                 for (var i = 0; i < optionValues.length; i++) {
                     $('input[name="game.topicList[' + optionValues[i] + '].valid"]').val(1);
-                   // alert($('input[name="game.topicList[' + optionValues[i] + '].valid"]').val());
+                    // alert($('input[name="game.topicList[' + optionValues[i] + '].valid"]').val());
                 }
                 demo1.bootstrapDualListbox('refresh', true);
             });
 
-            
-            
-          
+
+
+
 
             /**var setRatingColors = function() {
                 $(this).find('.star-on-png,.star-half-png').addClass('orange2').removeClass('grey');
@@ -513,20 +612,20 @@
                 $('.rating').raty('destroy');
                 $('.multiselect').multiselect('destroy');
             });
-           
-            
+
+
 
         });
     </script>
 
     <script>
         $(document).ready(function () {
-           
-           
+
+
 
         });
 
-        </script>
+    </script>
 
     <script type="text/javascript">
         jQuery(function ($) {
