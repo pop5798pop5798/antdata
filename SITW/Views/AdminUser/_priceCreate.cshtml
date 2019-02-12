@@ -1,0 +1,45 @@
+﻿@model SITW.Models.ViewModel.GamePostViewModel
+@{
+    Layout = null;
+    int i = ViewBag.index ?? 0;
+
+}
+
+@Html.HiddenFor(model => model.game.priceList[i].valid)
+<div id="ember5249" name="topicDiv">
+    <div class="repeater">
+        <div class="grid with-gap repeater-field">
+            <div class="variation">
+                <div class="variation__name">
+                    <span class="input-icon">
+                        @Html.EditorFor(model => model.game.priceList[i].priceMoney, new { htmlAttributes = new { @class = "input-sm", @id = "spinner2" } })
+                        @Html.ValidationMessageFor(model => model.game.priceList[i].priceMoney, "", new { @class = "text-danger" })
+
+                        <i class="ace-icon fa fa-leaf blue"></i>
+                    </span>
+                </div>
+                <div class="variation__name">
+
+                    <select name="game.priceList[@i].apiCount" class="chosen-select form-control" id="form-field-select-4" data-placeholder="請選擇...">
+                        <option value="0">無限制</option>
+                        <option value="50">次數：50 </option>
+                        <option value="200">次數：200 </option>
+                        <option value="400">次數：400 </option>
+                        <option value="600">次數：600 </option>
+                        <option value="1000">次數：1000</option>
+                        <option value="2000">次數：2000 </option>
+                        <option value="3000">次數：3000</option>
+                        <option value="5000">次數：5000 </option>
+                        <option value="10000">次數：10000 </option>
+                        <option value="50000">次數：50000 </option>
+
+                    </select>
+                    @Html.ValidationMessageFor(model => model.game.priceList[i].apiCount, "", new { @class = "text-danger" })
+                </div><!----><!----><!---->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
