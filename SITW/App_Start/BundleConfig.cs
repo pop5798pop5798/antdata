@@ -89,6 +89,21 @@ namespace SITW
                     "~/Content/assets/css/style-responsive.css",
                     "~/Content/vendors//bootstrap/css/bootstrap.min.css"
                      ));
+            bundles.Add(new StyleBundle("~/Content/Adminstyles").Include(
+                   "~/Content/admin/css/bootstrap.min.css",
+                   "~/Content/admin/css/jquery-ui.min.css",
+                   "~/Content/admin/css/ui.jqgrid.min.css",
+                   "~/Content/admin/css/jquery-ui.custom.min.css",
+                   "~/Content/admin/css/chosen.min.css",
+                   "~/Content/admin/css/bootstrap-timepicker.min.css",
+                   "~/Content/admin/css/daterangepicker.min.css",
+                   "~/Content/admin/css/bootstrap-datetimepicker.min.css",
+                   "~/Content/admin/css/bootstrap-colorpicker.min.css",
+                   "~/Content/admin/css/fonts.googleapis.com.css",
+                   "~/Content/admin/css/ace.min.css",
+                   "~/Content/admin/css/ace-skins.min.css",
+                   "~/Content/admin/css/ace-rtl.min.css"
+                    ));
             BundleTable.EnableOptimizations = true;
         }
     }

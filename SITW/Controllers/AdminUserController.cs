@@ -28,6 +28,8 @@ using System.Collections;
 using Newtonsoft.Json.Converters;
 using System.Web.Helpers;
 using Newtonsoft.Json.Linq;
+using HtmlAgilityPack;
+using System.Web.UI.HtmlControls;
 
 namespace SITW.Controllers
 {
@@ -129,6 +131,115 @@ namespace SITW.Controllers
             return Content(array.ToString(), "application/json");
   
      
+        }
+
+        public ActionResult GetWeb()
+        {
+            
+
+
+            return View();
+        }
+
+        //htmlcode
+        public string jquerytest() {
+            HtmlDocument dochtml = new HtmlDocument();
+            string html = "<body>"+"<img alt='Team Secret' class='img-team img-avatar' src='https://riki.dotabuff.com/t/l/e73oP7ItcP.png'>"+ "</body>";
+
+            dochtml.LoadHtml(html);
+            var divsWithText = dochtml.DocumentNode.SelectSingleNode("//body");
+            /*var innerHtmlAndClass =
+               divsWithText
+                   .Select(div =>
+                       new
+                       {
+                           Class = div.Attributes["class"].Value
+                       });*/
+            
+
+            /*var divsWithText = dochtml
+                 .DocumentNode
+                 .Descendants("div")
+                 .Where(node => node.Descendants()
+                                    .Any(des => des.NodeType == HtmlNodeType.Text))
+                 .ToList();
+            var innerHtmlAndClass =
+               divsWithText
+                   .Select(div =>
+                       new
+                       {
+                           Class = div.Attributes["class"].Value
+                       });*/
+           /* foreach (var item in innerHtmlAndClass)
+            {
+                Console.WriteLine("class='{0}' innerHtml='{1}'", item.Class, item.InnerHtml);
+            }*/
+
+
+            var webGet = new HtmlWeb();
+            var doc = webGet.Load("https://www.dotabuff.com/");
+            //HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes("//div[@class='team left-team']//span[@class='name']//div[@class='r-none-mobile']//a[@class='esports-team esports-link team-link']//span[@class='team-text team-text-name']//div[@class='r-only-mobile']//a[@class='esports-team esports-link team-link']//span[@class='team-text team-text-tag']//span[@class='image']//span[@class='esports-team ']//span[@class='team-image']//img[@class='img-team img-avatar']//span[@class='line low-light']//span[@class='important']");
+
+
+            string d = "";
+            foreach (var div in divsWithText.Descendants())
+            {
+
+                if (div.NodeType == HtmlNodeType.Element)
+                {
+                    d += "//" + div.Name + ((div.Attributes["class"] != null) ? "[@class='"+div.Attributes["class"].Value +"']" : "");
+                    
+                   
+                }
+            }
+
+            HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes(d);
+            /* var sb = new StringBuilder();
+             sb.AppendFormat("<html>");
+             sb.AppendFormat("<div class='x'>");
+             sb.AppendFormat("<p>this is the text I have.</p>");
+             sb.AppendFormat("<p>Another part of text.</p>");
+             sb.AppendFormat("</div>");
+             sb.AppendFormat("</html>");
+
+             const string stringToSearch = "<p>this is the text I have.</p><p>Another part of text.</p>";
+
+             var document = new HtmlDocument();
+             document.LoadHtml(sb.ToString());
+
+             var divsWithText = document
+                 .DocumentNode
+                 .Descendants("div")
+                 .Where(node => node.Descendants()
+                                    .Any(des => des.NodeType == HtmlNodeType.Text))
+                 .ToList();
+
+             var divsWithInnerHtmlMatching =
+                 divsWithText
+                     .Where(div => div.InnerHtml.Equals(stringToSearch))
+                     .ToList();
+
+             var innerHtmlAndClass =
+                 divsWithInnerHtmlMatching
+                     .Select(div =>
+                         new
+                         {
+                             InnerHtml = div.InnerHtml,
+                             Class = div.Attributes["class"].Value
+                         });
+
+             foreach (var item in innerHtmlAndClass)
+             {
+                 Console.WriteLine("class='{0}' innerHtml='{1}'", item.Class, item.InnerHtml);
+             }*/
+            string vr = "";
+            foreach (var item in nodes)
+            {
+                //vr += item.InnerText;
+                vr += item.Attributes["src"].Value;
+            }
+            return vr;
+
         }
 
 

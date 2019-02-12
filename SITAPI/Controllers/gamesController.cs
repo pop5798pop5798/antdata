@@ -87,7 +87,7 @@ namespace SITAPI.Controllers
             });
             api game = Mapper.Map<api>(gameD);
 
-            game.apiStatus = 1;      //遊戲建立的時候是關閉狀態
+            game.apiStatus = 0;      //遊戲建立的時候是關閉狀態
             game.valid = 1;
             game.createDate = DateTime.Now;
             game.modiDate = DateTime.Now;

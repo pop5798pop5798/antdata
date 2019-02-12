@@ -1690,6 +1690,7 @@
     <Content Include="Views\AdminUser\Index.cshtml" />
     <Content Include="Views\AdminUser\Create.cshtml" />
     <Content Include="Views\AdminUser\_priceCreate.cshtml" />
+    <Content Include="Views\AdminUser\GetWeb.cshtml" />
     <None Include="Web.funbetRelease.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

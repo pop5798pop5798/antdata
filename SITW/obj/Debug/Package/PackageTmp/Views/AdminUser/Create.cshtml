@@ -10,6 +10,81 @@
 
 
 
+@section Styles{
+    <style>
+        .edit-container {
+            /* border: 1px solid rgba(0,0,0,.14);*/
+            border-radius: 2px;
+            box-shadow: 2px 2px 2px rgba(0,0,0,.02);
+            height: 40px;
+            height: auto;
+            background: #fff;
+        }
+
+        .grid with-gap repeater-header variation {
+            width: 100%;
+            padding: 8px 8px 8px 40px;
+            display: flex;
+        }
+
+        .variation__name {
+            padding-right: 10px;
+            margin-right: 0;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            flex: 6.7;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .variation__price {
+            padding-right: 10px;
+            margin-right: 0;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            flex: 2;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+
+        .repeater {
+            padding: 8px 8px 8px 40px;
+            border: none;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 10px 30px 10px 0;
+            border-top: 1px solid #e8e8e8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .variation {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 8px 8px 8px 40px;
+            width: 100%;
+        }
+
+        #editTitle {
+            display: none;
+        }
+    </style>
+
+
+}
+
+
+
 <div class="main-content">
     <div class="main-content-inner">
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -139,8 +214,8 @@
                                         </option>
                                     }
                                     @*<option value="0">
-                            名稱(字串類型)
-                        </option>*@
+                                            名稱(字串類型)
+                                        </option>*@
                                 </select>
 
                                 <div class="hr hr-16 hr-dotted"></div>
@@ -204,78 +279,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 control-label no-padding-right">價格</label>
-                            1
+                            <label class="col-sm-3 control-label no-padding-right">價格和次數</label>
                             <div class="space-4"></div>
                             <div class="col-sm-9">
-                                <style>
-                                    .edit-container {
-                                        border: 1px solid rgba(0,0,0,.14);
-                                        border-radius: 2px;
-                                        box-shadow: 2px 2px 2px rgba(0,0,0,.02);
-                                        height: 40px;
-                                        height: auto;
-                                        background: #fff;
-                                    }
 
-                                    .grid with-gap repeater-header variation {
-                                        width: 100%;
-                                        padding: 8px 8px 8px 40px;
-                                        display: flex;
-                                    }
-
-                                    .variation__name {
-                                        padding-right: 10px;
-                                        margin-right: 0;
-                                        -webkit-justify-content: center;
-                                        -ms-flex-pack: center;
-                                        justify-content: center;
-                                        flex: 6.7;
-                                        margin-right: 20px;
-                                        margin-left: 20px;
-                                    }
-
-                                    .variation__price {
-                                        padding-right: 10px;
-                                        margin-right: 0;
-                                        -webkit-justify-content: center;
-                                        -ms-flex-pack: center;
-                                        justify-content: center;
-                                        flex: 2;
-                                        margin-right: 20px;
-                                        margin-left: 20px;
-                                    }
-
-                                    .repeater {
-                                        padding: 8px 8px 8px 40px;
-                                        border: none;
-                                        display: -webkit-flex;
-                                        display: -ms-flexbox;
-                                        display: flex;
-                                        -webkit-align-items: center;
-                                        -ms-flex-align: center;
-                                        align-items: center;
-                                        -webkit-justify-content: space-between;
-                                        -ms-flex-pack: justify;
-                                        justify-content: space-between;
-                                        padding: 10px 30px 10px 0;
-                                        border-top: 1px solid #e8e8e8;
-                                        position: relative;
-                                        z-index: 1;
-                                    }
-
-                                    .variation {
-                                        display: -webkit-flex;
-                                        display: -ms-flexbox;
-                                        display: flex;
-                                        padding: 8px 8px 8px 40px;
-                                        width: 100%;
-                                    }
-
-                                    #editTitle {
-                                        display: none;
-                                    }
-                                </style>
 
                                 <div class="edit-container variation-container">
 
@@ -287,13 +294,14 @@
                                     <div id="topic-group">
 
                                     </div>
+                                    <i style="color:#478fca;" class="ace-icon fa fa-plus-circle"></i>
                                     @Ajax.ActionLink(linkText: "增加數據價格", actionName: "_priceCreate", controllerName: "AdminUser", routeValues: new { index = index }, ajaxOptions: new AjaxOptions
                                    {
                                        InsertionMode = InsertionMode.InsertAfter,
                                        UpdateTargetId = "topic-group",
                                        OnSuccess = "indexIterate"
                                    },
-                                        htmlAttributes: new { id = "addTopic", @class = "btn btn-default" })
+                                        htmlAttributes: new { id = "addTopic" })
 
 
                                 </div>
@@ -303,6 +311,9 @@
                             <div class="space-6"></div>
 
                         </div>
+
+
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right">API數據介紹(內容)</label>
                             <div class="col-sm-6">
@@ -457,10 +468,11 @@
 
     <!-- inline scripts related to this page -->
     <script>
-       
+
 
         function indexIterate() {
-            $("#editTitle").css("display", "flex"); 
+            $(".edit-container").css("border", "1px solid rgba(0,0,0,.14)");
+            $("#editTitle").css("display", "flex");
             var newHref = $("#addTopic").attr("href");
             currentIndex = $("div[name=topicDiv]").length;
             timeindex = currentIndex;
@@ -618,14 +630,7 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function () {
 
-
-
-        });
-
-    </script>
 
     <script type="text/javascript">
         jQuery(function ($) {
